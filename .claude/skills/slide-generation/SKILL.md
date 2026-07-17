@@ -193,6 +193,74 @@ If the user asks for a file, generate the chart PNG via R and offer to help crea
 - Footnotes: data source, study name, estimand used
 - Cross-trial comparison caveat on landscape slides
 
+---
+
+## Saving as PPTX File (REQUIRED)
+
+After generating slide content, you MUST save it as a `.pptx` file using the Lilly corporate template. Use R `officer` package:
+
+**Template location:** `templates/lilly-template.pptx` (in the project folder)
+
+**R code to generate the PPTX:**
+
+```r
+library(officer)
+
+# Read the Lilly corporate template
+pptx <- read_pptx("templates/lilly-template.pptx")
+
+# Get available slide layouts from the template
+layout_summary(pptx)  # Run this first to see what layouts exist
+
+# Add slides using the template's layouts
+# Layout "Title Slide" = red background title (slide 1)
+# Layout "Title and Content" or similar = bullet slides (slides 2-5)
+
+# Slide 1: Title
+pptx <- add_slide(pptx, layout = "Title Slide", master = "Office Theme")
+pptx <- ph_with(pptx, value = "Competitor Landscape Update: [Drug Name]",
+                 location = ph_location_type(type = "ctrTitle"))
+pptx <- ph_with(pptx, value = "[Indication] — [Date]",
+                 location = ph_location_type(type = "subTitle"))
+
+# Slides 2-5: Content slides
+pptx <- add_slide(pptx, layout = "Title and Content", master = "Office Theme")
+pptx <- ph_with(pptx, value = "Key Summary",
+                 location = ph_location_type(type = "title"))
+pptx <- ph_with(pptx, value = c(
+  "Bullet 1: top-line result",
+  "Bullet 2: comparison to landscape",
+  "Bullet 3: implication"
+), location = ph_location_type(type = "body"))
+
+# Add chart image (if generated)
+# pptx <- add_slide(pptx, layout = "Title and Content", master = "Office Theme")
+# pptx <- ph_with(pptx, value = external_img("landscape_chart.png", width = 9, height = 5),
+#                  location = ph_location(left = 0.5, top = 1.5, width = 9, height = 5))
+
+# Add footer to all slides
+# pptx <- on_slide(pptx, index = 1)  # etc.
+
+# Save
+output_path <- paste0("competitor_deck_", format(Sys.Date(), "%Y%m%d"), ".pptx")
+print(pptx, target = output_path)
+cat("Saved:", output_path, "\n")
+```
+
+**Important notes on the Lilly template:**
+- The template has a red title slide layout (Lilly branding)
+- Use `layout_summary(pptx)` to discover exact layout names available
+- Font: Times New Roman for headers, Arial for body (the template enforces this)
+- Footer: "Company Confidential © 2026 Eli Lilly and Company" is in the template
+- Always add "Review is required before disclosure" as a text box or in the body
+
+**Output location:** Save the file in the current working directory. Tell the user the filename:
+```
+✓ Saved: competitor_deck_20260717.pptx (in your current folder)
+```
+
+---
+
 ## References
 
 - See `references/indications.md` for endpoints and comparators
