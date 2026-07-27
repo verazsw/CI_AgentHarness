@@ -1,6 +1,6 @@
 ---
 name: slide-generation
-description: "Generate a 5-slide competitor readout deck summarizing new clinical trial data. Includes Key Summary, Study Design, Efficacy Results with landscape chart, Safety & Competitive Insights, and Development Program. Triggered when user asks for slides, a deck, a presentation, or a readout."
+description: "Generate 1) a 5-slide competitor readout deck summarizing new competitor clinical trial data or 2) a detailed readout slide deck for presenters to prepare and select information from. Includes BNMA plot integration, compound-specific landscape charts, and polished pptxgenjs output."
 ---
 
 # Slide Generation Skill
@@ -10,39 +10,103 @@ description: "Generate a 5-slide competitor readout deck summarizing new clinica
 - User asks for "slides", "a deck", "a presentation", or "a readout"
 - User has extracted data and wants it formatted for leadership
 - User says "summarize for the team" or "prepare for the meeting"
+- User says "detailed deck" or "presenter prep" or "full readout"
+
+## Mode Selection
+
+Ask the user which mode, OR detect from their phrasing:
+
+| Mode | Trigger Phrases | Output |
+|------|----------------|--------|
+| **Quick** (default) | "quick readout", "5-slide deck", "leadership briefing", "summary deck" | 5 slides |
+| **Detailed** | "detailed deck", "presenter deck", "full readout", "deep dive", "presenter prep" | 8 fixed + 1 per BNMA plot |
+
+If unclear, ask: "Quick 5-slide leadership briefing, or detailed presenter-prep deck?"
+
+---
 
 ## Prerequisites
 
-Before generating slides, gather:
-1. Extracted efficacy data (use data-extraction skill if needed)
-2. Context from ClinicalTrials.gov (study design, endpoints)
-3. PubMed abstracts for related studies (competitive context)
-4. User's press release text (if provided)
-5. BNMA plot image (if user provides one)
+Before generating slides, gather information in this **priority order**:
+
+1. **Press release (PRIMARY SOURCE — always prioritize)**
+   - Ask user: "Do you have the press release? Is it a URL, pasted text, PDF, or PPTX?"
+   - If PDF or PPTX: ask user to convert to image files (PNG/JPEG) and drop them in `figures/` folder
+     > "Could you convert the press release pages to PNG images and drop them in the `figures/` folder? On Mac: open in Preview → File → Export → PNG. You only need the pages with figures you want embedded (study design, efficacy charts, safety tables)."
+   - Extract all efficacy data, study design, safety signals from the press release FIRST
+2. **Check `figures/` folder for BNMA plot PNGs** — if present (matching naming convention `{compound}_{endpoint}_{timepoint}_{date}.png`), interpret each for slide content
+3. **ClinicalTrials.gov** — supplement with study design details, arms, sample size (only if press release is incomplete)
+4. **PubMed** — search for related studies and competitive context (only if needed for landscape comparison)
+
+**Key principle:** The press release is the ground truth for the new readout. ClinicalTrials.gov and PubMed are supplementary sources for context and gap-filling, not primary.
 
 ## Research Phase
 
-Before writing slides, gather research context:
+### Step 1: Press release (always first)
 
-### Fetch study data from ClinicalTrials.gov:
+Ask the user for the press release source. If they have a PDF or PPTX:
+> "Could you convert the press release to image files (PNG or JPEG)? I can extract information more accurately from images than raw PDF/PPTX."
+
+Once provided, extract from the press release:
+- All efficacy results (primary + secondary endpoints, response rates, CIs, p-values)
+- Study design (arms, doses, population, randomization)
+- Safety signals (AEs, discontinuation rates)
+- Any figures (study design diagrams, efficacy charts) — embed these directly, do NOT re-generate
+
+### Step 2: Supplement from ClinicalTrials.gov (if needed)
+
+Only fetch if the press release is missing key details (sample size, allocation ratio, exact I/E criteria):
+
 ```bash
 curl -s "https://clinicaltrials.gov/api/v2/studies/{NCT_ID}?format=json"
 ```
-Extract: official title, phase, status, arms, interventions, eligibility, sponsor.
 
-### Search for related studies:
+Search for related studies (for landscape context):
 ```bash
 curl -s "https://clinicaltrials.gov/api/v2/studies?query.intr={drug_name}&query.cond={indication}&format=json&pageSize=5"
 ```
 
-### Search PubMed for competitor context:
+### Step 3: PubMed (for competitive context only)
+
 ```bash
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term={drug_name}+{indication}+phase+3&retmode=json&retmax=3"
 ```
 
 ---
 
-## The 5-Slide Structure
+## BNMA Integration Workflow
+
+### Step 1: Check for BNMA plots
+
+```bash
+ls figures/*.png figures/*.jpg figures/*.jpeg 2>/dev/null | grep -E '^figures/[A-Z]'
+```
+
+This filters for BNMA plots (which start with a compound code like `APG777_`) vs press release pages (which start with `page-`).
+
+### Step 2: Parse filenames
+
+Extract compound, endpoint, and timepoint from filename convention `{compound}_{endpoint}_{timepoint}_{date}.{png|jpg}`:
+- `APG777_EASI75_Wk16_2026-07-20.png` → compound: APG777 (zumilokibart), endpoint: EASI-75, timepoint: Week 16
+- `APG777_IGA01_Wk16_2026-07-20.jpg` → compound: APG777 (zumilokibart), endpoint: IGA 0/1, timepoint: Week 16
+
+### Step 3: Interpret each plot
+
+For each PNG, apply the **bnma-interpretation** skill logic:
+1. Identify plot type (forest, ridge, league table, network)
+2. Read numerical data from the image (point estimates, CrIs, rankings)
+3. Describe findings in plain language
+4. Contextualize for Lilly (where does lebrikizumab rank?)
+
+### Step 4: Route to slides
+
+- **Quick mode:** Distill into 1 bullet for Key Summary:
+  `"BNMA ranking: [Drug] #[N] for [endpoint] (OR [X]; CrI: [Y–Z]) — [above/below] lebrikizumab"`
+- **Detailed mode:** Full interpretation card per plot (3-4 bullets + footnote)
+
+---
+
+## Quick Mode: 5-Slide Structure
 
 ### Slide 1: Key Summary (What leadership needs in 30 seconds)
 
@@ -50,13 +114,15 @@ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&te
 - What drug, what indication, what phase, what stage
 - Top-line primary endpoint result (number vs placebo, p-value)
 - How it compares to current landscape (better/similar/worse than standard)
+- Any difference compared with this drug previous studies if there are any
+- **BNMA ranking insight** (if plots available in `figures/`)
 - Any surprises or implications for Lilly
-- Safety signal if notable
 
 **Format per bullet:**
 ```
 • [Drug] [dose] achieved [X]% [endpoint] at Wk[Y] (vs [Z]% PBO; p[value])
 • This is [higher/similar/lower] than [comparator] [A]% in [study name]
+• BNMA: [Drug] ranks #[N] for [endpoint] — [above/below] lebrikizumab
 • [Implication for Lilly compound or strategy]
 ```
 
@@ -72,40 +138,61 @@ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&te
 - Sample size per arm (with allocation ratio)
 - Randomization and blinding
 
+If press release has a detailed PDF file or PPTX file, ask user to convert it to image files (PNG, JPEG, etc.) and provide it. If the press release contains a study design figure, embed it directly on this slide — do NOT re-generate the design figure.
+
 ### Slide 3: Efficacy Results + Landscape Chart
 
 **Content:**
 - Primary endpoint result: response rate with CI and p-value per arm
 - Key secondary endpoints
-- Landscape bar chart: the new data plotted alongside all known competitors at the same endpoint/timepoint
+- Landscape bar chart: the new data plotted alongside all known competitors
 
-**Chart specification:**
+**Use efficacy figures from press release:**
+If there are any efficacy figures regarding the interested endpoints for each indication in the press release, extract those figures and include them in the slide deck as well. Do not re-generate figures that already exist in the source material.
+
+**Chart specification (for generated landscape chart):**
 - X-axis: treatment names (drug + dose)
 - Y-axis: response rate (%)
-- Color: Lilly red (#C8102E) for the new data, gray (#999999) for known competitors
+- Colors: compound-specific (see Compound Color Palette below)
 - Error bars: 95% CI where available
 - Title: "[Endpoint] at Week [X] — Competitive Landscape"
-- Footnote: "Cross-trial comparison for illustrative purposes only"
-- Include placebo bar as reference
+- Footnote: "Cross-trial comparison for illustrative purposes only. Review is required before disclosure."
+- Include placebo bar as reference (gray)
 
-**To generate the chart** (R code):
+**Chart R code** (saved as `landscape_chart.png` for embedding):
 ```r
 library(ggplot2)
-chart_data <- data.frame(
-  treatment = c("Drug A 300mg Q2W", "Drug B 200mg QD", "Placebo"),
-  outcome = c(61.3, 55.0, 14.7),
-  ci_lower = c(54.2, 47.0, 8.9),
-  ci_upper = c(68.4, 63.0, 20.5),
-  is_new = c(TRUE, FALSE, FALSE)
+
+# Compound color map
+compound_colors <- c(
+  "lebrikizumab" = "#E1251B",
+  "dupilumab" = "#0F3A85",
+  "tralokinumab" = "#144B2D",
+  "abrocitinib" = "#7B2D8B",
+  "upadacitinib" = "#D4570A",
+  "nemolizumab" = "#4A90A4",
+  "rocatinlimab" = "#8B6914",
+  "placebo" = "#999999"
 )
-p <- ggplot(chart_data, aes(x = reorder(treatment, outcome), y = outcome)) +
-  geom_col(aes(fill = is_new), width = 0.7) +
+
+# Build chart_data from extracted data + database
+# chart_data must have columns: treatment, outcome, ci_lower, ci_upper, compound
+
+p <- ggplot(chart_data, aes(x = reorder(treatment, outcome), y = outcome, fill = compound)) +
+  geom_col(width = 0.7) +
   geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper), width = 0.2) +
-  scale_fill_manual(values = c("FALSE" = "#999999", "TRUE" = "#C8102E")) +
+  scale_fill_manual(values = compound_colors, guide = "none") +
   coord_flip() +
-  labs(title = "EASI-75 at Week 16", x = NULL, y = "Response Rate (%)",
-       caption = "Cross-trial comparison for illustrative purposes only.\nReview is required before disclosure.") +
-  theme_minimal() + theme(legend.position = "none")
+  labs(
+    title = paste0(endpoint, " at Week ", timepoint, " — Competitive Landscape"),
+    x = NULL, y = "Response Rate (%)",
+    caption = "Cross-trial comparison for illustrative purposes only.\nReview is required before disclosure."
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    legend.position = "none"
+  )
 ggsave("landscape_chart.png", p, width = 10, height = 6, dpi = 150)
 ```
 
@@ -127,14 +214,127 @@ ggsave("landscape_chart.png", p, width = 10, height = 6, dpi = 150)
 
 ---
 
+## Detailed Mode: 8+N Slide Structure
+
+### Slide 1: Title Slide
+
+| Element | Content |
+|---------|---------|
+| Main title | "Competitor Landscape Update: [Drug Name]" |
+| Subtitle | "[Indication] — [Data Release Type] (e.g., Phase 3 Data, Conference Presentation)" |
+| Date | Meeting date |
+| Confidentiality | "CONFIDENTIAL — For Internal Use Only" |
+| Disclaimer | "Review is required before disclosure." (smaller font, bottom) |
+| Speaker notes | Brief context: why this update matters, what the audience will learn |
+
+### Slide 2: Drug Overview
+
+A high-level profile card for the new competitor drug.
+
+| Element | Content |
+|---------|---------|
+| Drug name | Generic name (code name) |
+| Sponsor | Company name |
+| Modality | e.g., monoclonal antibody, JAK inhibitor, bispecific |
+| Target | Molecular target (e.g., IL-13, IL-31, OX40) |
+| Dosing | Route, dose, frequency |
+| Development stage | Phase and indication |
+| Competitive positioning | One-sentence summary of where this drug fits |
+| Speaker notes | Sponsor pipeline strategy, prior successes/setbacks |
+
+### Slide 3: Mechanism of Action
+
+| Element | Content |
+|---------|---------|
+| Pathway description | How the drug works, where it intervenes |
+| Differentiation | How this MOA differs from established therapies |
+| Key differentiators | 2–3 bullets on what makes this MOA interesting or concerning |
+| Speaker notes | Deeper mechanistic context, preclinical data, class effects |
+
+### Slide 4: Study Design & Key Results
+
+Two-section layout (left/right or top/bottom):
+
+| Section | Content |
+|---------|---------|
+| **Study Design** (left) | Phase, N, arms, randomization, duration, primary endpoint, key I/E |
+| **Key Results** (right) | Primary result, key secondaries, dose-response, safety highlights |
+| Baseline characteristics | Disease severity, demographics summary |
+| Speaker notes | Design caveats, how baseline severity compares to other trials |
+
+If press release contains a study design figure, embed it directly — do NOT re-generate. Ask user to provide as PNG/JPEG if source is PDF/PPTX. Similarly, if efficacy figures exist in the press release for the endpoints of interest, extract and embed them directly.
+
+### Slide 5: Broader Competitor Comparison
+
+| Element | Content |
+|---------|---------|
+| Table columns | Drug, Sponsor, MOA/Target, Route, Phase/Status, Efficacy, Safety Signal |
+| Rows | 4–8 drugs: new competitor, Lilly's drug, 3–6 approved/late-stage |
+| Highlighting | Lilly in brand red; new competitor in contrasting accent |
+| Caveats footnote | "Cross-trial comparisons are indirect..." |
+| Speaker notes | Which comparisons are most/least reliable, placebo rate differences |
+
+### Slide 6: Head-to-Head vs Lilly Drug
+
+Two-card layout side by side:
+
+| Left Card: "Similarities" | Right Card: "Differences" |
+|---------------------------|--------------------------|
+| Shared patient population | Different MOA |
+| Overlapping endpoints | Different route/dosing |
+| Comparable efficacy class | Different safety profile |
+| | Program maturity gap |
+
+Speaker notes: nuanced assessment of which differences matter most clinically and commercially.
+
+### Slides 7+: BNMA Results (One Slide Per Plot)
+
+**Only generated if BNMA PNG files exist in `figures/`.** One slide per plot.
+
+| Element | Content |
+|---------|---------|
+| Slide title | "BNMA: [Endpoint] at [Timepoint]" — parsed from filename |
+| Image | Left side (~70% width): the BNMA ridge/forest plot |
+| Interpretation card | Right side (~30% width): 3–4 bullet interpretation |
+| Interpretation content | Ranking, comparison to Lilly drug, surprising findings, CrI width |
+| Caveats | BNMA limitations footnote |
+| Speaker notes | Detailed interpretation, network structure, sensitivity notes |
+
+**Layout coordinates:**
+- Image: x=0.3, y=1.05, w≈6.5, h≈3.9 (preserve aspect ratio)
+- Interpretation card: x≈7.0, y=1.05, w≈2.7, h≈3.9
+
+### Second-to-Last Slide: Implications for Lilly Strategy
+
+Two-card layout:
+
+| Left Card: "Competitive Threat" | Right Card: "Mitigating Factors" |
+|--------------------------------|----------------------------------|
+| 3–4 bullets on concerns | 3–4 bullets on Lilly advantages |
+| Differentiated MOA, strong efficacy | Broader data, safety record |
+| Convenient dosing, etc. | Established market, label breadth |
+
+Speaker notes: probability of success, expected timelines, scenarios.
+
+### Last Slide: Summary & Key Takeaways
+
+| Element | Content |
+|---------|---------|
+| Takeaways | 4–5 numbered key takeaways, each one sentence |
+| Recommended actions | 1–2 concrete next steps |
+| Speaker notes | "So what" recap, open questions for discussion |
+
+---
+
 ## Dual Output Format
 
 For each slide, produce TWO versions:
 
-### ANALYSIS (for the analyst reading the deck)
+### ANALYSIS (for the analyst / speaker notes)
 - Full detail, can be longer
 - Include specific numbers, study references, caveats
-- This is what goes in the speaker notes or appendix
+- Include source URLs
+- This goes in speaker notes
 
 ### SLIDE (for the PowerPoint text)
 - MAX 80 words per slide
@@ -147,121 +347,381 @@ For each slide, produce TWO versions:
 ### ANALYSIS
 Dupilumab 300mg Q2W achieved EASI-75 of 61.3% at Week 16 (95% CI: 54.2–68.4%)
 versus 14.7% placebo (p<0.001) in LIBERTY AD SOLO 1 (N=224 active, N=109 placebo).
-This is comparable to lebrikizumab 250mg Q2W (58.8% in ADvocate 1) and lower than
-abrocitinib 200mg QD (61.0% in JADE MONO-2). NRI estimand used.
+BNMA ranking: #2 after abrocitinib 200mg (OR 1.05 favoring abrocitinib; CrI overlaps).
+Source: https://clinicaltrials.gov/study/NCT02277743
 
 ### SLIDE
 • EASI-75: 61.3% vs 14.7% PBO (p<0.001) at Wk16
-• Comparable to lebrikizumab (58.8%), below abrocitinib (61.0%)
+• BNMA: ranks #2, comparable to abrocitinib (CrI overlaps)
 • N=224 active, N=109 PBO; NRI estimand
 ```
 
 ---
 
-## Output Delivery
+## Speaker Notes Requirements (Both Modes)
 
-Present slides as structured text:
+**Every slide MUST have speaker notes** containing:
+- Additional context not on the slide (to keep slides clean)
+- Caveats and limitations relevant to that slide's content
+- Talking points for the presenter
+- Data sources and references with full URLs
+- Anticipated audience questions and suggested responses
 
+---
+
+## PPTX Generation (python-pptx — REQUIRED)
+
+After generating all slide content, you MUST create the `.pptx` file using the Python template script.
+
+### Generate the deck:
+
+1. Edit `scripts/generate_deck.py` — fill in the `DATA` dict with slide content
+2. Run:
+
+```bash
+python3 scripts/generate_deck.py
 ```
----
-SLIDE 1: KEY SUMMARY
----
-### ANALYSIS
-[detailed content]
 
-### SLIDE
-• Bullet 1
-• Bullet 2
-• Bullet 3
+### pptxgenjs Design System
 
----
-SLIDE 2: STUDY DESIGN
----
-[...]
+**Constants:**
+```javascript
+const PRIMARY_COLOR = "E1251B";        // Lilly Red 2024 (from template theme)
+const CONTENT_BG = "FBF5F5";           // Light neutral tinted from red
+const CARD_BG = "FFFFFF";              // White
+const BODY_TEXT = "212121";            // Dark gray (template dk1)
+const WHITE_TEXT = "FFFFFF";
+const ACCENT_TEXT = "FFC709";          // Gold highlight on dark backgrounds (template accent5)
+const CAVEAT_COLOR = "666666";         // Medium gray
+const HEADER_FONT = "Arial";
+const BODY_FONT = "Arial";
 ```
 
-If the user asks for a file, generate the chart PNG via R and offer to help create PPTX.
+**Compound colors (for charts):**
+```javascript
+const COMPOUND_COLORS = {
+  lebrikizumab: "E1251B",
+  dupilumab: "0F3A85",
+  tralokinumab: "144B2D",
+  abrocitinib: "7B2D8B",
+  upadacitinib: "D4570A",
+  nemolizumab: "4A90A4",
+  rocatinlimab: "8B6914",
+  placebo: "999999",
+  other: "999999"
+};
+```
+
+**Card helper:**
+```javascript
+function card(slide, x, y, w, h) {
+  slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
+    x, y, w, h,
+    fill: { color: CARD_BG },
+    rectRadius: 0.1,
+    shadow: {
+      type: "outer", color: "000000",
+      blur: 6, offset: 2, angle: 135, opacity: 0.1
+    },
+  });
+  return { x: x + 0.25, y: y + 0.1, w: w - 0.5, h: h - 0.2 };
+}
+```
+
+**Top bar (content slides):**
+```javascript
+function addTopBar(slide, title) {
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 10, h: 0.95,
+    fill: { color: PRIMARY_COLOR }
+  });
+  slide.addText(title, {
+    x: 0.6, y: 0.05, w: 8.5, h: 0.85,
+    fontSize: 24, fontFace: HEADER_FONT,
+    color: WHITE_TEXT, bold: true, valign: "middle", margin: 0
+  });
+}
+```
+
+**Footer bar (content slides):**
+```javascript
+function addFooter(slide, text) {
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 5.15, w: 10, h: 0.475,
+    fill: { color: PRIMARY_COLOR }
+  });
+  slide.addText(text || "Review is required before disclosure.", {
+    x: 0.5, y: 5.17, w: 9, h: 0.43,
+    fontSize: 9, fontFace: BODY_FONT,
+    color: WHITE_TEXT, valign: "middle"
+  });
+}
+```
+
+**BNMA slide (image + interpretation card):**
+```javascript
+function addBnmaSlide(pres, title, imagePath, interpretation, speakerNotes) {
+  const slide = pres.addSlide({ bkgd: CONTENT_BG });
+  addTopBar(slide, title);
+
+  // BNMA plot image (left 70%)
+  slide.addImage({
+    path: imagePath,
+    x: 0.3, y: 1.05, w: 6.5, h: 3.9,
+    sizing: { type: "contain", w: 6.5, h: 3.9 }
+  });
+
+  // Interpretation card (right 30%)
+  const c = card(slide, 7.0, 1.05, 2.7, 3.9);
+  slide.addText("Key Findings", {
+    x: c.x, y: c.y, w: c.w, h: 0.3,
+    fontSize: 12, fontFace: HEADER_FONT, color: PRIMARY_COLOR, bold: true
+  });
+  slide.addText(interpretation.map((bullet, i) => ({
+    text: bullet,
+    options: {
+      fontSize: 10.5, fontFace: BODY_FONT, color: BODY_TEXT,
+      bullet: true, breakLine: i < interpretation.length - 1
+    }
+  })), { x: c.x, y: c.y + 0.35, w: c.w, h: c.h - 0.4 });
+
+  addFooter(slide, "Random-effects BNMA; indirect comparison only. Review is required before disclosure.");
+  slide.addNotes(speakerNotes);
+}
+```
+
+**Title slide:**
+```javascript
+function addTitleSlide(pres, title, subtitle, date) {
+  const slide = pres.addSlide({ bkgd: PRIMARY_COLOR });
+  slide.addText(title, {
+    x: 1, y: 1.5, w: 8, h: 1.5,
+    fontSize: 34, fontFace: HEADER_FONT,
+    color: WHITE_TEXT, bold: true, align: "center", valign: "middle"
+  });
+  slide.addText(subtitle, {
+    x: 1, y: 3.0, w: 8, h: 0.8,
+    fontSize: 17, fontFace: BODY_FONT,
+    color: "F5D6B0", align: "center"
+  });
+  slide.addText(date + "\nCONFIDENTIAL — For Internal Use Only", {
+    x: 1, y: 4.2, w: 8, h: 0.8,
+    fontSize: 11, fontFace: BODY_FONT,
+    color: WHITE_TEXT, align: "center"
+  });
+  slide.addText("Review is required before disclosure.", {
+    x: 1, y: 5.0, w: 8, h: 0.4,
+    fontSize: 9, fontFace: BODY_FONT,
+    color: "F5D6B0", italic: true, align: "center"
+  });
+}
+```
+
+**Content slide with bullet cards:**
+```javascript
+function addContentSlide(pres, title, cards, speakerNotes, footerText) {
+  const slide = pres.addSlide({ bkgd: CONTENT_BG });
+  addTopBar(slide, title);
+
+  // cards is array of { header, bullets, x, y, w, h }
+  cards.forEach(({ header, bullets, x, y, w, h }) => {
+    const c = card(slide, x, y, w, h);
+    slide.addText(header, {
+      x: c.x, y: c.y, w: c.w, h: 0.3,
+      fontSize: 13, fontFace: HEADER_FONT, color: PRIMARY_COLOR, bold: true
+    });
+    slide.addText(bullets.map((b, i) => ({
+      text: b,
+      options: {
+        fontSize: 11, fontFace: BODY_FONT, color: BODY_TEXT,
+        bullet: true, breakLine: i < bullets.length - 1
+      }
+    })), { x: c.x, y: c.y + 0.35, w: c.w, h: c.h - 0.4 });
+  });
+
+  addFooter(slide, footerText);
+  slide.addNotes(speakerNotes);
+}
+```
+
+**Two-card layout (for head-to-head, implications slides):**
+```javascript
+function addTwoCardSlide(pres, title, leftCard, rightCard, speakerNotes, footerText) {
+  const slide = pres.addSlide({ bkgd: CONTENT_BG });
+  addTopBar(slide, title);
+
+  // Left card
+  const cl = card(slide, 0.4, 1.05, 4.4, 3.9);
+  slide.addText(leftCard.header, {
+    x: cl.x, y: cl.y, w: cl.w, h: 0.3,
+    fontSize: 13, fontFace: HEADER_FONT, color: PRIMARY_COLOR, bold: true
+  });
+  slide.addText(leftCard.bullets.map((b, i) => ({
+    text: b,
+    options: {
+      fontSize: 11, fontFace: BODY_FONT, color: BODY_TEXT,
+      bullet: true, breakLine: i < leftCard.bullets.length - 1
+    }
+  })), { x: cl.x, y: cl.y + 0.35, w: cl.w, h: cl.h - 0.4 });
+
+  // Right card
+  const cr = card(slide, 5.2, 1.05, 4.4, 3.9);
+  slide.addText(rightCard.header, {
+    x: cr.x, y: cr.y, w: cr.w, h: 0.3,
+    fontSize: 13, fontFace: HEADER_FONT, color: PRIMARY_COLOR, bold: true
+  });
+  slide.addText(rightCard.bullets.map((b, i) => ({
+    text: b,
+    options: {
+      fontSize: 11, fontFace: BODY_FONT, color: BODY_TEXT,
+      bullet: true, breakLine: i < rightCard.bullets.length - 1
+    }
+  })), { x: cr.x, y: cr.y + 0.35, w: cr.w, h: cr.h - 0.4 });
+
+  addFooter(slide, footerText);
+  slide.addNotes(speakerNotes);
+}
+```
+
+**Chart image embedding:**
+```javascript
+function addChartSlide(pres, title, chartPath, speakerNotes) {
+  const slide = pres.addSlide({ bkgd: CONTENT_BG });
+  addTopBar(slide, title);
+
+  slide.addImage({
+    path: chartPath,
+    x: 0.4, y: 1.05, w: 9.2, h: 3.9,
+    sizing: { type: "contain", w: 9.2, h: 3.9 }
+  });
+
+  addFooter(slide, "Cross-trial comparison for illustrative purposes only. Review is required before disclosure.");
+  slide.addNotes(speakerNotes);
+}
+```
+
+**Summary/takeaway slide (full-color background):**
+```javascript
+function addSummarySlide(pres, takeaways, actions, speakerNotes) {
+  const slide = pres.addSlide({ bkgd: PRIMARY_COLOR });
+
+  slide.addText("Key Takeaways", {
+    x: 0.8, y: 0.4, w: 8.4, h: 0.6,
+    fontSize: 26, fontFace: HEADER_FONT,
+    color: WHITE_TEXT, bold: true
+  });
+
+  slide.addText(takeaways.map((t, i) => ({
+    text: `${i + 1}. ${t}`,
+    options: {
+      fontSize: 12, fontFace: BODY_FONT, color: WHITE_TEXT,
+      breakLine: true
+    }
+  })), { x: 0.8, y: 1.2, w: 8.4, h: 2.5 });
+
+  slide.addText("Recommended Actions", {
+    x: 0.8, y: 3.8, w: 8.4, h: 0.4,
+    fontSize: 14, fontFace: HEADER_FONT,
+    color: ACCENT_TEXT, bold: true
+  });
+  slide.addText(actions.map((a, i) => ({
+    text: a,
+    options: {
+      fontSize: 11, fontFace: BODY_FONT, color: WHITE_TEXT,
+      bullet: true, breakLine: i < actions.length - 1
+    }
+  })), { x: 0.8, y: 4.2, w: 8.4, h: 1.0 });
+
+  slide.addNotes(speakerNotes);
+}
+```
+
+### Full script structure:
+
+The template at `scripts/generate_deck.py` handles all slide types. The agent fills in the `DATA` dict:
+
+```python
+DATA = {
+    "mode": "quick",  # or "detailed"
+    "outputFile": "competitor_deck_20260720.pptx",
+    "slides": [
+        {"type": "title", "title": "...", "subtitle": "...", "date": "...", "speakerNotes": "..."},
+        {"type": "content", "title": "...", "cards": [{"header": "...", "bullets": [...], "x": 0.4, "y": 1.05, "w": 9.2, "h": 3.9}], "speakerNotes": "..."},
+        {"type": "twoCard", "title": "...", "leftCard": {"header": "...", "bullets": [...]}, "rightCard": {"header": "...", "bullets": [...]}, "speakerNotes": "..."},
+        {"type": "chart", "title": "...", "chartPath": "landscape_chart.png", "speakerNotes": "..."},
+        {"type": "bnma", "title": "BNMA: EASI-75 at Wk16", "imagePath": "figures/APG777_EASI75_Wk16_2026-07-20.png", "interpretation": ["...", "..."], "speakerNotes": "..."},
+        {"type": "table", "title": "...", "table": {"headers": [...], "rows": [[...]]}, "speakerNotes": "..."},
+        {"type": "summary", "takeaways": ["...", "..."], "actions": ["...", "..."], "speakerNotes": "..."}
+    ]
+}
+```
+
+### After generation:
+```bash
+python3 scripts/generate_deck.py
+```
+
+Confirm the `.pptx` file was created. Tell the user:
+```
+✓ Saved: competitor_deck_20260720.pptx
+  Mode: [Quick/Detailed]
+  Slides: [N]
+  BNMA plots embedded: [N] (from figures/)
+  Landscape chart: included (compound colors applied)
+```
 
 ---
 
 ## Style Rules
 
-- Lilly red (#C8102E) for accent and new data
-- Gray (#999999) for existing competitor data
-- Font: Arial for body
-- Every slide footer: "Review is required before disclosure"
-- Footnotes: data source, study name, estimand used
-- Cross-trial comparison caveat on landscape slides
+| Element | Value |
+|---------|-------|
+| Primary color (title bars, footers, title slide bg) | `#E1251B` (Lilly Red 2024) |
+| Content slide background | `#FBF5F5` (light neutral) |
+| Card backgrounds | `#FFFFFF` (white) |
+| Body text | `#212121` (dark gray) |
+| Text on primary backgrounds | `#FFFFFF` (white) |
+| Subtitle on primary backgrounds | `#F5D6B0` (warm light) |
+| Highlight on primary backgrounds | `#FFC709` (gold) — **never dark colors** |
+| Header font | Arial, bold |
+| Body font | Arial, regular |
+| Title size | 24–28pt (content), 34–38pt (title slide) |
+| Body size | 11–12pt |
+| Table size | 9.5–10.5pt |
+| Footnote size | 8.5–9.5pt |
+| Footer | "Review is required before disclosure." on every slide |
+| Cross-trial caveat | Required on any comparison slide |
+
+### Compound Color Palette (for landscape charts)
+
+| Compound | Hex | Note |
+|----------|-----|------|
+| Lebrikizumab (Lilly) | `#E1251B` | Always "ours" — highlighted |
+| Dupilumab | `#0F3A85` | Blue (template accent2) |
+| Tralokinumab | `#144B2D` | Green (template accent4) |
+| Abrocitinib | `#7B2D8B` | Purple |
+| Upadacitinib | `#D4570A` | Orange |
+| Nemolizumab | `#4A90A4` | Teal |
+| Rocatinlimab | `#8B6914` | Gold |
+| New competitor (focus) | `#E63946` | Red accent (distinct from Lilly) |
+| Others / Placebo | `#999999` | Gray |
 
 ---
 
-## Saving as PPTX File (REQUIRED)
+## Narrative Arc (Detailed Mode)
 
-After generating slide content, you MUST save it as a `.pptx` file using the Lilly corporate template. Use R `officer` package:
-
-**Template location:** `templates/lilly-template.pptx` (in the project folder)
-
-**R code to generate the PPTX:**
-
-```r
-library(officer)
-
-# Read the Lilly corporate template
-pptx <- read_pptx("templates/lilly-template.pptx")
-
-# Get available slide layouts from the template
-layout_summary(pptx)  # Run this first to see what layouts exist
-
-# Add slides using the template's layouts
-# Layout "Title Slide" = red background title (slide 1)
-# Layout "Title and Content" or similar = bullet slides (slides 2-5)
-
-# Slide 1: Title
-pptx <- add_slide(pptx, layout = "Title Slide", master = "Office Theme")
-pptx <- ph_with(pptx, value = "Competitor Landscape Update: [Drug Name]",
-                 location = ph_location_type(type = "ctrTitle"))
-pptx <- ph_with(pptx, value = "[Indication] — [Date]",
-                 location = ph_location_type(type = "subTitle"))
-
-# Slides 2-5: Content slides
-pptx <- add_slide(pptx, layout = "Title and Content", master = "Office Theme")
-pptx <- ph_with(pptx, value = "Key Summary",
-                 location = ph_location_type(type = "title"))
-pptx <- ph_with(pptx, value = c(
-  "Bullet 1: top-line result",
-  "Bullet 2: comparison to landscape",
-  "Bullet 3: implication"
-), location = ph_location_type(type = "body"))
-
-# Add chart image (if generated)
-# pptx <- add_slide(pptx, layout = "Title and Content", master = "Office Theme")
-# pptx <- ph_with(pptx, value = external_img("landscape_chart.png", width = 9, height = 5),
-#                  location = ph_location(left = 0.5, top = 1.5, width = 9, height = 5))
-
-# Add footer to all slides
-# pptx <- on_slide(pptx, index = 1)  # etc.
-
-# Save
-output_path <- paste0("competitor_deck_", format(Sys.Date(), "%Y%m%d"), ".pptx")
-print(pptx, target = output_path)
-cat("Saved:", output_path, "\n")
-```
-
-**Important notes on the Lilly template:**
-- The template has a red title slide layout (Lilly branding)
-- Use `layout_summary(pptx)` to discover exact layout names available
-- Font: Times New Roman for headers, Arial for body (the template enforces this)
-- Footer: "Company Confidential © 2026 Eli Lilly and Company" is in the template
-- Always add "Review is required before disclosure" as a text box or in the body
-
-**Output location:** Save the file in the current working directory. Tell the user the filename:
-```
-✓ Saved: competitor_deck_20260717.pptx (in your current folder)
-```
+The deck tells a story in four acts:
+1. **What happened?** (Slides 1–4): Introduce the drug, explain MOA, show data
+2. **How does it compare?** (Slides 5–6): Competitive context, head-to-head vs Lilly
+3. **What does the evidence say?** (BNMA slides): Formal indirect comparison
+4. **What should we do?** (Last 2 slides): Assess threat, recommend actions
 
 ---
 
 ## References
 
-- See `references/indications.md` for endpoints and comparators
-- See `references/lilly-style.md` for branding
+- See `references/indications.md` for endpoints and comparators per indication
+- See `references/lilly-style.md` for branding rules
+- See `references/extraction-rules.md` for derivation chain and Batman schema
+- See `figures/README.md` for image folder naming conventions and how to prepare images
+- Use `bnma-interpretation` skill logic for interpreting plots

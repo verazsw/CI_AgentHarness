@@ -129,6 +129,43 @@ Footnote: Random-effects BNMA; NRI estimand; indirect comparison only.
 
 ---
 
+## Output for Slide Embedding
+
+When this skill is invoked from the **slide-generation** skill (BNMA plots found in `figures/`), provide structured output in two formats:
+
+### For Key Summary bullet (Quick mode — 1 sentence):
+
+```
+BNMA: [Drug] ranks #[N] for [endpoint] at [timepoint] (OR [X]; CrI: [Y–Z]) — [above/below] lebrikizumab
+```
+
+### For Interpretation Card (Detailed mode — 3-4 bullets for the 30% panel):
+
+```
+• [Drug] ranks #[N] for [endpoint] (OR [X]; CrI: [Y–Z])
+• [Significantly better/comparable to/below] [comparator] (CrI [overlaps/excludes] null)
+• Network: [N] treatments from [N] trials; [random/fixed] effects model
+• [Key clinical takeaway in one sentence]
+```
+
+### Footnote (always include on BNMA slides):
+
+```
+Random-effects BNMA; [estimand if known]; indirect comparison only.
+```
+
+### Speaker Notes (for the BNMA slide):
+
+Provide the full ANALYSIS-level interpretation including:
+- Complete ranking of all visible treatments
+- CrI bounds for key comparisons
+- Network connectivity notes
+- Heterogeneity assessment
+- Caveats specific to this analysis
+- How this ranking has changed (if user provides prior BNMA context)
+
+---
+
 ## References
 
 - See `references/indications.md` for endpoint codes and comparators

@@ -25,10 +25,26 @@
 
 ### Chart Guidelines
 - Use Lilly Red for the Lilly compound
-- Use distinct muted colors for competitors
+- Use compound-specific colors for competitors (see Compound Color Palette below)
 - Always include sample size (N) in axis labels or legends
 - Include timepoint in chart title
 - Error bars = 95% CI where available
+
+### Compound Color Palette (for landscape charts)
+
+| Compound | Hex | Note |
+|----------|-----|------|
+| Lebrikizumab (Lilly) | `#C8102E` | Always "ours" — highlighted |
+| Dupilumab | `#2E5090` | Blue |
+| Tralokinumab | `#1B7340` | Green |
+| Abrocitinib | `#7B2D8B` | Purple |
+| Upadacitinib | `#D4570A` | Orange |
+| Nemolizumab | `#4A90A4` | Teal |
+| Rocatinlimab | `#8B6914` | Gold |
+| New competitor (focus drug) | `#E63946` | Red accent (distinct from Lilly) |
+| Others / Placebo | `#999999` | Gray |
+
+Use these consistently across landscape bar charts, comparison tables, and any data visualization. When a compound not listed appears, assign the next available color from this palette or use gray.
 
 ## Required Disclaimers
 
