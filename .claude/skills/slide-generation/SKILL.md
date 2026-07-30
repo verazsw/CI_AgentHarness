@@ -29,18 +29,101 @@ If unclear, ask: "Quick 5-slide leadership briefing, or detailed presenter-prep 
 
 Before generating slides, gather information in this **priority order**:
 
-1. **Press release (PRIMARY SOURCE — always prioritize)**
+1. **Lilly CILand article (INTERNAL — highest value if available)**
+   - The Competitive Intelligence team publishes curated articles on SharePoint: `collab.lilly.com/sites/CILand/`
+   - If user provides a CILand URL → fetch the page content and extract data, figures, and analysis
+   - If user mentions a compound without a source → ask: "Is there a CILand article for this? The CI team may have already published an analysis."
+   - CILand articles often include: summary, MOA, efficacy data tables, figures, competitive context, and strategic assessment
+   - **How to use:** User pastes the SharePoint URL. Agent fetches with `curl` (may require authentication token). Extract text content, data tables, and any embedded figures.
+   - > "Do you have the CILand article link? If the CI team has published on this, it's the best starting point — it's already curated with data and strategic context."
+
+2. **Press release (PRIMARY EXTERNAL SOURCE)**
    - Ask user: "Do you have the press release? Is it a URL, pasted text, PDF, or PPTX?"
    - If PDF or PPTX: ask user to convert to image files (PNG/JPEG) and drop them in `figures/` folder
      > "Could you convert the press release pages to PNG images and drop them in the `figures/` folder? On Mac: open in Preview → File → Export → PNG. You only need the pages with figures you want embedded (study design, efficacy charts, safety tables)."
    - Extract all efficacy data, study design, safety signals from the press release FIRST
-2. **Check `figures/` folder for BNMA plot PNGs** — if present (matching naming convention `{compound}_{endpoint}_{timepoint}_{date}.png`), interpret each for slide content
-3. **ClinicalTrials.gov** — supplement with study design details, arms, sample size (only if press release is incomplete)
-4. **PubMed** — search for related studies and competitive context (only if needed for landscape comparison)
 
-**Key principle:** The press release is the ground truth for the new readout. ClinicalTrials.gov and PubMed are supplementary sources for context and gap-filling, not primary.
+3. **Check `figures/` folder for BNMA plot PNGs** — if present (matching naming convention `{compound}_{endpoint}_{timepoint}_{date}.png`), interpret each for slide content
+
+4. **ClinicalTrials.gov** — supplement with study design details, arms, sample size (only if press release is incomplete)
+
+5. **PubMed** — search for related studies and competitive context (only if needed for landscape comparison)
+
+**Key principle:** CILand articles (internal) and press releases (external) are the primary sources. ClinicalTrials.gov and PubMed are supplementary for gap-filling and landscape context.
+
+## Figure Inventory (Run FIRST — Before Research)
+
+Before gathering any data, catalog all available figures in the `figures/` directory. This ensures relevant images are embedded in the deck whether or not the user mentions them.
+
+### Step 1: List all figures
+
+```bash
+ls -1 figures/ 2>/dev/null | grep -vE '^\.|README'
+```
+
+### Step 2: Classify each file by filename pattern
+
+| Pattern | Classification | Action |
+|---------|---------------|--------|
+| Starts with uppercase letter + underscore (e.g., `APG777_EASI75_...`) | **BNMA plot** | Auto-include on BNMA slides |
+| `page-*.png` or `page-*.jpg` | **Press release page** | Visually scan and classify (Step 3) |
+| `study_design*.*` | **Study design figure** | Embed on Study Design slide |
+| `efficacy*.*` or `*_efficacy_*.*` | **Efficacy chart** | Embed on Efficacy Results slide |
+| `forest_plot*.*` | **Forest plot** | Embed on competitive comparison or subgroup slide |
+| `safety*.*` | **Safety figure** | Embed on Safety slide |
+| `landscape*.*` or `competitive*.*` | **Landscape chart** | Embed on Competitor Landscape slide |
+| Any other `.png`/`.jpg`/`.jpeg` | **Unknown** | Visually inspect and classify into one of the above roles |
+
+### Step 3: Visually classify press release pages (page-*.png)
+
+If `page-*.png` files exist, visually read **EACH** page image and assign one of these roles:
+
+| Role | What to look for | Slide placement |
+|------|-----------------|-----------------|
+| `study_design` | Randomization diagram, CONSORT flow, dosing schema, trial schematic | Study Design slide (`rightImage` in twoColumn, or dedicated `image` slide) |
+| `efficacy_curve` | Line plots over time, bar charts of response rates, Kaplan-Meier | Efficacy Results (dedicated `image` slide after text results) |
+| `competitive_chart` | Cross-trial comparison bars/tables from sponsor | Competitive Landscape (dedicated `image` slide after table) |
+| `forest_plot` | Forest plot, subgroup analysis figure | Dedicated `image` slide after relevant efficacy section |
+| `safety_table` | AE table, safety summary figure, lab results | Safety slide (embed or reference in speaker notes) |
+| `informational` | Text-heavy pages, logos, legal disclosures, title pages | Do NOT embed — extract data only |
+
+### Step 4: Build a figure manifest
+
+Before proceeding to research, output a manifest in your working memory:
+
+```
+FIGURE MANIFEST:
+- figures/APG777_EASI75_Wk16_2026-07-20.png → BNMA (EASI-75, Wk16)
+- figures/page-08.png → competitive_chart (cross-trial bar chart)
+- figures/page-10.png → study_design (randomization diagram)
+- figures/page-14.png → efficacy_curve (EASI-75 time course)
+- figures/study_design_APEX.png → study_design (auto-routed by name)
+```
+
+### Step 5: Route figures to slide positions
+
+Use this routing table when building the DATA dict:
+
+| Figure role | Slide type | Position in deck |
+|-------------|-----------|------------------|
+| `study_design` | `twoColumn` with `rightImage`, or dedicated `image` slide | After MOA / Drug Overview slides |
+| `efficacy_curve` | `image` slide | Immediately after efficacy results text slide |
+| `competitive_chart` | `image` slide | After competitor table slide |
+| `forest_plot` | `image` slide | After relevant efficacy/BNMA section |
+| `safety_table` | `image` slide or embedded in content slide | Within safety section |
+| BNMA plot | `bnma` slide | Dedicated BNMA section (one slide per plot) |
+
+**Rules:**
+- If no figures exist for a slide slot → use text-only layout (never invent or describe a missing figure)
+- If multiple figures match the same role → include all as separate slides (e.g., two efficacy curves = two image slides)
+- Always add a source disclaimer on figure slides: "Source: [Sponsor] [publication/press release]. Review is required before disclosure."
+- If the user provides a press release but no page images exist in `figures/` → prompt them to convert: "Could you convert the press release pages with figures to PNG and drop them in `figures/`?"
+
+---
 
 ## Research Phase
+
+> **Important:** Run the Figure Inventory above FIRST. The classified figures inform which slide types, layouts, and how many slides to include.
 
 ### Step 1: Press release (always first)
 
@@ -75,6 +158,8 @@ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&te
 ---
 
 ## BNMA Integration Workflow
+
+> **Note:** BNMA plots are already identified during the Figure Inventory step above. This section covers interpretation and routing of those plots.
 
 ### Step 1: Check for BNMA plots
 
@@ -138,6 +223,8 @@ For each PNG, apply the **bnma-interpretation** skill logic:
 - Sample size per arm (with allocation ratio)
 - Randomization and blinding
 
+**Figure embedding:** If the figure manifest contains a `study_design` figure (either a named file like `study_design_*.png` or a classified `page-*.png`), embed it using `rightImage` in a `twoColumn` layout (text left, figure right). If the study design figure is complex/detailed, use a dedicated `image` slide instead.
+
 If press release has a detailed PDF file or PPTX file, ask user to convert it to image files (PNG, JPEG, etc.) and provide it. If the press release contains a study design figure, embed it directly on this slide — do NOT re-generate the design figure.
 
 ### Slide 3: Efficacy Results + Landscape Chart
@@ -147,8 +234,7 @@ If press release has a detailed PDF file or PPTX file, ask user to convert it to
 - Key secondary endpoints
 - Landscape bar chart: the new data plotted alongside all known competitors
 
-**Use efficacy figures from press release:**
-If there are any efficacy figures regarding the interested endpoints for each indication in the press release, extract those figures and include them in the slide deck as well. Do not re-generate figures that already exist in the source material.
+**Figure embedding:** Check the figure manifest for `efficacy_curve` or `competitive_chart` figures. If an efficacy time-course figure exists (from press release or named file), add a dedicated `image` slide immediately after this slide to show the original figure. Do not re-generate figures that already exist in the source material — embed originals directly.
 
 **Chart specification (for generated landscape chart):**
 - X-axis: treatment names (drug + dose)
@@ -262,7 +348,7 @@ Two-section layout (left/right or top/bottom):
 | Baseline characteristics | Disease severity, demographics summary |
 | Speaker notes | Design caveats, how baseline severity compares to other trials |
 
-If press release contains a study design figure, embed it directly — do NOT re-generate. Ask user to provide as PNG/JPEG if source is PDF/PPTX. Similarly, if efficacy figures exist in the press release for the endpoints of interest, extract and embed them directly.
+**Figure embedding:** Check the figure manifest for `study_design` and `efficacy_curve` figures. If a study design figure exists, embed it using `rightImage` in a twoColumn layout or as a dedicated image slide. If efficacy figures (time-course plots, bar charts) exist, add dedicated `image` slides after this slide. If a `competitive_chart` figure exists from the press release, add it after the competitor table slide. Never re-generate a figure that already exists in the source material — embed the original.
 
 ### Slide 5: Broader Competitor Comparison
 
@@ -273,6 +359,8 @@ If press release contains a study design figure, embed it directly — do NOT re
 | Highlighting | Lilly in brand red; new competitor in contrasting accent |
 | Caveats footnote | "Cross-trial comparisons are indirect..." |
 | Speaker notes | Which comparisons are most/least reliable, placebo rate differences |
+
+**Figure embedding:** If the figure manifest contains a `competitive_chart` or `landscape` figure, add a dedicated `image` slide immediately after this table slide to show the original competitive comparison figure from the source material.
 
 ### Slide 6: Head-to-Head vs Lilly Drug
 

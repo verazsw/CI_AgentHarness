@@ -1,6 +1,6 @@
 ---
 name: data-extraction
-description: "Extract structured clinical trial efficacy data from press releases, ClinicalTrials.gov, PubMed abstracts, or pasted text. Produces a formatted table of treatment arms with endpoints, response rates, CIs, and sample sizes."
+description: "Extract structured clinical trial efficacy data from press releases, ClinicalTrials.gov, PubMed abstracts, CILand articles, or pasted text. Produces a formatted table of treatment arms with endpoints, response rates, CIs, and sample sizes."
 ---
 
 # Data Extraction Skill
@@ -8,22 +8,31 @@ description: "Extract structured clinical trial efficacy data from press release
 ## When to Use
 
 - User provides a press release URL, PDF content, or pasted text about a clinical trial
+- User provides a CILand SharePoint article URL (collab.lilly.com/sites/CILand/...)
 - User asks to "extract data" or "pull the numbers" from a source
 - User provides an NCT ID to look up on ClinicalTrials.gov
 - User asks about a specific study's results
+
+## Supported Sources (Priority Order)
+
+1. **CILand articles** — `collab.lilly.com/sites/CILand/SitePages/...` (internal, curated, often has data + strategic context)
+2. **Press releases** — Sponsor company investor pages, biospace.com, PR Newswire
+3. **ClinicalTrials.gov** — NCT IDs, study results
+4. **PubMed abstracts** — Published data
+5. **Pasted text** — User-supplied content
 
 ## Workflow Overview
 
 This is a 2-phase pipeline with fallback:
 
 ```
-Phase 1: Extract from primary source (press release / pasted text)
+Phase 1: Extract from primary source (CILand / press release / pasted text)
     ↓
 Check: Is extraction sufficient? (≥2 arms, placebo present, outcome values, per-arm N)
     ↓ NO
 Phase 2: Fallback to ClinicalTrials.gov + PubMed for missing data
     ↓
-Merge: Combine sources with priority (press_release > ctgov > pubmed > free_text)
+Merge: Combine sources with priority (ciland > press_release > ctgov > pubmed > free_text)
     ↓
 Present: Show structured table to user with warnings
 ```
@@ -38,6 +47,11 @@ Try in order:
 1. Live HTTP/2: `curl -s -L -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" "{URL}"`
 2. If fails, force HTTP/1.1: `curl -s -L --http1.1 -H "User-Agent: Mozilla/5.0..." "{URL}"`
 3. If fails, Wayback Machine: `curl -s "https://web.archive.org/web/{URL}"`
+
+**Note on CILand URLs:** SharePoint pages at `collab.lilly.com` may require authentication. If curl returns a login redirect or 403:
+- Ask user: "The CILand page requires authentication. Could you paste the article text, or copy the page content here?"
+- Alternatively, if an auth token is available in environment, use: `curl -s -L -H "Authorization: Bearer $CILAND_TOKEN" "{URL}"`
+- Future: MCP connector will handle this automatically
 
 ### Cleaning HTML to text
 

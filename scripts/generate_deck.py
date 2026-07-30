@@ -6,9 +6,9 @@ Uses python-pptx to create polished Lilly-branded presentations.
 Design: White background, plain text boxes (no card panels, no footer bar).
 Figures folder: All images (BNMA plots, press release pages) go in figures/
 
-Generated: 2026-07-26
-Target: Zumilokibart (APG777) — APEX Phase 2 Part B in Atopic Dermatitis
-Mode: Quick 5-slide deck
+Generated: 2026-07-29
+Target: Envudeucitinib (ESK-001) & Zasocitinib (TAK-279) — Phase 3 Psoriasis
+Mode: Detailed presenter deck (combined)
 """
 
 import os
@@ -334,313 +334,407 @@ def build_table_slide(prs, data):
 
 
 # ═══════════════════════════════════════════════════════════════════
-# DATA — Zumilokibart (APG777) APEX Phase 2 Part B | Detailed Mode
+# DATA — Envudeucitinib & Zasocitinib | Phase 3 Psoriasis | Detailed
 # ═══════════════════════════════════════════════════════════════════
 
 DATA = {
     "mode": "detailed",
-    "outputFile": "Zumilokibart_APG777_APEX_PartB_Detailed_2026-07-26.pptx",
+    "outputFile": "Envudeucitinib_Zasocitinib_PSO_Ph3_Detailed_2026-07-29.pptx",
     "slides": [
         # ─── Slide 1: Title ───
         {
             "type": "title",
-            "title": "Competitor Landscape Update:\nZumilokibart (APG777)",
-            "subtitle": "Atopic Dermatitis — APEX Phase 2 Part B 16-Week Data",
+            "title": "Competitor Landscape Update:\nEnvudeucitinib & Zasocitinib",
+            "subtitle": "Psoriasis — Phase 3 Oral TYK2 Inhibitor Readouts",
             "date": "July 2026",
-            "speakerNotes": "This deck summarizes the APEX Phase 2 Part B 16-week topline data for zumilokibart (APG777), presented by Apogee Therapeutics on May 27, 2026. Zumilokibart is a next-generation anti-IL-13 antibody with an extended half-life enabling Q12W–Q24W dosing. This readout supports Phase 3 (ADventure) initiation in 2H 2026 with a planned 2029 launch."
+            "speakerNotes": "This deck compares two next-generation oral selective TYK2 inhibitors that have reported Phase 3 pivotal data in moderate-to-severe plaque psoriasis. Both represent the next wave of oral therapies positioned to challenge deucravacitinib (Sotyktu) and compete with injectable biologics on efficacy.\n\nEnvudeucitinib (ESK-001, Alumis): 40 mg BID, allosteric TYK2i — ONWARD1/2 readout Jan 2026, AAD Mar 2026.\nZasocitinib (TAK-279, Takeda): 30 mg QD, allosteric TYK2i — LATITUDE 3001/3002 readout Dec 2025, AAD Mar 2026.\n\nBoth targeting NDA submission in 2026–2027. Potential market entry ~2027–2028."
         },
 
-        # ─── Slide 2: Drug Overview ───
+        # ─── Slide 2: Drug Overview — Envudeucitinib ───
         {
             "type": "content",
-            "title": "Drug Overview: Zumilokibart (APG777)",
+            "title": "Drug Overview: Envudeucitinib (ESK-001)",
             "sections": [
                 {
                     "header": "Drug Profile",
                     "bullets": [
-                        "Generic: zumilokibart | Code: APG777",
-                        "Sponsor: Apogee Therapeutics (founded 2022; Blackstone commercialization deal)",
-                        "Modality: Anti-IL-13 monoclonal antibody (YTE half-life extension)",
-                        "Target: IL-13 (same target as lebrikizumab & tralokinumab)",
-                        "Route: Subcutaneous injection",
-                        "Dosing: 4 loading injections (W0, W2, W4, W12) then Q12W or Q24W maintenance",
-                        "Phase: Phase 2 Part B complete; Phase 3 (ADventure) planned 2H 2026",
-                        "Planned launch: 2029"
+                        "Generic: envudeucitinib | Code: ESK-001",
+                        "Sponsor: Alumis Inc. (Nasdaq: ALMS), South San Francisco",
+                        "Modality: Oral allosteric TYK2 inhibitor (highly selective)",
+                        "Dose: 40 mg BID (tablet, no fasting requirement)",
+                        "Selectivity: >1-million-fold for TYK2 over JAK1/2/3",
+                        "Phase: Phase 3 complete (ONWARD1 & ONWARD2); NDA planned Q4 2026",
+                        "Also in development: Psoriatic arthritis, vitiligo",
+                        "52-week Phase 2 OLE (STRIDE): PASI-75 78%, PASI-90 61%, PASI-100 39%"
                     ],
                     "x": 0.5, "y": 1.15, "w": 12.3, "h": 5.5
                 }
             ],
-            "speakerNotes": "Zumilokibart is Apogee Therapeutics' lead asset. It targets IL-13 — the same cytokine as lebrikizumab (Ebglyss) and tralokinumab (Adbry). The key differentiator is the YTE Fc modification that extends the half-life, enabling much less frequent dosing (Q12W or Q24W maintenance vs Q2W for dupilumab/lebrikizumab). Apogee was founded in 2022, has a Blackstone financing deal for commercialization. Also developing APG273 (anti-TSLP). NCT05964504."
+            "speakerNotes": "Envudeucitinib was formerly known as ESK-001, developed by Alumis Inc. (which went public in 2024). It is NOT an AbbVie compound. Alumis is focused exclusively on autoimmune disease with TYK2 as the lead target.\n\nKey differentiator vs deucravacitinib (Sotyktu/BMS): envudeucitinib is positioned as substantially more potent with PASI-90 rates of 54-60% vs deucravacitinib's ~37% in the POETYK trials.\n\nThe 40 mg BID dosing is a potential weakness vs zasocitinib QD — adherence and patient preference may favor once-daily.\n\nSOURCES: Alumis press release Mar 28, 2026; ClinicalTrials.gov NCT06586112, NCT06588738; STRIDE 52-wk OLE (PMID 41061968)."
         },
 
-        # ─── Slide 3: Mechanism of Action ───
+        # ─── Slide 3: Drug Overview — Zasocitinib ───
         {
             "type": "content",
-            "title": "Mechanism of Action & Differentiation",
+            "title": "Drug Overview: Zasocitinib (TAK-279)",
             "sections": [
                 {
-                    "header": "IL-13 Pathway Blockade",
+                    "header": "Drug Profile",
                     "bullets": [
-                        "Binds and neutralizes IL-13, a key Type 2 cytokine",
-                        "IL-13 drives epidermal barrier disruption, itch, and fibrosis",
-                        "Does NOT block IL-4 (unlike dupilumab which is IL-4Rα)",
-                        "Same target as lebrikizumab and tralokinumab",
-                        "IL-13-selective → may have cleaner safety (less infection risk)"
+                        "Generic: zasocitinib | Code: TAK-279 (formerly NDI-034858)",
+                        "Sponsor: Takeda Pharmaceutical Company",
+                        "Modality: Oral allosteric TYK2 inhibitor (highly selective)",
+                        "Dose: 30 mg QD (once-daily tablet)",
+                        "Selectivity: >1-million-fold for TYK2 over other JAK family",
+                        "Phase: Phase 3 complete (LATITUDE 3001, 3002, Atlas); NDA planned FY2026",
+                        "Also in development: Psoriatic arthritis, UC, Crohn's, SLE, vitiligo",
+                        "Head-to-head: Beat deucravacitinib on PASI-100 (LATITUDE Atlas)"
+                    ],
+                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 5.5
+                }
+            ],
+            "speakerNotes": "Zasocitinib was in-licensed by Takeda from Nimbus Therapeutics (acquired the TYK2 program for $6B in 2022). Originally NDI-034858. Takeda has built a massive psoriasis program around it with 6+ Phase 3 studies.\n\nKey advantage: QD dosing (vs BID for envudeucitinib and deucravacitinib). Also has a broader indication portfolio than envudeucitinib.\n\nThe LATITUDE Atlas head-to-head study (NCT06973291) directly demonstrated superiority over deucravacitinib on PASI-100 at Week 16 — a significant commercial differentiator.\n\nSOURCES: Takeda press releases Dec 2025, Mar 2026, Jun 2026; ClinicalTrials.gov NCT06088043, NCT06108544, NCT06973291; Phase 2b (PMID 39167366)."
+        },
+
+        # ─── Slide 4: Mechanism of Action ───
+        {
+            "type": "content",
+            "title": "Mechanism of Action: TYK2 Allosteric Inhibition",
+            "sections": [
+                {
+                    "header": "TYK2 in Psoriasis Pathogenesis",
+                    "bullets": [
+                        "TYK2 is a JAK family kinase that mediates IL-12, IL-23, and Type I IFN signaling",
+                        "IL-23/TYK2 axis is central to Th17 differentiation and IL-17 production",
+                        "Selective TYK2 inhibition blocks psoriasis pathogenesis without JAK1/2/3 effects",
+                        "Avoids JAK1/2/3-related risks: thrombosis, infections, cytopenias, lipid changes",
+                        "Both envudeucitinib and zasocitinib bind the TYK2 pseudokinase (JH2) domain"
                     ],
                     "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.2
                 },
                 {
-                    "header": "Key Differentiators (YTE Fc Extension)",
+                    "header": "Differentiation: Envudeucitinib vs Zasocitinib vs Deucravacitinib",
                     "bullets": [
-                        "YTE Fc extension: ~4x longer half-life vs standard IgG",
-                        "Only 4 dosing days in 16-week induction (vs 9 for dupilumab)",
-                        "Maintenance: 2–4 annual dosing days (vs 26 for dupilumab, 13–26 for lebrikizumab)",
-                        "Potential for Q24W (every 6 months) dosing",
-                        "Could be first AD biologic with Q3M + Q6M options"
-                    ],
-                    "x": 0.5, "y": 3.5, "w": 12.3, "h": 2.2
-                }
-            ],
-            "speakerNotes": "The YTE modification (M252Y/S254T/T256E in the Fc region) increases FcRn binding affinity and extends serum half-life. For lebrikizumab, dosing is Q2W induction then Q2W or Q4W maintenance. Zumilokibart's dosing convenience advantage is substantial: 2-4 annual injections vs 26 for dupilumab. However, all IL-13 agents carry conjunctivitis risk. The question is whether efficacy is maintained at these extended intervals."
-        },
-
-        # ─── Slide 4: Study Design (text + figure) ───
-        {
-            "type": "twoColumn",
-            "title": "APEX Part B — Study Design",
-            "leftColumn": {
-                "header": "Trial Overview",
-                "bullets": [
-                    "Phase 2, randomized, double-blind, PBO-controlled",
-                    "N=346 (mITT): Low (N=86), Mid (N=85), High (N=87), PBO (N=88)",
-                    "Randomized 1:1:1:1",
-                    "Moderate-to-severe AD (EASI ≥16, vIGA ≥3, BSA ≥10%)",
-                    "Dosing: SC at W0, W2, W4, W12",
-                    "Maintenance: Q12W or Q24W",
-                    "Primary: EASI-75 at Wk16",
-                    "Estimand: MCMC-MI",
-                    "Baseline: EASI ~26, age ~37y, BSA ~40%"
-                ]
-            },
-            "rightImage": os.path.join(FIGURES_DIR, "page-10.png"),
-            "disclaimer": "Source: Apogee Therapeutics APEX Part B presentation, May 2026. Review is required before disclosure.",
-            "speakerNotes": "STUDY DESIGN:\n- 347 patients randomized but 1 not dosed → 346 mITT population\n- Mid dose is the planned Phase 3 dose (same as Part A)\n- Primary analysis: Markov Chain Monte Carlo Multiple Imputation (MCMC-MI)\n- Rescue medication or discontinuation for lack of efficacy = non-responder\n\nBASELINE (Mid dose): Age 39.9y, Female 52.9%, Weight 76.4kg, EASI 26.0, vIGA(4) 36.5%, I-NRS 7.0, BSA 40.0%"
-        },
-
-        # ─── Slide 5: Key Efficacy Results ───
-        {
-            "type": "content",
-            "title": "Key Efficacy Results at Week 16",
-            "sections": [
-                {
-                    "header": "Primary Endpoint — Mid Dose (Planned Phase 3 Dose, N=85)",
-                    "bullets": [
-                        "EASI-75 (primary): 65.9% vs 23.4% PBO (Δ=41.9; p<0.001)",
-                        "IGA 0/1: 46.0% vs 10.9% PBO (Δ=34.8; p<0.001)",
-                        "EASI-90: 47.4% vs 9.3% PBO (Δ=37.8; p<0.001)",
-                        "I-NRS ≥4 (itch): 50.5% vs 13.9% PBO (Δ=36.7; p<0.001)",
-                        "EASI-100: 16.5% vs 3.4% PBO (p<0.01)"
-                    ],
-                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.2
-                },
-                {
-                    "header": "Dose-Response & Key Observations",
-                    "bullets": [
-                        "Mid & High doses showed similar clinical activity throughout",
-                        "Low dose showed relatively lower but still significant activity",
-                        "Rapid onset: significant EASI reduction by Week 1; EASI-75 significant by Week 2",
-                        "Part B results generally similar to Part A (confirming dose selection)",
-                        "Placebo rate 23.4% — higher than historical AD trials (10–15%); Δ is more reliable for cross-trial comparison"
-                    ],
-                    "x": 0.5, "y": 3.5, "w": 12.3, "h": 2.2
-                }
-            ],
-            "disclaimer": "Review is required before disclosure.",
-            "speakerNotes": "KEY RESULTS (all arms at Wk16):\n- EASI-75: Low 52.3%, Mid 65.9%, High 63.2%, PBO 23.4%\n- IGA 0/1: Low 31.4%, Mid 46.0%, High 42.5%, PBO 10.9%\n- EASI-90: Low 33.7%, Mid 47.4%, High 44.8%, PBO 9.3%\n- I-NRS4: Low 37.2%, Mid 50.5%, High 50.6%, PBO 13.9%\n\nNOTE: 65.9% EASI-75 is notably high for Phase 2 (N=85). Placebo rate (23.4%) higher than SOLO (12.7%), ADVOCATE (15.3%). Treatment difference (Δ=41.9) is the most reliable cross-trial metric."
-        },
-
-        # ─── Slide 6: Efficacy Over Time (press release figure) ───
-        {
-            "type": "image",
-            "title": "EASI-75 Response Over Time — All Arms",
-            "imagePath": os.path.join(FIGURES_DIR, "page-14.png"),
-            "disclaimer": "Source: Apogee Therapeutics. Review is required before disclosure.",
-            "speakerNotes": "EASI-75 TIME COURSE:\n- Significance achieved for all treatment arms by Week 2\n- Mid dose: 12.2% at Wk1, 35.6% at Wk4, 52.6% at Wk8, 59.7% at Wk12, 65.9% at Wk16\n- High dose tracks similarly to mid dose throughout\n- Continuous improvement suggests potential for further gains beyond Wk16\n- Part A 52-week data showed continued improvement"
-        },
-
-        # ─── Slide 7: Competitive Landscape (press release figure) ───
-        {
-            "type": "image",
-            "title": "Competitive EASI-75 & IGA 0/1 at Week 16",
-            "imagePath": os.path.join(FIGURES_DIR, "page-08.png"),
-            "disclaimer": "Cross-trial comparison only. Different populations, imputation methods. Review is required before disclosure.",
-            "speakerNotes": "COMPETITIVE PROFILE (from Apogee press release):\nZumilokibart Mid Dose (N=85) vs DUPIXENT (N=521):\n- EASI-75: 65.9 vs 49.5 (Δ from PBO: 41.9 vs 36.8)\n- IGA 0/1: 46.0 vs 34.6 (Δ: 34.8 vs 27.8)\n- EASI-90: 47.4 vs 31.8 (Δ: 37.8 vs 25.8)\n- I-NRS4: 50.5 vs 38.4 (Δ: 36.7 vs 27.5)\n\nCAVEATS: Cross-trial only. Zumilokibart PBO 23.4% vs DUPIXENT PBO 12.7% (SOLO). Small N (85) inflates variability."
-        },
-
-        # ─── Slide 8: Safety ───
-        {
-            "type": "content",
-            "title": "Safety Summary — Through Week 16",
-            "sections": [
-                {
-                    "header": "Overall Safety (Mid Dose vs Placebo)",
-                    "bullets": [
-                        "≥1 TEAE: 60.0% vs 67.0% PBO — lower than placebo",
-                        "Serious TEAE: 1.2% vs 2.3% PBO",
-                        "Discontinued due to TEAE: 2.4% vs 2.3% PBO",
-                        "Most common: nasopharyngitis (14.1%), headache (7.1%)",
-                        "No effect of ADAs on PK, efficacy, or safety"
-                    ],
-                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.0
-                },
-                {
-                    "header": "Conjunctivitis (Key Class Signal)",
-                    "bullets": [
-                        "Noninfective conjunctivitis: Low 4.7%, Mid 5.9%, High 11.5%, PBO 0.0%",
-                        "Pooled conjunctivitis (all preferred terms): Mid 10.6%, Low 15.1%, High 20.7%",
-                        "Dose-dependent pattern (higher at higher doses)",
-                        "Mid dose (10.6%) slightly above lebrikizumab Ph3 (~7–8%)",
-                        "Low dose paradox (15.1%) — likely small-N noise"
-                    ],
-                    "x": 0.5, "y": 3.3, "w": 12.3, "h": 2.2
-                }
-            ],
-            "disclaimer": "Review is required before disclosure.",
-            "speakerNotes": "SAFETY DETAILS:\n- ≥1 TEAE: Low 75.6%, Mid 60.0%, High 67.8%, PBO 67.0%\n- ≥1 Serious TEAE: Low 2.3%, Mid 1.2%, High 3.4%, PBO 2.3%\n- D/C due to TEAE: Low 1.2%, Mid 2.4%, High 3.4%, PBO 2.3%\n\nCOMPARATIVE CONJUNCTIVITIS:\n- Lebrikizumab Ph3: ~7-8% (ADVOCATE)\n- Dupilumab: ~8-10% (SOLO/CAFÉ)\n- Tralokinumab: ~7-10% (ECZTRA)\n\nOverall well-tolerated, consistent with IL-13 class."
-        },
-
-        # ─── Slide 9: Broader Competitor Table ───
-        {
-            "type": "table",
-            "title": "Competitive Landscape — AD Biologics at Week 16",
-            "table": {
-                "headers": ["Drug", "Sponsor", "MOA", "EASI-75", "IGA 0/1", "Dosing (Maint.)", "Phase"],
-                "rows": [
-                    ["Zumilokibart (APG777)", "Apogee", "Anti-IL-13", "65.9%", "46.0%", "Q12W–Q24W SC", "Phase 2b"],
-                    ["Lebrikizumab (Ebglyss)", "Lilly", "Anti-IL-13", "53.0%", "37.0%", "Q2W/Q4W SC", "Approved"],
-                    ["Dupilumab (Dupixent)", "Sanofi/Regen.", "Anti-IL-4Rα", "49.5%", "34.6%", "Q2W SC", "Approved"],
-                    ["Nemolizumab (Nemluvio)", "Galderma", "Anti-IL-31Rα", "42.8%*", "36.7%*", "Q4W SC", "Approved"],
-                    ["Tralokinumab (Adbry)", "LEO Pharma", "Anti-IL-13", "29.1%", "19.0%", "Q2W SC", "Approved"],
-                    ["Amlitelimab", "Sanofi", "Anti-OX40L", "~44%†", "—", "Q4W SC", "Phase 2"],
-                    ["Rocatinlimab", "Lilly (acq.)", "Anti-OX40", "—", "—", "Q4W SC", "Phase 3"]
-                ]
-            },
-            "disclaimer": "Cross-trial comparisons are indirect. *+TCS combination. †24-week endpoint. Review is required before disclosure.",
-            "speakerNotes": "SOURCES: Dupixent (SOLO 1&2 average, NRI); Ebglyss (ADVOCATE 1&2, NRI); Nemluvio (ARCADIA 1&2, NRI, +TCS); Adbry (ECZTRA 1&2, NRI); Amlitelimab (COAST, NRI). Note Nemluvio +TCS inflates vs monotherapy.\n\nZumilokibart's placebo rate (23.4%) is notably higher than historical AD trials (typically 10-15%), which may inflate absolute rates. Δ vs placebo is more reliable."
-        },
-
-        # ─── Slide 10: Head-to-Head vs Lebrikizumab ───
-        {
-            "type": "twoColumn",
-            "title": "Zumilokibart vs Lebrikizumab (Ebglyss) — Lilly Positioning",
-            "leftColumn": {
-                "header": "Similarities",
-                "bullets": [
-                    "Same target: IL-13 neutralization",
-                    "Same indication: moderate-to-severe AD adults",
-                    "Similar endpoint magnitudes (EASI-75 ~50–66%)",
-                    "SC injection route",
-                    "Class-associated conjunctivitis risk",
-                    "Both claim improving efficacy over time"
-                ]
-            },
-            "rightColumn": {
-                "header": "Differences",
-                "bullets": [
-                    "Dosing: Zumilokibart Q12–24W vs Lebrikizumab Q2–4W",
-                    "Annual injections: 2–4 vs 13–26",
-                    "Maturity: Ph2b vs Approved (Ebglyss launched)",
-                    "Conjunctivitis: 10.6% (mid) vs ~8% (lebrikizumab Ph3)",
-                    "Phase 3 data: 2H 2026 start; readout ~2028",
-                    "Commercial: Apogee pre-revenue vs Lilly established"
-                ]
-            },
-            "disclaimer": "Cross-trial comparison only; no head-to-head data available. Review is required before disclosure.",
-            "speakerNotes": "The critical question for Lilly: Does zumilokibart threaten lebrikizumab's market position?\n\nThe dosing advantage is real and substantial (2-4 vs 13-26 injections/year).\nHowever:\n1. Lebrikizumab is already approved and launching\n2. Zumilokibart won't reach market until ~2029\n3. Phase 2 efficacy often doesn't fully translate to Phase 3\n4. Higher placebo rate may inflate absolute numbers\n\nKEY RISK: If Phase 3 confirms AND convenience drives switching → could cap lebrikizumab's peak share."
-        },
-
-        # ─── Slide 11: BNMA — EASI-75 ───
-        {
-            "type": "bnma",
-            "title": "BNMA: EASI-75 at Induction Period (Week 16)",
-            "imagePath": os.path.join(FIGURES_DIR, "APG777_EASI75_Wk16_2026-07-20.png"),
-            "interpretation": [
-                "Zumilokibart high dose peaks ~0.45 — highest",
-                "Mid dose (Part A+B) peaks ~0.40, overlaps upadacitinib 15mg",
-                "Lebrikizumab 250mg Q2W peaks ~0.35",
-                "Wide CrI reflects small Phase 2 sample (N=85)",
-                "Ranking: Mid ≈ #2–3 (overlaps upa, dupilumab)",
-                "Lebrikizumab ranks ~#4–5 for EASI-75"
-            ],
-            "speakerNotes": "BNMA INTERPRETATION — EASI-75:\nRidge plot shows posterior distributions of PBO-adjusted treatment effects.\n\n1. Zumilokibart high dose (blue): rightmost peak (~0.45) but very wide distribution.\n2. Mid dose (red/pink, Part A+B): peaks ~0.38-0.40, overlapping with upadacitinib 15mg (teal) and dupilumab (green).\n3. Lebrikizumab 250mg Q2W (yellow/gold): peaks ~0.33-0.35.\n4. Abrocitinib 100mg (gray) and amlitelimab (purple) are lower.\n\nLIMITATIONS: Small sample inflates uncertainty. Phase 2 vs Phase 3 data. Different imputation methods.\n\nSOURCE: Lilly internal BNMA (Batman model), random-effects, monotherapy studies."
-        },
-
-        # ─── Slide 12: BNMA — IGA 0/1 ───
-        {
-            "type": "bnma",
-            "title": "BNMA: IGA 0/1 at Induction Period (Week 16)",
-            "imagePath": os.path.join(FIGURES_DIR, "APG777_IGA01_Wk16_2026-07-20.jpg"),
-            "interpretation": [
-                "Upadacitinib 15mg peaks highest (~0.35) overall",
-                "Zumilokibart mid dose (Part A+B) peaks ~0.32",
-                "Dupilumab 600/300mg peaks ~0.28",
-                "Lebrikizumab 250mg Q2W peaks ~0.28",
-                "Substantial overlap across all biologics for IGA 0/1",
-                "Zumilokibart high dose has very wide CrI"
-            ],
-            "speakerNotes": "BNMA INTERPRETATION — IGA 0/1:\nIGA 0/1 posterior densities show a more compressed landscape than EASI-75.\n\n1. Upadacitinib 15mg oral (teal) peaks highest at ~0.35 (JAK class advantage for IGA).\n2. Zumilokibart Part A+B mid dose (red) peaks ~0.30-0.32.\n3. Dupilumab (green) and Lebrikizumab (yellow) both peak ~0.27-0.29.\n4. Abrocitinib 100mg lower (~0.22).\n\nFor IGA 0/1, separation between agents is less clear. Biologics cluster together, CIs overlap substantially. Dosing convenience may be more important than efficacy differentiation.\n\nSOURCE: Lilly internal BNMA (Batman model), random-effects, monotherapy studies."
-        },
-
-        # ─── Slide 13: Implications for Lilly Strategy ───
-        {
-            "type": "content",
-            "title": "Implications for Lilly Strategy",
-            "sections": [
-                {
-                    "header": "Competitive Threat Assessment",
-                    "bullets": [
-                        "EASI-75 Δ of 41.9 suggests potentially best-in-class efficacy among IL-13s",
-                        "Dosing convenience (Q12–24W) is a major differentiator",
-                        "Could set new standard of care upon approval (~2029)",
-                        "Patient preference likely to favor fewer injections",
-                        "Apogee's Blackstone deal funds full commercialization"
-                    ],
-                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.2
-                },
-                {
-                    "header": "Mitigating Factors for Lilly",
-                    "bullets": [
-                        "Lebrikizumab approved NOW; 3+ years of commercial build before zumilokibart arrives",
-                        "Phase 2→3 attrition: efficacy commonly drops ~30% in larger trials",
-                        "Higher placebo rate (23.4%) may inflate absolute numbers",
-                        "Conjunctivitis (10.6%) slightly above lebrikizumab (~8%)",
-                        "Small N (85/arm) — wide CIs, less certainty",
-                        "Lilly's label breadth (adolescents, multiple indications) + rocatinlimab (anti-OX40) pipeline"
+                        "All three are allosteric TYK2 inhibitors binding the JH2 pseudokinase domain",
+                        "Envudeucitinib (Alumis): 40 mg BID — highest potency, twice-daily dosing",
+                        "Zasocitinib (Takeda): 30 mg QD — once-daily convenience, proven superior to deucravacitinib",
+                        "Deucravacitinib (BMS/Sotyktu): 6 mg QD — first-in-class, approved but lower efficacy ceiling",
+                        "Both next-gen TYK2i target PASI-90 >50% (vs ~37% for deucravacitinib)"
                     ],
                     "x": 0.5, "y": 3.5, "w": 12.3, "h": 2.5
                 }
             ],
-            "disclaimer": "Review is required before disclosure.",
-            "speakerNotes": "THREAT LEVEL: MODERATE-HIGH.\n\nBULL CASE for Apogee: Phase 3 confirms efficacy, Q24W maintenance works, 2029 launch captures convenience seekers.\nBEAR CASE for Apogee: Phase 3 efficacy drops to ~50-55%, Q24W underperforms, conjunctivitis worsens with longer exposure.\n\nLILLY RESPONSE OPTIONS:\n1. Accelerate lebrikizumab lifecycle (Q4W data emphasis, pen device)\n2. Emphasize real-world evidence and safety track record\n3. Advance rocatinlimab (different MOA) as complementary pipeline\n4. Monitor ADventure Phase 3 enrollment and interim data\n5. Consider label expansion (pediatric, asthma) to differentiate"
+            "speakerNotes": "All three allosteric TYK2 inhibitors bind the same regulatory pseudokinase (JH2) domain — a different binding site from the catalytic JH1 domain targeted by traditional JAK inhibitors. This pseudokinase-binding mechanism enables >1-million-fold selectivity over JAK1/2/3.\n\nThe key clinical question: why are the next-gen TYK2i more efficacious?\n1. Potentially greater TYK2 occupancy at their respective doses\n2. Different pharmacokinetic profiles (longer target engagement)\n3. Trial design differences (different patient populations, estimands)\n\nDeucravacitinib POETYK data: PASI-75 ~53%, PASI-90 ~37% at Wk16.\nNext-gen target: PASI-90 >50%, approaching biologic efficacy."
         },
 
-        # ─── Slide 14: Key Takeaways ───
+        # ─── Slide 5: Study Designs ───
+        {
+            "type": "twoColumn",
+            "title": "Phase 3 Study Designs — Head-to-Head Comparison",
+            "leftColumn": {
+                "header": "Envudeucitinib: ONWARD1 & ONWARD2",
+                "bullets": [
+                    "ONWARD1: N=912 | ONWARD2: N=862",
+                    "Randomized 2:1:1 (drug:PBO:apremilast)",
+                    "Moderate-to-severe plaque psoriasis",
+                    "24-week double-blind period",
+                    "Co-primary: PASI-75 + sPGA 0/1 at Wk16 vs PBO",
+                    "Key secondary: vs apremilast at Wk24",
+                    "Global, multicenter, 2024–2025",
+                    "ONWARD3 (OLE): N=1,680 ongoing"
+                ]
+            },
+            "rightColumn": {
+                "header": "Zasocitinib: LATITUDE 3001 & 3002",
+                "bullets": [
+                    "3001: N=693 | 3002: N=1,108",
+                    "Randomized vs PBO vs apremilast",
+                    "Moderate-to-severe plaque psoriasis",
+                    "3001: 52-week | 3002: 60-week (w/ withdrawal)",
+                    "Co-primary: PASI-75 + sPGA 0/1 at Wk16 vs PBO",
+                    "Key secondary: vs apremilast at Wk16/24",
+                    "21 countries, 2023–2025",
+                    "Atlas (NCT06973291): H2H vs deucravacitinib"
+                ]
+            },
+            "disclaimer": "Review is required before disclosure.",
+            "speakerNotes": "TRIAL DESIGN COMPARISON:\n\nSimilarities:\n- Both used active comparator (apremilast) + placebo\n- Both had PASI-75 + sPGA 0/1 as co-primaries at Week 16\n- Both in moderate-to-severe plaque psoriasis (PASI≥12, BSA≥10%)\n\nDifferences:\n- Envudeucitinib: 2:1:1 randomization; shorter (24-wk double-blind)\n- Zasocitinib: longer studies (52–60 wk) with withdrawal/retreatment design in 3002\n- Zasocitinib has a dedicated H2H vs deucravacitinib (LATITUDE Atlas, N=606)\n- Envudeucitinib total program N=~1,774; Zasocitinib total N=~1,801 (PsO only)\n\nBoth programs are large, well-powered, and designed for regulatory submission."
+        },
+
+        # ─── Slide 6: Key Efficacy — Envudeucitinib ───
+        {
+            "type": "content",
+            "title": "Key Efficacy: Envudeucitinib Phase 3 Results",
+            "sections": [
+                {
+                    "header": "ONWARD1 (N=912) & ONWARD2 (N=862) — Week 16 & 24",
+                    "bullets": [
+                        "PASI-75 at Wk16: co-primary MET (p<0.001 vs PBO) — exact % not publicly disclosed",
+                        "PASI-90 at Wk16: 59.9% (ONWARD1) / 53.1% (ONWARD2) vs 4.8%/4.3% PBO",
+                        "PASI-100 at Wk16: 29.4% (ONWARD1) / 27.7% (ONWARD2) vs 0.9%/0.9% PBO",
+                        "PASI-90 at Wk24: 68.0% (ONWARD1) / 62.1% (ONWARD2)",
+                        "PASI-100 at Wk24: 41.0% (ONWARD1) / 39.5% (ONWARD2)",
+                        "All ranked primary and secondary endpoints met vs PBO and apremilast"
+                    ],
+                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.6
+                },
+                {
+                    "header": "Additional Outcomes",
+                    "bullets": [
+                        "Scalp (ss-PGA 0/1): ~75% by Week 24 (baseline ss-PGA ≥3)",
+                        "DLQI 0/1: ~50% by Week 12 (baseline DLQI ≥2)",
+                        "Pruritus NRS: >4-point improvement by Wk16; clinically meaningful itch relief by Wk2",
+                        "Rapid onset: >30% achieving ss-PGA 0/1 by Week 4",
+                        "Sustained improvement: responses continued to increase through Wk24"
+                    ],
+                    "x": 0.5, "y": 3.9, "w": 12.3, "h": 2.2
+                }
+            ],
+            "disclaimer": "Source: Alumis press release March 28, 2026. Review is required before disclosure.",
+            "speakerNotes": "ENVUDEUCITINIB EFFICACY DETAIL:\n\nThe press release highlighted PASI-90 and PASI-100 rather than PASI-75 — this is a strategic choice to position above deucravacitinib and closer to biologics. The fact that PASI-90 was ~54-60% and PASI-100 ~28-29% at Wk16 suggests PASI-75 is likely >70% (must be higher than PASI-90 by definition).\n\nKey comparison to deucravacitinib (POETYK):\n- Deucravacitinib PASI-90 Wk16: ~37%\n- Envudeucitinib PASI-90 Wk16: ~54-60% → substantially higher\n\n52-week STRIDE OLE data confirms durability: PASI-75 78%, PASI-90 61%, PASI-100 39% — consistent with Phase 3 Week 24 data.\n\nSAFETY: Headache, nasopharyngitis, URTI, acne most common. No TB reactivation. No new signals."
+        },
+
+        # ─── Slide 7: Key Efficacy — Zasocitinib ───
+        {
+            "type": "content",
+            "title": "Key Efficacy: Zasocitinib Phase 3 Results",
+            "sections": [
+                {
+                    "header": "LATITUDE 3001 (N=693) & 3002 (N=1,108) — Week 16",
+                    "bullets": [
+                        "PASI-75 at Wk16: co-primary MET (p<0.001 vs PBO) — exact % not publicly disclosed",
+                        "sPGA 0/1 at Wk16: 71.4% (3001) / 69.2% (3002) vs 10.7%/12.6% PBO",
+                        "PASI-90 at Wk16: 61.3% (3001) / 51.9% (3002) vs 5.0%/4.0% PBO",
+                        "PASI-100 at Wk16: 33.4% (3001) / 25.2% (3002) vs 0.7%/1.1% PBO",
+                        "sPGA 0 at Wk16: 39.9% (3001) / 33.7% (3002) vs 0.7%/1.4% PBO",
+                        "All 44 ranked secondary endpoints met (vs PBO and apremilast at Wk16/24)"
+                    ],
+                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.6
+                },
+                {
+                    "header": "LATITUDE Atlas — Head-to-Head vs Deucravacitinib (N=606)",
+                    "bullets": [
+                        "Primary: PASI-100 at Wk16 — zasocitinib >35% vs deucravacitinib ~14%",
+                        "Zasocitinib achieved ~2.5× higher PASI-100 rates than deucravacitinib",
+                        "All secondary endpoints met (PASI-90, sPGA 0) — statistically superior",
+                        "Separation visible by Week 8",
+                        "Durability (Wk40–60): >90% of Wk40 PASI-75/90/sPGA 0/1 responders maintained at Wk60"
+                    ],
+                    "x": 0.5, "y": 3.9, "w": 12.3, "h": 2.2
+                }
+            ],
+            "disclaimer": "Source: Takeda press releases Dec 2025, Mar 2026, Jun 2026. Review is required before disclosure.",
+            "speakerNotes": "ZASOCITINIB EFFICACY DETAIL:\n\nKey differentiator: the LATITUDE Atlas H2H study (NCT06973291, N=606) directly proved superiority over deucravacitinib (the only approved oral TYK2i). This is a powerful regulatory AND commercial message.\n\nZasocitinib sPGA 0/1 (~70%) is biologic-class efficacy. The PASI-90 range (52-61%) positions it similarly to envudeucitinib.\n\nApremilast comparator data (from 3001/3002):\n- sPGA 0/1: 32.1%/29.7% vs zasocitinib 71.4%/69.2% → massive advantage\n- PASI-90: 16.8%/15.9% vs zasocitinib 61.3%/51.9%\n- PASI-100: 2.9%/4.3% vs zasocitinib 33.4%/25.2%\n\nBody site data: Scalp sPGA 0/1 ~74-77%, Palmoplantar 69-71%, Nails significant.\n\nSAFETY: TEAEs 62.1%; URTI 10.1%, acne 6.5%, nasopharyngitis 6.2%. No new signals."
+        },
+
+        # ─── Slide 8: Head-to-Head Comparison ───
+        {
+            "type": "twoColumn",
+            "title": "Envudeucitinib vs Zasocitinib — Direct Comparison",
+            "leftColumn": {
+                "header": "Envudeucitinib (Alumis)",
+                "bullets": [
+                    "Dose: 40 mg BID (twice daily)",
+                    "PASI-90 Wk16: 54–60%",
+                    "PASI-100 Wk16: 28–29%",
+                    "PASI-100 Wk24: 40–41%",
+                    "No H2H vs deucravacitinib",
+                    "Smaller company (Alumis, ALMS)",
+                    "NDA: Q4 2026",
+                    "Pill burden: 2 tablets/day"
+                ]
+            },
+            "rightColumn": {
+                "header": "Zasocitinib (Takeda)",
+                "bullets": [
+                    "Dose: 30 mg QD (once daily)",
+                    "PASI-90 Wk16: 52–61%",
+                    "PASI-100 Wk16: 25–33%",
+                    "PASI-100 Wk24: responses increasing",
+                    "H2H: 2.5× deucravacitinib on PASI-100",
+                    "Large pharma (Takeda, global footprint)",
+                    "NDA: FY2026 (ending Mar 2027)",
+                    "Pill burden: 1 tablet/day"
+                ]
+            },
+            "disclaimer": "Cross-trial comparison only. No head-to-head data between envudeucitinib and zasocitinib. Review is required before disclosure.",
+            "speakerNotes": "HEAD-TO-HEAD ASSESSMENT (cross-trial only — no direct comparison exists):\n\nEFFICACY: Very similar overall. Both achieve PASI-90 ~52-61% at Wk16 — a step-change above deucravacitinib (~37%). PASI-100 also comparable (~25-33% at Wk16).\n\nDOSING: Zasocitinib has QD advantage over envudeucitinib's BID. Patient preference and adherence favor QD, especially long-term.\n\nCOMMERCIAL: Takeda has global infrastructure, dermatology experience, and a larger program (6+ studies). Alumis is a smaller biotech that would need to build or partner for commercialization.\n\nH2H DATA: Zasocitinib has proven superiority over deucravacitinib (LATITUDE Atlas). Envudeucitinib does not have a H2H — this is a messaging gap.\n\nBOTH are clear threats to: deucravacitinib (efficacy gap), apremilast (efficacy gap), and biologics (convenience of oral)."
+        },
+
+        # ─── Slide 9: Oral Psoriasis Landscape Table ───
+        {
+            "type": "table",
+            "title": "Psoriasis Oral Therapy Landscape — PASI Outcomes at Week 16",
+            "table": {
+                "headers": ["Drug", "Sponsor", "MOA", "Dose", "PASI-90", "PASI-100", "Phase"],
+                "rows": [
+                    ["Zasocitinib", "Takeda", "TYK2i", "30 mg QD", "52–61%", "25–33%", "Ph3 (NDA)"],
+                    ["Envudeucitinib", "Alumis", "TYK2i", "40 mg BID", "53–60%", "28–29%", "Ph3 (NDA)"],
+                    ["Icotrokinra*", "BMS", "TYK2i", "200 mg QD", "~55%†", "~30%†", "Phase 3"],
+                    ["Deucravacitinib", "BMS", "TYK2i", "6 mg QD", "~37%", "~13%", "Approved"],
+                    ["Apremilast", "Amgen", "PDE4i", "30 mg BID", "~22%", "~5%", "Approved"],
+                    ["Upadacitinib‡", "AbbVie", "JAK1i", "15 mg QD", "—", "—", "Not in PsO"],
+                    ["Tofacitinib‡", "Pfizer", "pan-JAK", "10 mg BID", "~40%", "~15%", "Withdrawn"]
+                ]
+            },
+            "disclaimer": "*Icotrokinra (BMS-986165 follow-on) data estimated from early reports. †Estimated, not confirmed. ‡Non-selective JAKi included for reference only — carry BBW. Cross-trial comparisons are indirect. Review is required before disclosure.",
+            "speakerNotes": "ORAL LANDSCAPE HIERARCHY (emerging from Ph3 data):\n\nTIER 1 (PASI-90 >50%): Zasocitinib, Envudeucitinib, Icotrokinra\n- These represent the next generation of oral TYK2 inhibitors\n- Approaching biologic-class efficacy in a pill\n\nTIER 2 (PASI-90 ~35-40%): Deucravacitinib\n- First-in-class, approved, but substantially lower efficacy ceiling\n- Vulnerable to next-gen displacement\n\nTIER 3 (PASI-90 <25%): Apremilast\n- PDE4 inhibitor, different MOA, good safety but limited efficacy\n- Will retain niche for milder disease / safety-concerned patients\n\nNon-selective JAK inhibitors (tofacitinib, upadacitinib) excluded from PsO market due to safety (BBW for MACE, VTE, malignancy).\n\nImplication: Both zasocitinib and envudeucitinib could significantly displace deucravacitinib market share upon approval."
+        },
+
+        # ─── Slide 10: BNMA — PASI-75 Wk16 ───
+        {
+            "type": "bnma",
+            "title": "BNMA: PASI-75 at Week 16 (Placebo-Subtracted)",
+            "imagePath": os.path.join(FIGURES_DIR, "zasocitinib_envudeucitinib_PASI75_Wk16_2026-07-29.png"),
+            "interpretation": [
+                "Biologics dominate: bimekizumab (~0.88), ixekizumab (~0.82), risankizumab (~0.80)",
+                "Secukinumab ~0.78 — top tier of IL-17 class",
+                "Icotrokinra 200mg QD ~0.63 — highest among oral TYK2i",
+                "Zasocitinib Ph3 dose peaks ~0.58 (green)",
+                "Envudeucitinib 40mg BID peaks ~0.55 (red/brown)",
+                "Both clearly superior to deucravacitinib (~0.48) and apremilast (~0.26)",
+                "Wide CrI on envudeucitinib suggests greater uncertainty"
+            ],
+            "speakerNotes": "BNMA INTERPRETATION — PASI-75 at Week 16:\n\nThis ridge plot shows posterior distributions of treatment difference vs placebo (random-effects BNMA).\n\nKEY FINDINGS:\n1. Injectable biologics remain superior for PASI-75: bimekizumab (0.88), ixekizumab (0.82), risankizumab (0.80), secukinumab (0.78)\n2. Among oral TYK2i: icotrokinra (BMS) leads at ~0.63, followed by zasocitinib (~0.58) and envudeucitinib (~0.55)\n3. Zasocitinib and envudeucitinib overlap substantially — no clear winner between them\n4. Both are clearly separated from deucravacitinib (~0.48) — confirms next-gen efficacy advantage\n5. Apremilast (~0.26) is far below — different efficacy tier entirely\n\nLIMITATION: Indirect comparison only. Different trials, populations, imputation methods. BNMA provides relative positioning but not definitive ranking.\n\nSOURCE: Lilly internal BNMA (Batman model), random-effects NMA, NRI estimand, mixed population."
+        },
+
+        # ─── Slide 11: BNMA — PASI-100 Wk16 ───
+        {
+            "type": "bnma",
+            "title": "BNMA: PASI-100 at Week 16 (Placebo-Subtracted)",
+            "imagePath": os.path.join(FIGURES_DIR, "zasocitinib_envudeucitinib_PASI100_Wk16_2026-07-29.png"),
+            "interpretation": [
+                "Bimekizumab dominates PASI-100 (~0.62) — clear separation",
+                "Ixekizumab (~0.43) and risankizumab (~0.40) form second tier",
+                "Secukinumab ~0.37 — below other IL-17s for complete clearance",
+                "Icotrokinra ~0.33 — best oral TYK2i for PASI-100",
+                "Envudeucitinib ~0.27 and zasocitinib ~0.25 — overlapping",
+                "Red arrows highlight both focus compounds",
+                "Deucravacitinib ~0.10 — substantially lower complete clearance"
+            ],
+            "speakerNotes": "BNMA INTERPRETATION — PASI-100 at Week 16:\n\nPASI-100 (complete skin clearance) is the most stringent endpoint and shows greater differentiation between agents.\n\nKEY FINDINGS:\n1. Bimekizumab (IL-17A/F) dominates at ~0.62 — best-in-class for complete clearance\n2. IL-17A inhibitors (ixekizumab ~0.43) and IL-23 (risankizumab ~0.40) form the biologic middle tier\n3. Oral TYK2i cluster: icotrokinra ~0.33, envudeucitinib ~0.27, zasocitinib ~0.25\n4. Envudeucitinib edges slightly ahead of zasocitinib for PASI-100 — but CrIs overlap\n5. Deucravacitinib (~0.10) and apremilast (~0.04) are significantly lower\n\nCLINICAL IMPLICATION: For patients prioritizing complete clearance (PASI-100), biologics remain superior to oral options. However, next-gen TYK2i are approaching secukinumab-level complete clearance rates.\n\nSOURCE: Lilly internal BNMA, random-effects, NRI estimand, mixed population."
+        },
+
+        # ─── Slide 12: BNMA — PASI-75 Wk24 ───
+        {
+            "type": "bnma",
+            "title": "BNMA: PASI-75 at Week 24 (Placebo-Subtracted)",
+            "imagePath": os.path.join(FIGURES_DIR, "zasocitinib_envudeucitinib_PASI75_Wk24_2026-07-29.png"),
+            "interpretation": [
+                "Risankizumab rises to #1 at Wk24 (~0.92) — sustained IL-23 effect",
+                "Bimekizumab (~0.88) and ixekizumab (~0.80) remain top tier",
+                "Secukinumab (~0.78), icotrokinra (~0.68) — durable responses",
+                "Zasocitinib ~0.62 at Wk24 (↑ from 0.58 at Wk16)",
+                "Envudeucitinib ~0.58 at Wk24 (↑ from 0.55 at Wk16)",
+                "Both show continued improvement — consistent with Ph3 data",
+                "Deucravacitinib ~0.53, apremilast ~0.26 — gap maintained"
+            ],
+            "speakerNotes": "BNMA INTERPRETATION — PASI-75 at Week 24:\n\nThe Week 24 data confirms durability and continued improvement for both focus compounds:\n\nKEY FINDINGS:\n1. Risankizumab (IL-23) surpasses all others at Wk24 (~0.92) — the long half-life and sustained IL-23 blockade enable continued improvement\n2. Bimekizumab maintains high efficacy (~0.88) at Wk24\n3. Zasocitinib improves from ~0.58 (Wk16) to ~0.62 (Wk24) — consistent with Takeda's claim of increasing responses through Wk24\n4. Envudeucitinib improves from ~0.55 (Wk16) to ~0.58 (Wk24) — consistent with Alumis reporting continued improvement\n5. The gap between biologics and oral TYK2i narrows slightly at Wk24 as oral agents continue to improve\n\nIMPLICATION: Both drugs show a durability profile — patients who respond tend to improve further. This is important for the long-term treatment paradigm.\n\nSOURCE: Lilly internal BNMA, random-effects, NRI estimand, mixed population."
+        },
+
+        # ─── Slide 13: BNMA — PASI-100 Wk24 ───
+        {
+            "type": "bnma",
+            "title": "BNMA: PASI-100 at Week 24 (Placebo-Subtracted)",
+            "imagePath": os.path.join(FIGURES_DIR, "zasocitinib_envudeucitinib_PASI100_Wk24_2026-07-29.png"),
+            "interpretation": [
+                "Bimekizumab sustains PASI-100 leadership (~0.60)",
+                "Risankizumab (~0.50) and ixekizumab (~0.47) strengthen at Wk24",
+                "Secukinumab ~0.40 — stable from Wk16",
+                "Envudeucitinib rises to ~0.35 at Wk24 (from ~0.27 at Wk16)",
+                "Icotrokinra ~0.34 — similar tier to envudeucitinib",
+                "Zasocitinib ~0.33 (from ~0.25 at Wk16) — catches up",
+                "Both drugs show meaningful Wk16→Wk24 PASI-100 improvement"
+            ],
+            "speakerNotes": "BNMA INTERPRETATION — PASI-100 at Week 24:\n\nComplete clearance continues to improve for both focus compounds:\n\nKEY FINDINGS:\n1. Bimekizumab remains the clear leader for complete clearance at Wk24 (~0.60)\n2. Risankizumab and ixekizumab both strengthen their Wk24 positions vs Wk16\n3. Envudeucitinib shows meaningful improvement: 0.27 → 0.35 (Wk16→Wk24), consistent with the reported 29%→41% PASI-100\n4. Zasocitinib also improves: 0.25 → 0.33, consistent with Takeda's reported increasing responses\n5. Both oral TYK2i are now competitive with icotrokinra for PASI-100 at Wk24\n\nCLINICAL CONTEXT: The Wk16→Wk24 improvement trajectory for oral TYK2i mirrors what's seen with IL-23 biologics — suggesting a gradual immunological response rather than a plateau. This is important for patient counseling (set expectations for continued improvement beyond first assessment).\n\nSOURCE: Lilly internal BNMA, random-effects, NRI estimand, mixed population."
+        },
+
+        # ─── Slide 14: Safety Comparison ───
+        {
+            "type": "content",
+            "title": "Safety Comparison: TYK2 Inhibitor Class",
+            "sections": [
+                {
+                    "header": "Envudeucitinib Safety (ONWARD1/2, through Wk24)",
+                    "bullets": [
+                        "Generally well tolerated; consistent with Phase 2 (STRIDE)",
+                        "Most common AEs: headache, nasopharyngitis, URTI, acne",
+                        "No clinically significant lab abnormalities",
+                        "No TB reactivation cases",
+                        "TEAEs mostly mild, transient, self-limited",
+                        "D/C due to AE (52-wk STRIDE OLE): 3.7%"
+                    ],
+                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.2
+                },
+                {
+                    "header": "Zasocitinib Safety (LATITUDE 3001/2, through Wk16)",
+                    "bullets": [
+                        "TEAEs: 62.1% (zasocitinib) vs 46.9% (PBO) vs 50.5% (apremilast)",
+                        "Serious TEAEs: 3.0% vs <1% PBO vs 1.5% apremilast",
+                        "Most common: URTI (10.1%), acne (6.5%), nasopharyngitis (6.2%)",
+                        "No new safety signals vs Phase 2b",
+                        "No clinically meaningful lab parameter changes",
+                        "Profile consistent across all LATITUDE studies"
+                    ],
+                    "x": 0.5, "y": 3.5, "w": 12.3, "h": 2.5
+                }
+            ],
+            "disclaimer": "Cross-trial safety comparison is limited. Review is required before disclosure.",
+            "speakerNotes": "SAFETY COMPARISON — TYK2i CLASS:\n\nBoth drugs show the favorable safety profile expected from selective TYK2 inhibition (no JAK1/2/3 effects):\n- No MACE/VTE/malignancy signals (unlike pan-JAK inhibitors)\n- No significant cytopenias or lipid elevations\n- No TB reactivation\n\nCOMPARISON TABLE:\n| AE | Envudeucitinib | Zasocitinib | Deucravacitinib |\n| TEAEs | Not quantified | 62.1% | ~55% (POETYK) |\n| URTI | Common | 10.1% | ~9% |\n| Acne | Common | 6.5% | ~4% |\n| Serious | Not quantified | 3.0% | ~2% |\n\nACNE: Both next-gen TYK2i show slightly higher acne rates than deucravacitinib — possibly related to greater TYK2 inhibition. Manageable and transient.\n\nNOTE: Envudeucitinib press release did not provide specific AE percentages for Ph3 — only qualitative safety summary. Zasocitinib provided more granular data.\n\nOVERALL: Both drugs have clean safety profiles appropriate for a chronic skin disease indication. No dealbreaker signals."
+        },
+
+        # ─── Slide 15: Implications for Lilly ───
+        {
+            "type": "content",
+            "title": "Implications for Lilly Psoriasis Strategy",
+            "sections": [
+                {
+                    "header": "Competitive Threat Assessment",
+                    "bullets": [
+                        "Next-gen TYK2i (zasocitinib + envudeucitinib) approach biologic efficacy in oral form",
+                        "PASI-90 >50% closes the gap with ixekizumab (Taltz) for moderate psoriasis",
+                        "QD oral (zasocitinib) or BID oral (envudeucitinib) vs Q2W–Q4W injections — convenience advantage",
+                        "Could erode biologic initiation for new moderate-to-severe patients",
+                        "Zasocitinib's H2H win vs deucravacitinib gives a strong switching narrative",
+                        "Both NDA filings in 2026–2027 → market entry ~2027–2028"
+                    ],
+                    "x": 0.5, "y": 1.15, "w": 12.3, "h": 2.5
+                },
+                {
+                    "header": "Mitigating Factors & Lilly Positioning",
+                    "bullets": [
+                        "Taltz/ixekizumab still superior on PASI-75/90/100 (biologic advantage persists)",
+                        "Bimekizumab (UCB) is the primary biologic competitor, not oral TYK2i",
+                        "TYK2i unlikely to displace biologics for severe/refractory patients",
+                        "Lilly's biologic portfolio (Taltz) retains efficacy advantage",
+                        "Oral therapies expand the treated population (new patients who refuse injections)",
+                        "Monitor: whether payers position oral TYK2i as step therapy before biologics"
+                    ],
+                    "x": 0.5, "y": 3.8, "w": 12.3, "h": 2.5
+                }
+            ],
+            "disclaimer": "Review is required before disclosure.",
+            "speakerNotes": "LILLY STRATEGIC ASSESSMENT:\n\nTHREAT LEVEL: MODERATE for Taltz (ixekizumab).\n\nBULL CASE for oral TYK2i:\n- Patients prefer pills over injections (no injection site reactions, no cold chain)\n- Efficacy approaching biologics: PASI-90 ~55-60% is close to ixekizumab's ~70-75%\n- Payers may mandate oral TYK2i trial before biologics (step therapy)\n- Market expansion: patients who currently refuse treatment may accept an oral option\n\nBEAR CASE for oral TYK2i:\n- Biologics remain clearly superior on all PASI endpoints (especially PASI-100)\n- BID dosing (envudeucitinib) is a compliance burden for chronic disease\n- Long-term safety unknowns (still <3 years of data)\n- Payers unlikely to restrict biologics for severe patients who need maximum efficacy\n\nLILLY ACTIONS:\n1. Reinforce Taltz efficacy superiority in medical affairs communications\n2. Monitor payer step-edit policies as TYK2i launch\n3. Evaluate if Lilly should have an oral psoriasis asset (BD opportunity?)\n4. Position Taltz for severe/refractory where oral efficacy falls short"
+        },
+
+        # ─── Slide 16: Key Takeaways ───
         {
             "type": "summary",
             "title": "Key Takeaways & Recommended Actions",
             "takeaways": [
-                "Zumilokibart mid dose achieved EASI-75 Δ=41.9 vs PBO (p<0.001) — potentially best-in-class for AD biologics",
-                "Q12W–Q24W dosing (2–4 annual injections) is a transformational convenience advantage over all current biologics",
-                "BNMA places zumilokibart mid dose in the top tier alongside upadacitinib and dupilumab, with overlapping CrIs vs lebrikizumab",
-                "Phase 3 (ADventure) planned 2H 2026; if confirmed, represents a meaningful competitive threat to lebrikizumab by ~2029",
-                "Safety is manageable (conjunctivitis 10.6%); key limitation is small sample size (N=85) with wide confidence intervals"
+                "Two next-gen oral TYK2 inhibitors (zasocitinib QD, envudeucitinib BID) have both delivered Phase 3 PASI-90 >50% — a step-change above deucravacitinib (~37%)",
+                "Zasocitinib has proven head-to-head superiority over deucravacitinib (LATITUDE Atlas: 2.5× PASI-100) — strongest competitive positioning",
+                "Both remain clearly below injectable biologics on BNMA: bimekizumab > risankizumab > ixekizumab > secukinumab >> oral TYK2i",
+                "NDA filings expected 2026–2027 for both; market entry likely 2027–2028 will reshape the oral psoriasis landscape",
+                "Taltz (ixekizumab) retains biologic efficacy advantage but faces market-shaping risk if payers add oral TYK2i as step therapy"
             ],
             "actions": [
-                "Monitor ADventure Phase 3 enrollment and design details closely (2H 2026 initiation)",
-                "Update BNMA with Phase 3 data when available; reassess ranking",
-                "Evaluate lebrikizumab lifecycle strategy emphasizing established safety, label breadth, and real-world evidence"
+                "Update BNMA when full PASI-75 data disclosed (likely at/after NDA filing)",
+                "Monitor FDA advisory committee meetings and approval timelines for both agents",
+                "Assess payer landscape: will oral TYK2i be positioned as step therapy before biologics?",
+                "Evaluate BD opportunity in oral psoriasis space for Lilly portfolio completeness"
             ],
-            "speakerNotes": "SUMMARY: Zumilokibart is a credible, differentiated competitor to lebrikizumab in AD. The dosing convenience is its primary advantage. Lilly has time — lebrikizumab is approved and building market share now, while zumilokibart is 3+ years from potential approval.\n\nOPEN QUESTIONS:\n1. Should Lilly accelerate Q4W maintenance messaging for lebrikizumab?\n2. What is rocatinlimab timeline relative to zumilokibart?\n3. Will Q24W maintenance maintain efficacy long-term?\n\nReview is required before disclosure."
+            "speakerNotes": "SUMMARY: The psoriasis oral landscape is about to shift dramatically. Zasocitinib and envudeucitinib represent a new generation of TYK2 inhibitors that approach biologic efficacy in oral form. They will primarily threaten deucravacitinib's market share and potentially delay biologic initiation for some patients.\n\nFor Lilly (Taltz/ixekizumab):\n- Direct efficacy threat is LIMITED — biologics remain superior\n- Market dynamics threat is MODERATE — step therapy policies could delay biologic access\n- Strategic opportunity: Lilly has no oral psoriasis asset — BD/licensing could fill this gap\n\nOPEN QUESTIONS:\n1. Will regulators approve both, creating a competitive oral TYK2i market?\n2. How will payers differentiate between zasocitinib (QD) and envudeucitinib (BID)?\n3. Will long-term safety data (3-5 years) reveal any TYK2i class signals?\n4. Should Lilly evaluate an oral psoriasis asset for portfolio completeness?\n\nReview is required before disclosure."
         }
     ]
 }
