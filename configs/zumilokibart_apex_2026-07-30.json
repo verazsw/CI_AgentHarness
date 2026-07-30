@@ -1,0 +1,253 @@
+{
+  "mode": "detailed",
+  "outputFile": "Zumilokibart_APG777_APEX_AD_Detailed_2026-07-30.pptx",
+  "slides": [
+    {
+      "type": "title",
+      "title": "Competitor Landscape Update: Zumilokibart (APG777)",
+      "subtitle": "Atopic Dermatitis — APEX Phase 2 Part B Topline Data (May 2026)",
+      "date": "July 30, 2026",
+      "speakerNotes": "This deck summarizes the zumilokibart (APG777) APEX Phase 2 Part B readout in moderate-to-severe AD from Apogee Therapeutics. Zumilokibart is a next-generation anti-IL-13 mAb designed for extended dosing intervals (Q12W–Q24W). Key question: does it threaten lebrikizumab's positioning as a differentiated IL-13 biologic? The mid dose is the selected Phase 3 dose. Data released May 27, 2026."
+    },
+    {
+      "type": "content",
+      "title": "Drug Overview: Zumilokibart (APG777)",
+      "sections": [
+        {
+          "header": "Profile",
+          "bullets": [
+            "Generic: zumilokibart | Code: APG777 | Sponsor: Apogee Therapeutics (acquired by JNJ Q1 2025 rumored)",
+            "Modality: Humanized IgG1 monoclonal antibody",
+            "Target: IL-13 (high-affinity, engineered for extended half-life via Fc YTE mutations)",
+            "Route: Subcutaneous injection",
+            "Dosing: 4 induction injections (Wk0, 2, 4, 12) → Q12W or Q24W maintenance (2–4 annual dosing days)"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.7
+        },
+        {
+          "header": "Development Status",
+          "bullets": [
+            "Phase 2 Part B topline positive (May 2026); Phase 3 ADventure 1 & 2 initiating 2H 2026",
+            "Pipeline expansion: Asthma (ASPIRE Ph2b 1H 2027), EoE (ELEVATE Ph2a 2H 2026)",
+            "Serial innovation: APG279 (IL-13 + OX40L bispecific) in Ph1b; APG273 (IL-13 + TSLP) planned",
+            "Expected commercial launch in AD: 2029 (if Ph3 successful)"
+          ],
+          "x": 0.5, "y": 4.1, "w": 12.3, "h": 2.5
+        }
+      ],
+      "speakerNotes": "Apogee Therapeutics is a clinical-stage biotech focused on IL-13 biology. Zumilokibart uses Fc YTE mutations to extend half-life, enabling Q12W or less frequent maintenance dosing — a clear differentiation from dupilumab (Q2W), lebrikizumab (Q4W after loading), and tralokinumab (Q2W). The company is pursuing a Dupixent-like franchise strategy across multiple Th2 indications. J&J acquisition rumors add commercial muscle. The ADventure Phase 3 program is a dual-study design (ADventure 1 & 2, ~400 patients each) with co-primary endpoints EASI-75 and IGA 0/1 at Week 16, plus Week 52 maintenance endpoints."
+    },
+    {
+      "type": "content",
+      "title": "Mechanism of Action: Anti-IL-13 (Extended Half-Life)",
+      "sections": [
+        {
+          "header": "Pathway",
+          "bullets": [
+            "IL-13 drives Th2 inflammation in AD: skin barrier disruption, fibrosis, itch, IgE class switching",
+            "Selective IL-13 neutralization (does not block IL-4 signaling via Type I receptor)",
+            "Preserved IL-4 function may reduce infections vs dual IL-4/13 blockade (dupilumab)"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.0
+        },
+        {
+          "header": "Differentiation from Existing IL-13 Agents",
+          "bullets": [
+            "Fc YTE mutations (M252Y/S254T/T256E) extend half-life to ~40 days vs ~20 days for standard IgG1",
+            "Enables Q12W–Q24W maintenance vs Q2W (dupilumab, tralokinumab) or Q4W (lebrikizumab)",
+            "2–4 annual dosing days vs 26 (dupilumab) → potential adherence and convenience advantage",
+            "Same IL-13 class efficacy ceiling expected; differentiation is on dosing convenience, not efficacy"
+          ],
+          "x": 0.5, "y": 3.5, "w": 12.3, "h": 3.0
+        }
+      ],
+      "speakerNotes": "The key mechanistic differentiator is NOT a novel target but an engineered pharmacokinetic advantage. The YTE mutations in the Fc region increase FcRn binding at acidic pH, reducing lysosomal degradation and extending half-life. This enables true quarterly or semi-annual dosing. The concern for Lilly: if Phase 3 confirms efficacy with 2–4 annual injections, it creates a convenience story that outflanks lebrikizumab's Q4W dosing. However, lebrikizumab has a filed NDA and is already approved in EU/Japan — established safety database and real-world evidence will be a moat."
+    },
+    {
+      "type": "twoColumn",
+      "title": "Study Design: APEX Phase 2 Part B",
+      "leftColumn": {
+        "header": "Design",
+        "bullets": [
+          "Phase 2b, randomized, double-blind, placebo-controlled",
+          "N = 346 (mITT); 1:1:1:1 to High/Mid/Low dose + Placebo",
+          "Population: Moderate-to-severe AD (EASI ≥16, vIGA ≥3, BSA ≥10%)",
+          "Monotherapy (no background TCS required)",
+          "Primary endpoint: EASI-75 at Week 16",
+          "Key secondary: IGA 0/1, EASI-90, EASI-100, I-NRS4 at Week 16",
+          "Mid dose = selected Phase 3 dose (N=85 vs N=88 PBO)"
+        ]
+      },
+      "rightImage": "figures/page-10.png",
+      "disclaimer": "Source: Apogee Therapeutics press release (May 27, 2026). Review is required before disclosure.",
+      "speakerNotes": "The study enrolled 346 patients across 4 arms. The mid dose was pre-specified as the registrational dose. Induction: 4 SC injections at Wk0, 2, 4, and 12, then randomized to Q12W or Q24W maintenance (maintenance data not yet reported at 16 weeks). Comparison to other trials: this is a monotherapy trial without background TCS, making direct comparison to Ebglyss/lebrikizumab ADVOCATE (also monotherapy) and Dupixent SOLO 1&2 (monotherapy) more valid. Baseline EASI ~30, which is comparable to other pivotal AD trials."
+    },
+    {
+      "type": "content",
+      "title": "Key Efficacy Results: Mid Dose (Phase 3 Dose)",
+      "sections": [
+        {
+          "header": "Primary Endpoint",
+          "bullets": [
+            "EASI-75 at Week 16: 65.9% vs 23.4% placebo (Δ = 41.9; p < 0.001)",
+            "Robust placebo-adjusted response; clinically meaningful separation from Week 4"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 1.5
+        },
+        {
+          "header": "Key Secondary Endpoints (all p < 0.001 unless noted)",
+          "bullets": [
+            "IGA 0/1: 46.0% vs 10.9% (Δ = 34.8; p < 0.001)",
+            "EASI-90: 47.4% vs 9.3% (Δ = 37.8; p < 0.001)",
+            "I-NRS ≥4: 50.5% vs 13.9% (Δ = 36.7; p < 0.001)",
+            "EASI-100: 16.5% vs 3.4% (Δ = 12.9; p < 0.01)",
+            "vLDA (EASI-90 + I-NRS 0/1): 20.6% vs 4.5% (Δ = 16.7; p < 0.01)"
+          ],
+          "x": 0.5, "y": 2.9, "w": 12.3, "h": 3.0
+        },
+        {
+          "header": "Safety Summary",
+          "bullets": [
+            "TEAEs: Mid dose 60.0% vs PBO 67.0% — no dose-dependent signal",
+            "Conjunctivitis (pooled all doses): 10.6% — class effect consistent with IL-13 blockade",
+            "No ADA-driven loss of efficacy; well tolerated through Week 16"
+          ],
+          "x": 0.5, "y": 5.9, "w": 12.3, "h": 1.5
+        }
+      ],
+      "speakerNotes": "The primary endpoint was met convincingly. The 65.9% EASI-75 rate at Week 16 is numerically the highest among monotherapy anti-IL-13 agents at Week 16 in Phase 2/3 data (vs Dupixent ~49%, Ebglyss ~53%, Adbry ~29%). However, this is Phase 2 with small N (85 vs 88); Phase 3 will likely show regression toward a somewhat lower rate, historically 5-10 percentage points. The IGA 0/1 rate of 46% is similarly impressive. Safety profile is clean — TEAEs actually lower than placebo. Conjunctivitis at 10.6% is a known IL-13 class effect (seen with dupilumab ~8-9% and lebrikizumab ~7-8%)."
+    },
+    {
+      "type": "image",
+      "title": "EASI-75 Response Over Time (Wk 0–16)",
+      "imagePath": "figures/page-14.png",
+      "disclaimer": "Source: Apogee Therapeutics APEX Part B press release. Review is required before disclosure.",
+      "speakerNotes": "This time-course shows clear separation starting around Week 4, with continued divergence through Week 16. The plateau shape is typical of anti-IL-13 biologics. Note all three active doses show similar onset kinetics with separation by magnitude after Week 8."
+    },
+    {
+      "type": "table",
+      "title": "Broader Competitor Landscape: EASI-75 at Week 16",
+      "table": {
+        "headers": ["Drug", "Sponsor", "Target", "Route/Freq", "Phase", "EASI-75", "Δ vs PBO", "Notes"],
+        "rows": [
+          ["Zumilokibart (mid)", "Apogee", "IL-13", "SC Q12W", "Ph2b", "65.9%", "41.9", "Phase 3 dose; monotherapy"],
+          ["Dupilumab 300mg", "Sanofi/Regen", "IL-4/IL-13", "SC Q2W", "Approved", "49.5%", "36.8", "SOLO 1&2 avg; monotherapy"],
+          ["Lebrikizumab 250mg", "Lilly", "IL-13", "SC Q4W", "Approved", "53.0%", "37.7", "ADVOCATE 1&2 avg; monotherapy"],
+          ["Tralokinumab+TCS", "LEO", "IL-13", "SC Q2W", "Approved", "42.8%", "13.2", "ARCADIA 1&2 avg; +TCS"],
+          ["Adbry 300mg", "Galderma", "IL-13", "SC Q2W", "Approved", "29.1%", "17.0", "ECZTRA 1&2 avg; monotherapy"],
+          ["Upadacitinib 15mg", "AbbVie", "JAK1", "PO QD", "Approved", "~70%", "~43", "Measure Up 1&2; monotherapy"],
+          ["Abrocitinib 100mg", "Pfizer", "JAK1", "PO QD", "Approved", "~44%", "~29", "JADE MONO-1; Wk12"]
+        ]
+      },
+      "disclaimer": "Cross-trial comparison for illustrative purposes only. Differences in trial design, populations, and endpoints preclude direct comparison. Review is required before disclosure.",
+      "speakerNotes": "Key context: Zumilokibart's 65.9% EASI-75 is the highest ever reported for a subcutaneous biologic in AD monotherapy at Week 16. However, this is Phase 2b N=85 — Phase 3 trials with larger N and broader populations typically show some attenuation (5-10 pp). JAK inhibitors (upadacitinib) remain numerically higher but carry boxed warnings. Lebrikizumab at 53% in ADVOCATE is from Phase 3 pivotal (N=639 treated) — a more robust estimate. The Δ vs PBO for zumilokibart (41.9) is the highest for any biologic but must be interpreted with caution given small sample size and potentially lower placebo rate in a 4-arm study. Tralokinumab's comparison is confounded by +TCS background. Adbry uses a different assessment (IGA 0/1 measured differently)."
+    },
+    {
+      "type": "image",
+      "title": "Cross-Trial EASI-75 Comparison (Sponsor Figure)",
+      "imagePath": "figures/page-19.png",
+      "disclaimer": "Source: Apogee Therapeutics. Cross-trial comparison for illustrative purposes only. Review is required before disclosure.",
+      "speakerNotes": "This is Apogee's own competitive positioning slide showing EASI-75 results across trials. Note they compare vs SOLO 1&2 (dupilumab monotherapy), ADVOCATE 1&2 (lebrikizumab monotherapy), ARCADIA 1&2 (tralokinumab + TCS, hence the lower delta of 13.2 — different estimand with TCS background), and ECZTRA 1&2 (tralokinumab/Adbry monotherapy but at Week 16 with NRI). Apogee highlights the absolute rate AND the delta vs placebo to make both competitive. This is a fair comparison framework for monotherapy trials."
+    },
+    {
+      "type": "twoColumn",
+      "title": "Head-to-Head vs Lilly Lebrikizumab (Ebglyss)",
+      "leftColumn": {
+        "header": "Similarities",
+        "bullets": [
+          "Same target: IL-13 neutralization",
+          "Same patient population: moderate-to-severe AD",
+          "Comparable efficacy class (both superior to tralokinumab)",
+          "Subcutaneous biologic, monthly or less frequent",
+          "Similar safety profile (conjunctivitis class effect ~7-11%)",
+          "Both monotherapy-capable"
+        ]
+      },
+      "rightColumn": {
+        "header": "Key Differences",
+        "bullets": [
+          "Dosing: Zumilokibart Q12W–Q24W (2–4/yr) vs Lebrikizumab Q4W (13/yr after loading)",
+          "Maturity: Lebrikizumab approved EU/Japan, FDA filed vs Zumilokibart Ph2 only",
+          "Numerics: Zumilokibart 65.9% EASI-75 (Ph2b) vs Lebrikizumab 53% (Ph3 avg)",
+          "Data robustness: N=85 Ph2b vs N=639 pivotal Phase 3",
+          "Safety database: ~350 (zumilokibart) vs >4000 (lebrikizumab)",
+          "Time-to-market: Leb NOW vs Zum ~2029 launch"
+        ]
+      },
+      "disclaimer": "Cross-trial comparison; no head-to-head study conducted. Review is required before disclosure.",
+      "speakerNotes": "Critical framing for leadership: zumilokibart's dosing convenience (2-4x/year vs 13x/year for lebrikizumab) is the primary competitive threat. The numerically higher efficacy in Phase 2 may or may not hold in Phase 3. Lebrikizumab's advantages are: (1) 3+ year head start in market, (2) robust Phase 3 data, (3) long-term safety, (4) combination + TCS data, (5) real-world evidence accumulating. The key risk scenario: if ADventure Phase 3 confirms ~60%+ EASI-75 with Q12W dosing, payers and patients may prefer the convenience. However, by 2029 launch, lebrikizumab will have ~4 years of market presence and post-marketing data."
+    },
+    {
+      "type": "bnma",
+      "title": "BNMA: EASI-75 at Induction (Week 16)",
+      "imagePath": "figures/APG777_EASI75_Wk16_2026-07-20.png",
+      "interpretation": [
+        "Zumilokibart mid dose (Part A + Part B combined) shows posterior median treatment difference ~0.42 vs placebo",
+        "Positioned between dupilumab (~0.37) and upadacitinib 15mg (~0.43) in point estimate",
+        "Wide credible interval (95% CrI: ~0.28–0.58) reflects small sample size",
+        "Lebrikizumab 250mg Q2W: median ~0.35, overlapping credible intervals with zumilokibart",
+        "High dose shows highest point estimate (~0.45) but widest uncertainty",
+        "Rank probability: zumilokibart mid dose likely #2–4 among biologics for EASI-75"
+      ],
+      "speakerNotes": "This BNMA ridge plot shows posterior densities for PBO-adjusted treatment differences on EASI-75 (monotherapy). Zumilokibart mid dose (red, Part A + Part B combined) has a median posterior effect size ~0.42, placing it above dupilumab (green, ~0.37) and lebrikizumab (yellow, ~0.35). However, the credible intervals overlap substantially — we cannot definitively say zumilokibart is superior. Upadacitinib 15mg (teal) has a tighter distribution centered ~0.43. The high dose (blue) peaks highest (~0.45) but has massive uncertainty. Key takeaway: zumilokibart is competitive with the best-in-class biologics on efficacy; its differentiation is dosing convenience, not efficacy magnitude. Abrocitinib 100mg (gray) and amlitelimab (purple, anti-OX40L) cluster lower."
+    },
+    {
+      "type": "bnma",
+      "title": "BNMA: IGA 0/1 at Induction (Week 16)",
+      "imagePath": "figures/APG777_IGA01_Wk16_2026-07-20.jpg",
+      "interpretation": [
+        "Zumilokibart mid dose posterior median ~0.35 for IGA 0/1 (PBO-adjusted)",
+        "Overlapping with dupilumab (~0.28) and lebrikizumab (~0.27) but numerically higher",
+        "Wider credible interval than established agents due to smaller sample size",
+        "Consistent with EASI-75 findings: competitive but not statistically separable",
+        "High dose again shows highest point estimate but widest uncertainty band"
+      ],
+      "speakerNotes": "The IGA 0/1 BNMA confirms the EASI-75 story: zumilokibart mid dose is numerically in the top tier of biologics but CrIs overlap with all comparators. The posterior is shifted right of lebrikizumab and dupilumab, consistent with the observed 46.0% IGA 0/1 rate (vs dupilumab ~35%, lebrikizumab ~37% in pivotal). The key limitation is sample size — the mid dose arm has ~85 patients contributing vs hundreds for established agents. Phase 3 with ~400/arm will narrow the posterior substantially. If it confirms the current point estimate, zumilokibart would be the leading biologic on IGA 0/1."
+    },
+    {
+      "type": "twoColumn",
+      "title": "Implications for Lilly Strategy",
+      "leftColumn": {
+        "header": "Competitive Threat",
+        "bullets": [
+          "Dosing convenience (2–4x/yr vs 13x/yr) is compelling for patients and payers",
+          "If Phase 3 confirms ~60%+ EASI-75, zumilokibart will be marketed as 'best-in-class IL-13'",
+          "Potential J&J acquisition adds commercial scale and market access capability",
+          "Could erode lebrikizumab share in treatment-naïve patients from ~2029",
+          "Expansion into asthma and EoE directly competes with Dupixent franchise"
+        ]
+      },
+      "rightColumn": {
+        "header": "Mitigating Factors",
+        "bullets": [
+          "Lebrikizumab 3+ year market head start; established physician familiarity by 2029",
+          "Phase 2 → Phase 3 efficacy attrition typically 5–10 pp (may normalize closer to 55%)",
+          "Lebrikizumab long-term data (3-yr OLE) and real-world evidence by 2029 launch",
+          "Combination data (lebrikizumab + TCS) and pediatric data not replicated",
+          "Ph2 conjunctivitis 10.6% vs lebrikizumab 7–8% — potential safety differentiation",
+          "IL-13-only class ceiling: JAK inhibitors still top efficacy; different risk/benefit tradeoff"
+        ]
+      },
+      "disclaimer": "Review is required before disclosure.",
+      "speakerNotes": "Net assessment: zumilokibart is a credible long-term competitive threat to lebrikizumab, primarily on dosing convenience rather than efficacy superiority. The threat is real but distant (~2029 at earliest) and contingent on Phase 3 success. Lilly's best defensive strategy: (1) build deep real-world evidence and long-term safety data for lebrikizumab, (2) emphasize proven efficacy in broader populations, (3) pursue pediatric and combination indications, (4) develop lifecycle innovations. If J&J closes acquisition, monitor their commercial strategy carefully — they have gastroenterology infrastructure that could bundle cross-indication."
+    },
+    {
+      "type": "summary",
+      "title": "Key Takeaways",
+      "takeaways": [
+        "Zumilokibart APEX Phase 2b met primary endpoint: EASI-75 65.9% vs PBO 23.4% (Δ=41.9, p<0.001) — numerically highest for a biologic in AD monotherapy",
+        "Key secondary endpoints all met: IGA 0/1 46.0%, EASI-90 47.4%, I-NRS4 50.5% (all p<0.001)",
+        "Dosing convenience is the primary differentiator: Q12W–Q24W maintenance = 2–4 injections/year vs 26 (dupilumab) or 13 (lebrikizumab)",
+        "BNMA positions zumilokibart mid dose as competitive with best-in-class biologics (overlapping CrIs with dupilumab/lebrikizumab) but NOT statistically superior",
+        "Phase 3 ADventure program initiating 2H 2026 (~400/trial); 2029 launch target if successful",
+        "Lebrikizumab's 3+ year market lead, robust Phase 3 data, and long-term safety are key defensive moats"
+      ],
+      "actions": [
+        "Monitor ADventure Phase 3 initiation and enrollment pace (ClinicalTrials.gov watch)",
+        "Track J&J/Apogee deal closure and commercial strategy announcements",
+        "Prepare lebrikizumab long-term efficacy/safety data package for 2028–2029 competitive defense"
+      ],
+      "speakerNotes": "Bottom line: Zumilokibart is a credible next-generation IL-13 competitor with a compelling convenience story. Phase 2 data are impressive but must be confirmed in larger Phase 3 trials. The 2029 launch timeline gives Lilly a 3+ year window to establish lebrikizumab's market position through real-world data, label expansions, and physician loyalty. The primary risk scenario is Ph3 confirmation + J&J acquisition creating a well-funded, conveniently-dosed alternative. Key open questions: (1) Does Phase 3 confirm the Ph2 efficacy magnitude? (2) Will Q24W maintenance maintain efficacy long-term? (3) What is the conjunctivitis rate in larger populations?"
+    }
+  ]
+}

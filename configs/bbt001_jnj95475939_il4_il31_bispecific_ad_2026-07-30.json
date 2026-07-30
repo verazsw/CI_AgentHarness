@@ -1,0 +1,369 @@
+{
+  "mode": "detailed",
+  "outputFile": "BBT001_JNJ95475939_IL4_IL31_Bispecific_AD_Detailed_2026-07-30.pptx",
+  "slides": [
+    {
+      "type": "title",
+      "title": "Competitor Landscape Update: IL-4/IL-31 Bispecific Antibodies in AD",
+      "subtitle": "BBT001 (Bambusa) Phase 1 Positive Results | JNJ-95475939 (J&J) Phase 2b Terminated",
+      "date": "July 30, 2026",
+      "speakerNotes": "This deck covers two IL-4Rα/IL-31 bispecific antibody programs in atopic dermatitis. BBT001 (Bambusa Therapeutics) reported positive Phase 1b/2a proof-of-concept data (data cutoff June 8, 2026), claiming 'best-in-disease' potential with a tetravalent 2+2 bispecific format. Meanwhile, J&J terminated JNJ-95475939 (DUPLEX-AD Phase 2b, which included dupilumab as active comparator) after a prespecified interim analysis showed it did not meet J&J's 'high-bar' efficacy threshold. Key strategic question: Is dual IL-4R + IL-31 blockade a viable improvement over IL-4Rα monotherapy (dupilumab), and what does this mean for Lilly's AD franchise? Sources: CILand articles (Saurabh Kumar, LRL CI team) and Bambusa PRNewswire press release."
+    },
+    {
+      "type": "content",
+      "title": "Executive Summary: IL-4/IL-31 Bispecific Landscape",
+      "sections": [
+        {
+          "header": "Two Programs, Divergent Outcomes",
+          "bullets": [
+            "BBT001 (Bambusa): Phase 1b/2a POSITIVE — PBO-adjusted EASI reduction of -79% at Wk6 (N=17; 12 active, 5 PBO); bio-naïve mod-severe AD",
+            "JNJ-95475939 (J&J/Numab): Phase 2b DUPLEX-AD TERMINATED — prespecified interim analysis did not meet 'high-bar' efficacy vs dupilumab & PBO; no numerical data disclosed",
+            "Both target IL-4/IL-13 + IL-31 pathways, but different molecular formats (BBT001: tetravalent 2+2 with extended t½ vs JNJ: Numab MATCH™ platform)",
+            "BBT001 is now the ONLY IL-4Rα/IL-31 bispecific in active clinical development for AD"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.8
+        },
+        {
+          "header": "Why It Matters for Lilly",
+          "bullets": [
+            "JNJ failure REMOVES a well-funded competitor from this space — reassuring for lebrikizumab's position",
+            "BBT001 Phase 1 data show numerically superior EASI response vs lebrikizumab at matched Wk4/6 timepoints (CILand cross-trial comparison)",
+            "However: N=17, IV only, bio-naïve only, exploratory endpoints — highly preliminary; Phase 2b SC data needed (~2027-2028)",
+            "Too early to claim BBT001 is 'best in disease' — but the signal warrants monitoring through Phase 2b"
+          ],
+          "x": 0.5, "y": 4.2, "w": 12.3, "h": 2.8
+        }
+      ],
+      "speakerNotes": "Key framing from CILand (Saurabh Kumar): 'It is too early to claim BBT001 is the best in disease based on data from 17 patients. The positive efficacy is encouraging but not surprising given IL-4R and IL-31 are validated targets. However, it is too early to claim BBT001 is the best in disease based on data from 17 patients. A study with dupilumab as active control in the future Phase 2b study like the one of J&J will be imperative to show the true potential of BBT001.' The JNJ DUPLEX-AD study importantly had dupilumab as active comparator — so the failure means JNJ-95475939 could not demonstrate superiority (or even comparable efficacy) against the existing standard of care, not just placebo."
+    },
+    {
+      "type": "content",
+      "title": "Mechanism of Action: IL-4Rα/IL-13 + IL-31 Dual Pathway Blockade",
+      "sections": [
+        {
+          "header": "Scientific Rationale",
+          "bullets": [
+            "IL-4Rα: Shared receptor for IL-4 and IL-13 (Type I & Type II); drives Th2 inflammation, IgE switching, barrier disruption (same target as dupilumab)",
+            "IL-31/IL-31RA: 'Pruritogen cytokine' signaling via IL-31RA/OSMR heterodimer on sensory neurons — mediates itch, neuroinflammation, skin remodeling",
+            "Hypothesis: Simultaneous blockade of inflammation (IL-4/IL-13) AND pruritus (IL-31) in one molecule → dupilumab-level efficacy + superior itch relief",
+            "BBT001 specifically blocks IL-4/IL-13 and IL-31-induced keratinocyte immunopathology, immune cell activation, skin barrier dysfunction, and pruritus"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.7
+        },
+        {
+          "header": "Molecular Format Differences (BBT001 vs JNJ-95475939)",
+          "bullets": [
+            "BBT001: Tetravalent '2+2' bispecific (2 binding sites per target) with Fc modifications for extended half-life → high avidity + long PK",
+            "JNJ-95475939 (NM26-2198): Built on Numab's proprietary MATCH™ multispecific platform → format details less disclosed",
+            "Key question: Did the tetravalent 2+2 format give BBT001 superior target engagement vs JNJ's format? May explain divergent outcomes",
+            "Both prevent IL-4/IL-13 and IL-31-induced pathology but may differ in potency ratio between the two arms"
+          ],
+          "x": 0.5, "y": 4.2, "w": 12.3, "h": 2.7
+        }
+      ],
+      "speakerNotes": "The mechanism diagram from the JNJ CILand article shows: NM26-2198 (JNJ-95475939) simultaneously blocking IL-4 binding to IL-4Rα (blocking Type I receptor signaling) AND IL-31 binding to IL-31Ra. Downstream effects blocked: decreased anti-microbial barrier, keratinocyte differentiation/filaggrin downregulation (via IL-4Rα blockade) and Th2 differentiation, eosinophil/mast cell production, IgE production (via both), plus sensory nerve activation (via IL-31RA blockade). BBT001's '2+2' tetravalent format means 2 binding sites for each target — this provides higher avidity (functional binding strength) compared to a standard 1+1 bispecific. The Fc modifications extend half-life to support Q3M dosing. The MATCH™ platform from Numab is a modular multispecific technology that may have created a different geometry/avidity profile."
+    },
+    {
+      "type": "image",
+      "title": "MOA: Simultaneous IL-4/IL-13 + IL-31 Pathway Blockade",
+      "imagePath": "figures/jnj95475939_moa_diagram.png",
+      "disclaimer": "Source: CILand (JNJ-95475939 article, 1/7/2026). NM26-2198 shown; BBT001 targets same pathways with tetravalent 2+2 format. Review is required before disclosure.",
+      "speakerNotes": "This MOA diagram from the JNJ CILand article illustrates the dual-blockade mechanism. Left panel: NM26-2198 blocks IL-4 binding to IL-4Rα/γ-chain (Type I receptor, used by IL-4 alone). Center panel: The same molecule blocks IL-13 binding to IL-4Rα/IL-13Rα1 (Type II receptor, shared by IL-4 and IL-13). Right panel: Simultaneously blocks IL-31 binding to IL-31Ra/OSMR heterodimer on sensory neurons. Downstream consequences of dual blockade: prevents decreased anti-microbial barrier, keratinocyte differentiation disruption, filaggrin downregulation (skin barrier effects), Th2 differentiation, eosinophil/mast cell production, IgE production (inflammatory effects), AND sensory nerve activation (pruritus/itch). This represents the full disease pathway coverage — combining what dupilumab does (IL-4Rα) with what nemolizumab does (IL-31RA) in a single molecule."
+    },
+    {
+      "type": "twoColumn",
+      "title": "BBT001 (Bambusa): Drug Profile & Phase 1 Design",
+      "leftColumn": {
+        "header": "Drug Profile",
+        "bullets": [
+          "Generic: BBT001 | Sponsor: Bambusa Therapeutics",
+          "Format: Tetravalent '2+2' bispecific antibody",
+          "Targets: IL-4/IL-13 pathway + IL-31 pathway",
+          "Fc modifications: Extended half-life (Q3M potential)",
+          "Route: IV (Phase 1) | SC formulation in development",
+          "Dose: 450 mg IV Q2W × 4 weeks",
+          "Pipeline: BBT002 (IL-4Rα/IL-5, asthma/COPD/CRSwNP, Ph1b/2a)",
+          "        BBT003 (GI, preclinical); BBT004 (autoimmune, preclinical)"
+        ]
+      },
+      "rightColumn": {
+        "header": "Phase 1 Design (NCT06808477)",
+        "bullets": [
+          "Global, randomized, double-blind, placebo-controlled",
+          "N = 17 (BBT001 n=12, PBO n=5); 2:1 randomization",
+          "Population: Bio-naïve (no prior IL-4Rα biologics or JAKi)",
+          "Moderate-to-severe AD (sites: New Zealand, United States)",
+          "Treatment: 450mg IV Q2W for 4 weeks",
+          "Primary endpoint: Safety & tolerability",
+          "Exploratory: EASI, PP-NRS, vIGA, TARC, IgE",
+          "Data cutoff: June 8, 2026 | Median f/u: 71 days (33–165)"
+        ]
+      },
+      "disclaimer": "Source: CILand (7/29/2026) and Bambusa PRNewswire (June 2026). Review is required before disclosure.",
+      "speakerNotes": "CILand caveats (critical for presenter): (1) Very small N=17 with only 5 placebo patients; (2) Baseline severity imbalance — active arm entered with higher disease burden (EASI 34.64 vs 29.06; BSA 62.58% vs 47.60%) which could inflate observed treatment effects; (3) 450mg IV Q2W is NOT a commercial-stage dosing regimen — the Q3M maintenance claim is based on PK extrapolation, not clinical demonstration; (4) Bio-naïve only — real-world AD populations increasingly include patients with prior biologic exposure; bio-experienced IV data expected 1H 2027; (5) All efficacy endpoints are exploratory — primary endpoint is safety/tolerability. Not powered for efficacy conclusions. SC PK/efficacy critical for commercial viability — remains to be demonstrated."
+    },
+    {
+      "type": "content",
+      "title": "BBT001 Phase 1: Efficacy Results (Exploratory)",
+      "sections": [
+        {
+          "header": "EASI % Reduction (Placebo-Adjusted, MMRM; p-values from between-group differences)",
+          "bullets": [
+            "Week 1: -35.56% (95% CI: -50.96, -13.59; p=0.0012) — rapid onset from first dose",
+            "Week 2: -61.10% (95% CI: -81.24, -43.87; p<0.0001)",
+            "Week 4: -63.46% (95% CI: -80.75, -43.27; p<0.0001) — end of treatment period",
+            "Week 6: -78.95% (95% CI: -94.62, -57.14; p<0.0001) — response DEEPENING 2 weeks post-last dose",
+            "EASI reduction continued to deepen through follow-up; remained sustained for patients followed"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.8
+        },
+        {
+          "header": "Responder Rates (Placebo-Adjusted, Observed Between-Group Differences)",
+          "bullets": [
+            "EASI-50: Wk1 25% → Wk2 75% → Wk4 91% → Wk6 82%",
+            "EASI-75: Wk1 0% → Wk2 17% → Wk4 45% → Wk6 64%",
+            "PP-NRS % Change: Wk1 -29% → Wk2 -35% → Wk4 -41% → Wk6 -43%",
+            "NRS improvement began as early as Day 1 and was sustained for 8 weeks after the last dose"
+          ],
+          "x": 0.5, "y": 4.2, "w": 12.3, "h": 2.3
+        },
+        {
+          "header": "Baseline Imbalance (Caveat from CILand)",
+          "bullets": [
+            "BBT001 (n=12): EASI 34.64, BSA 62.58%, PP-NRS 7.34, vIGA 3.42 vs PBO (n=5): EASI 29.06, BSA 47.60%, PP-NRS 6.33, vIGA 3.20",
+            "Active arm had HIGHER disease severity at baseline — could inflate observed effects; wide 95% CIs reflect small N"
+          ],
+          "x": 0.5, "y": 6.6, "w": 12.3, "h": 1.0
+        }
+      ],
+      "speakerNotes": "The headline numbers are striking but require heavy caveating per CILand analysis. The -79% placebo-adjusted EASI change at Week 6 is numerically superior to dupilumab at the same timepoint (~36-40% in SOLO trials). However: (1) only 12 vs 5 patients — a single responder/non-responder shifts the rate by 8-20%; (2) baseline imbalance favors the active arm showing larger absolute improvements; (3) the wide CIs (e.g., -94.62 to -57.14 at Wk6) reflect the uncertainty; (4) MMRM analysis with N=17 is fragile. The deepening response post-treatment (Wk4→Wk6 improvement after dosing stops) is pharmacologically interesting and supports the extended half-life claim — the drug is still working after last dose. The Day 1 itch response supports direct IL-31 neuronal pathway blockade."
+    },
+    {
+      "type": "image",
+      "title": "Cross-Trial Comparison: EASI-75 (PBO-Adjusted) — Wk 4 + Wk 6",
+      "imagePath": "figures/bbt001_easi75_cross_trial_comparison.png",
+      "disclaimer": "Source: CILand (7/29/2026). Indirect cross-trial comparison; different study sizes (BBT001 N=12 vs Phase 3 N=300–639), populations, and designs. Review is required before disclosure.",
+      "speakerNotes": "This chart from the CILand article shows PBO-adjusted EASI-75 response rates at matched early timepoints. Lebrikizumab ADvocate 1: 20% (Wk4) → 28% (Wk6). Lebrikizumab ADvocate 2: 13% (Wk4) → 22% (Wk6). BBT001 Phase 1: 45% (Wk4) → 64% (Wk6). BBT001 appears to show numerically superior early response vs lebrikizumab at matched timepoints. KEY CAVEATS: (1) N=12 for BBT001 vs N=300-639 for ADvocate — massive difference in statistical reliability; (2) BBT001 used 450mg IV (very high exposure) vs lebrikizumab 250mg SC; (3) BBT001 enrolled bio-naïve only; ADvocate included mixed populations; (4) Error bars not shown for BBT001 — wide CIs from small N would overlap with lebrikizumab. Useful for hypothesis framing but NOT for superiority claims."
+    },
+    {
+      "type": "image",
+      "title": "Cross-Trial Comparison: EASI % Change (PBO-Adjusted) — Wk 4 + Wk 6",
+      "imagePath": "figures/bbt001_easi_change_cross_trial_comparison.png",
+      "disclaimer": "Source: CILand (7/29/2026). Indirect cross-trial comparison; approximate values. Review is required before disclosure.",
+      "speakerNotes": "This second CILand chart shows PBO-adjusted EASI percentage change from baseline at Wk4 and Wk6. Lebrikizumab ADvocate 1: ~30% (Wk4) → ~31% (Wk6). Lebrikizumab ADvocate 2: ~24% (Wk4) → ~29% (Wk6). Dupilumab SOLO 1: ~35% (Wk4) → ~35% (Wk6). Dupilumab SOLO 2: ~40% (Wk4) → ~35% (Wk6). BBT001: ~63.5% (Wk4) → ~79% (Wk6). BBT001 shows approximately double the EASI improvement of dupilumab at Wk6 on this metric. Same caveats apply: N=12 IV bio-naïve vs N=600+ SC broader populations. The continued deepening from Wk4→Wk6 (after treatment ends) is unique to BBT001 and supports the extended half-life claim."
+    },
+    {
+      "type": "content",
+      "title": "BBT001 Phase 1: Safety, PK, Biomarkers & Upcoming Catalysts",
+      "sections": [
+        {
+          "header": "Safety & Immunogenicity",
+          "bullets": [
+            "BBT001 was well tolerated; primary endpoint (safety/tolerability) met",
+            "ZERO conjunctivitis reported — consistent with prior healthy volunteer findings",
+            "Low incidence of treatment-emergent ADA, low titers, no apparent neutralizing activity",
+            "No signal for infections, injection site reactions (IV), or other safety concerns in this small cohort"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.2
+        },
+        {
+          "header": "PK & Biomarkers",
+          "bullets": [
+            "Extended half-life in AD patients confirmed — consistent with healthy volunteer data; supports Q3M maintenance dosing",
+            "Early and substantial reductions in TARC and IgE, sustained ≥8 weeks post-last dose — durable Type 2 pathway suppression",
+            "Biomarker kinetics suggest prolonged target engagement beyond dosing period"
+          ],
+          "x": 0.5, "y": 3.6, "w": 12.3, "h": 1.8
+        },
+        {
+          "header": "Key Upcoming Catalysts (from CILand)",
+          "bullets": [
+            "Full results at upcoming medical conference (TBD — likely late 2026)",
+            "1H 2027: Topline 12-week IV data in bio-naïve AND bio-experienced AD",
+            "1H 2027: 14-week IV data in CSU (chronic spontaneous urticaria)",
+            "Phase 2b initiation: Moderate-to-severe AD evaluating SC maintenance dosing (timeline TBD)",
+            "Critical: SC PK/efficacy data will determine commercial viability — IV-only is not a viable commercial regimen"
+          ],
+          "x": 0.5, "y": 5.6, "w": 12.3, "h": 2.0
+        }
+      ],
+      "speakerNotes": "The zero conjunctivitis finding is interesting but statistically uninformative at N=12 (you'd expect <1 case even with dupilumab's ~9% rate). The extended half-life is the key PK story — if Q3M dosing holds with SC formulation, it positions BBT001 similarly to zumilokibart on convenience. The catalysts to watch: (1) Bio-experienced data in 1H 2027 is critical — if efficacy holds in patients who failed dupilumab, it's a true differentiator; (2) SC formulation Phase 2b will answer whether adequate exposure is achievable subcutaneously; (3) CSU data expands the franchise narrative. CILand notes: 'SC PK/efficacy — critical for commercial viability — remains to be demonstrated.' The IV formulation at 450mg is drug-heavy and expensive to manufacture for a chronic disease."
+    },
+    {
+      "type": "twoColumn",
+      "title": "JNJ-95475939: DUPLEX-AD Failure & Program Background",
+      "leftColumn": {
+        "header": "Study Design: DUPLEX-AD Phase 2b",
+        "bullets": [
+          "Phase 2b, randomized; moderate-to-severe AD",
+          "Arms: JNJ-95475939 vs DUPILUMAB (active) vs PLACEBO",
+          "Had prespecified interim analysis for early termination",
+          "Interim result: Did NOT meet J&J's 'high-bar' efficacy",
+          "Molecule was well-tolerated (no safety signal)",
+          "NO numerical efficacy data disclosed publicly",
+          "Terminated July 2026 based on efficacy futility"
+        ]
+      },
+      "rightColumn": {
+        "header": "Program History",
+        "bullets": [
+          "Originally: NM26-2198 (Yellow Jersey Therapeutics / Numab)",
+          "Platform: Numab MATCH™ multispecific technology",
+          "Targets: IL-4Rα (Type I + Type II receptors) + IL-31",
+          "J&J acquired via Numab definitive agreement (all-cash)",
+          "Yellow Jersey conducted Ph1a/1b (SAD/MAD) in HV + AD",
+          "Phase 1 terminated post-acquisition; minimum objectives met",
+          "J&J advanced DIRECTLY to Phase 2b (Feb 2025) — aggressive timeline to 'stay ahead of competition'",
+          "J&J also acquired Proteologix ($850M): PX128 (IL-13/TSLP) + PX130 (IL-13/IL-22 for AD)"
+        ]
+      },
+      "disclaimer": "Source: CILand (1/7/2026) and J&J press release. Review is required before disclosure.",
+      "speakerNotes": "Critical insight from CILand: The DUPLEX-AD study had dupilumab as an active comparator — this is the gold standard study design. The failure means JNJ-95475939 could not demonstrate clinically meaningful superiority (or even comparability) vs dupilumab at the prespecified interim. This is a much higher bar than just 'beating placebo.' J&J's strategy was aggressive: they acquired the molecule, terminated Phase 1 early (minimum objectives only), and rushed directly to Phase 2b to 'stay ahead of competition.' This aggressive timeline may have resulted in suboptimal dose selection (Phase 1 dose-ranging not fully completed). The acquisition context also shows J&J's commitment to the AD bispecific space — they still have PX130 (IL-13/IL-22) in preclinical and JNJ-7528 in Phase 1."
+    },
+    {
+      "type": "twoColumn",
+      "title": "Why Did JNJ-95475939 Fail? Implications for BBT001",
+      "leftColumn": {
+        "header": "Possible Reasons for JNJ Failure",
+        "bullets": [
+          "Rushed development: Skipped Phase 2a dose-finding; went directly to Ph2b from truncated Ph1",
+          "Suboptimal dose: Without full dose-response, may have selected wrong dose",
+          "Molecular format: MATCH™ platform geometry may yield lower avidity vs BBT001's tetravalent 2+2",
+          "Active comparator bar: Had to beat DUPILUMAB (not just placebo) — very high efficacy hurdle",
+          "Target engagement ratio: May not have adequately blocked both IL-4Rα AND IL-31 simultaneously",
+          "The 'high-bar efficacy' criterion was J&J's own internal standard for advancing — demanding threshold"
+        ]
+      },
+      "rightColumn": {
+        "header": "What BBT001 Must Still Prove",
+        "bullets": [
+          "Efficacy in a powered Phase 2b (N>200) — N=17 is hypothesis-generating only",
+          "SC formulation efficacy — IV 450mg Q2W is not commercially viable",
+          "Performance vs dupilumab active comparator (per CILand: 'imperative')",
+          "Efficacy in bio-experienced patients (prior dupilumab/JAKi failures)",
+          "Long-term maintenance with Q3M dosing (currently PK extrapolation only)",
+          "Dose-response: Only one dose tested so far; need dose optimization",
+          "Phase 2→3 attrition: ~40-50% of AD biologics fail at Phase 3"
+        ]
+      },
+      "disclaimer": "Speculative analysis. Review is required before disclosure.",
+      "speakerNotes": "CILand's key observation: 'A study with dupilumab as active control in the future Phase 2b study like the one of J&J will be imperative to show the true potential of BBT001.' This sets the benchmark clearly — BBT001 must eventually demonstrate superiority vs dupilumab in a powered head-to-head, not just impressive Phase 1 numbers vs placebo. The JNJ failure is instructive: even with a validated target combination, execution matters enormously. J&J's aggressive 'skip Phase 2a' strategy backfired — proper dose-finding might have identified a better regimen. For BBT001, the tetravalent 2+2 format with extended half-life may provide pharmacological advantages, but this hypothesis remains unproven at scale."
+    },
+    {
+      "type": "table",
+      "title": "CILand Cross-Trial Comparison: EASI-75 (PBO-Adjusted) at Wk4 + Wk6",
+      "table": {
+        "headers": ["Drug / Study", "Dose", "EASI-75 PBO-adj Wk4 (%)", "EASI-75 PBO-adj Wk6 (%)"],
+        "rows": [
+          ["Lebrikizumab — ADvocate 1", "250mg Q2W", "~20", "~28"],
+          ["Lebrikizumab — ADvocate 1", "250mg Q4W", "~25", "~31"],
+          ["Lebrikizumab — ADvocate 2", "250mg Q2W", "~13", "~22"],
+          ["Lebrikizumab — ADvocate 2", "250mg Q4W", "~24", "~29"],
+          ["Dupilumab — SOLO 1", "300mg Q2W", "~35", "~35"],
+          ["Dupilumab — SOLO 2 Wk4", "300mg Q2W", "~35", "~36"],
+          ["Dupilumab — SOLO 2 Wk6", "300mg Q2W", "~40", "~36"],
+          ["BBT001 — Ph1 Wk4", "450mg IV Q2W", "45", "—"],
+          ["BBT001 — Ph1 Wk6", "450mg IV Q2W", "—", "64"]
+        ]
+      },
+      "disclaimer": "Source: CILand article (7/29/2026). Indirect cross-trial comparison; different study sizes, populations, and designs preclude direct comparison. BBT001 N=12 vs N=300-600 for other trials. Review is required before disclosure.",
+      "speakerNotes": "This table recreates the CILand cross-trial comparison charts (EASI-75 and EASI % change, PBO-adjusted, at Wk4 and Wk6). BBT001 at Wk4 (45%) and Wk6 (64%) numerically exceeds all comparators at matched timepoints. However, CRITICAL CAVEATS: (1) BBT001 N=12 vs N=300-639 for Phase 3 comparators — wide implicit CIs; (2) BBT001 is bio-naïve only; Phase 3 populations are broader; (3) IV 450mg provides higher drug exposure than SC regimens; (4) Baseline severity imbalance in BBT001 study. CILand also shows EASI % change comparison: Dupilumab SOLO ~35-40% at Wk4/6 vs BBT001 63.5% (Wk4) and 79.0% (Wk6). These data support the hypothesis of rapid, deep response but are NOT confirmatory."
+    },
+    {
+      "type": "table",
+      "title": "Competitive Landscape: IL-4/IL-31 Bispecifics & Key AD Competitors",
+      "table": {
+        "headers": ["Drug", "Sponsor", "Target(s)", "Format", "Phase", "Key Result", "Status"],
+        "rows": [
+          ["BBT001", "Bambusa", "IL-4/IL-13 + IL-31", "Tetravalent 2+2 bsAb", "Phase 1", "EASI-75 64% (PBO-adj, Wk6, N=12)", "Active — Phase 2b planned"],
+          ["JNJ-95475939", "J&J/Numab", "IL-4Rα + IL-31", "MATCH™ platform", "Phase 2b", "Failed efficacy interim vs dupi+PBO", "TERMINATED"],
+          ["Dupilumab", "Sanofi/Regen", "IL-4Rα", "mAb", "Approved", "EASI-75 ~49% Wk16 (SOLO)", "Standard of care"],
+          ["Lebrikizumab", "Lilly", "IL-13", "mAb", "Approved", "EASI-75 ~53% Wk16 (ADVOCATE)", "Growing commercial"],
+          ["Nemolizumab", "Galderma", "IL-31RA", "mAb", "Phase 3 (AD)", "EASI-75 ~43% Wk16; strong itch", "PN approved (JP)"],
+          ["Zumilokibart", "Apogee/JNJ", "IL-13 (ext t½)", "mAb (Fc YTE)", "Phase 2b+", "EASI-75 65.9% Wk16 (N=85)", "Ph3 ADventure starting"],
+          ["PX130", "J&J (Proteologix)", "IL-13/IL-22", "Bispecific", "Preclinical", "N/A", "JNJ backup for AD"]
+        ]
+      },
+      "disclaimer": "Cross-trial comparison for context only. Different timepoints, N, and populations. Review is required before disclosure.",
+      "speakerNotes": "Key landscape context: BBT001 is the ONLY remaining IL-4R/IL-31 bispecific in clinical development. The broader bispecific/trispecific landscape in AD is crowded (CILand shows ~10+ Phase 1 programs), but BBT001 is the most advanced with clinical POC data. Competitive positioning: BBT001 theoretically combines dupilumab-like efficacy (IL-4Rα blockade) with nemolizumab-like itch relief (IL-31 blockade) in one molecule. If Phase 2b confirms, the value proposition is: one injection covering what currently requires two separate biologics. However, the market by 2029+ will have zumilokibart (Q12W convenience), lebrikizumab (established), and potentially several other next-gen agents. The bar keeps rising."
+    },
+    {
+      "type": "table",
+      "title": "Broader Bispecific/Trispecific Pipeline in AD (Early Stage)",
+      "table": {
+        "headers": ["Company", "Molecule", "Targets", "Phase", "Notes"],
+        "rows": [
+          ["Adaris / Biosion", "ATI-052", "IL-4R/TSLP", "Phase 1", ""],
+          ["AbbVie", "ATTD-3712", "IL-13/IL-31", "Phase 1", "Same pathway as BBT001"],
+          ["Bambusa", "BBT001", "IL-4/IL-13 + IL-31", "Phase 1 (POC+)", "Leading bispecific with data"],
+          ["Genta", "GR-2002", "TSLP", "Phase 1", ""],
+          ["Huaota", "HB9055", "IL-11/TSLP", "Phase 1", ""],
+          ["Innovent", "BD003", "IL-4Rα/TSLP", "Phase 1", ""],
+          ["J&J", "JNJ-7528", "Unknown", "Phase 1", "Ph2b planned Feb'26"],
+          ["ABBY / Lulokimab", "—", "IL-4/IL-16", "Phase 2", ""],
+          ["Raymed / Selexis", "BEL512", "IL-13/TS...", "Phase 2", ""],
+          ["NVS / GHZ-339", "—", "IL-13/IL-18", "Phase 2", ""],
+          ["Pfizer", "PF-07264660", "IL-13/IL-33/IL-4", "Phase 2", "Trispecific"],
+          ["Pfizer", "PF-07276316", "IL-13/IL-4/TSLP", "Phase 2", "Trispecific"],
+          ["UCB - galokimab", "—", "IL-13/IL-17", "Phase 2", ""]
+        ]
+      },
+      "disclaimer": "Source: CILand competitive landscape chart (Lilly internal). Company confidential. Review is required before disclosure.",
+      "speakerNotes": "This table is derived from the CILand pipeline chart showing bispecific/trispecific antibodies in early AD development. The space is CROWDED — at least 10+ programs in Phase 1-2. Key observations: (1) Multiple IL-13 combinations being tested (IL-13/IL-31, IL-13/TSLP, IL-13/IL-22, IL-13/IL-33); (2) Pfizer has two trispecifics in Phase 2 (3 targets each); (3) AbbVie's ATTD-3712 (IL-13/IL-31) is a direct BBT001 competitor in same target space; (4) Several IL-4R/TSLP combinations in Phase 1. The strategic implication: even if BBT001 succeeds, it will face competition from other multispecific approaches by 2030+. No clear frontrunner has emerged (per CILand commentary). More clinical data on multispecific antibodies expected in coming months."
+    },
+    {
+      "type": "image",
+      "title": "Bispecific/Trispecific AD Pipeline Landscape (CILand)",
+      "imagePath": "figures/jnj95475939_pipeline_landscape.png",
+      "disclaimer": "Source: CILand (1/7/2026). Company confidential — Internal Use Only. Review is required before disclosure.",
+      "speakerNotes": "This Lilly CI landscape chart shows all bispecific/trispecific antibodies in clinical development for AD as of early 2026. Phase 1 programs (yellow, left column): Adaris/Biosion ATI-052 (IL-4R/TSLP), AbbVie ATTD-3712 (IL-13/IL-31), Bambusa BBT001 (IL-31/IL-4Rα), Genrix GR-2002 (TSLP), Huaota HB0056 (IL-11/TSLP), Innovent IBI3002 (IL-4Rα/TSLP), J&J JNJ-7528 (IL-13/TSLP), Qyuns/Windward WIN027, UCB Donzakimig (IL-13/IL-22), Zai Lab ZL-1503 (IL-13/IL-31). Phase 2 programs (yellow, right column): ABBV Lutikizumab (IL-1α/IL-1β), Keymed/Belenos BEL512 (IL-13/TS...), NVS GHZ-339 (IL-13/IL-18), Pfizer PF-07264660 (IL-13/IL-33/IL-4), Pfizer PF-07275315 (IL-13/IL-4/TSLP), SNY Lunsekimig (IL-13/TSLP), UCB galvokimig (IL-13/IL-17). No programs in Phase 3 or beyond — the entire bispecific space is early stage. BBT001 with clinical POC is now the most advanced."
+    },
+    {
+      "type": "twoColumn",
+      "title": "Implications for Lilly AD Strategy",
+      "leftColumn": {
+        "header": "Near-Term (0–2 years): Position of Strength",
+        "bullets": [
+          "JNJ-95475939 failure REMOVES a funded bispecific competitor — positive for lebrikizumab",
+          "BBT001 is Phase 1 only (N=17, IV) — no commercial threat until ~2030+ at earliest",
+          "Lebrikizumab market position is SECURE: approved, growing, robust Phase 3 data",
+          "No IL-4/IL-31 bispecific is remotely close to regulatory filing",
+          "Focus: Label expansions, real-world evidence, pediatric data, long-term safety",
+          "Defensive messaging: 'J&J tried this approach and failed — stick with proven IL-13 blockade'"
+        ]
+      },
+      "rightColumn": {
+        "header": "Long-Term Monitoring (3–5+ years)",
+        "bullets": [
+          "KEY TRIPWIRE: BBT001 Phase 2b results with SC formulation (est. 2028)",
+          "If BBT001 shows EASI-75 >50% at Wk16 with SC + Q3M maintenance, it's a real threat",
+          "Must demonstrate superiority vs dupilumab in head-to-head (per CILand requirement)",
+          "Bio-experienced data (1H 2027) will signal whether it can help dupilumab failures",
+          "Watch Bambusa financing — their ability to fund Phase 2/3 determines timeline",
+          "Consider whether Lilly should explore IL-13 + IL-31 bispecific (like AbbVie's ATTD-3712) internally"
+        ]
+      },
+      "disclaimer": "Review is required before disclosure.",
+      "speakerNotes": "Net assessment: Lilly's AD franchise faces NO imminent threat from IL-4/IL-31 bispecifics. The JNJ failure validates that this is a hard problem to solve. BBT001's Phase 1 data are promising but must survive rigorous testing: powered Phase 2b, SC formulation, active comparator, bio-experienced patients. The earliest possible commercial threat is ~2030-2031. Lilly's best strategy: (1) Continue building lebrikizumab franchise (market penetration, RWE, label expansions); (2) Monitor BBT001 milestones as a watching brief; (3) Assess internal BD opportunities in multispecific space if BBT001 Phase 2b confirms. The broader bispecific landscape is crowded — there may be acquisition opportunities if early programs show promise."
+    },
+    {
+      "type": "summary",
+      "title": "Key Takeaways & Recommended Actions",
+      "takeaways": [
+        "BBT001 (Bambusa) Phase 1: PBO-adjusted EASI -79% at Wk6, EASI-75 64% (N=12) — impressive signal but extremely preliminary (N=17, IV only, bio-naïve, exploratory)",
+        "JNJ-95475939 DUPLEX-AD Phase 2b TERMINATED after prespecified interim analysis — did not meet 'high-bar' efficacy vs dupilumab + placebo; well-tolerated but insufficient efficacy",
+        "BBT001 is now the ONLY IL-4Rα/IL-31 bispecific in active AD clinical development; molecular format (tetravalent 2+2) may explain why it succeeded where JNJ's MATCH™ format failed",
+        "CILand assessment: 'Too early to claim best-in-disease from 17 patients; dupilumab-controlled Phase 2b imperative to show true potential'",
+        "Lilly competitive position UNCHANGED: Lebrikizumab approved and growing; no bispecific threat for 4+ years; JNJ failure removes one funded competitor"
+      ],
+      "actions": [
+        "Monitor BBT001 bio-experienced IV data (1H 2027) — first signal of utility beyond bio-naïve",
+        "Track BBT001 Phase 2b SC initiation and design (active comparator? dose arms? N?)",
+        "Watch Bambusa corporate developments: Series C funding, pharma partnerships, conference presentations",
+        "No immediate strategic response needed — revisit if Phase 2b SC confirms EASI-75 >50% at Wk16",
+        "Internal R&D assessment: Should Lilly explore IL-13/IL-31 bispecific (parallel to AbbVie's ATTD-3712) as lebrikizumab lifecycle?"
+      ],
+      "speakerNotes": "Final strategic message: The IL-4/IL-31 bispecific class has produced one early positive signal (BBT001) and one definitive mid-stage failure (JNJ-95475939). The divergent outcomes likely reflect differences in molecular execution rather than invalidation of the dual-target hypothesis. For Lilly, this is a WATCHING BRIEF, not an action item. Key dates: 1H 2027 (BBT001 bio-experienced IV data), 2027-2028 (Phase 2b SC initiation). The highest-value intelligence event will be BBT001's Phase 2b design — if they include dupilumab as active comparator (as CILand recommends), it will be the definitive test. If they don't, the data will be less interpretable. Also recommend tracking AbbVie's ATTD-3712 (IL-13/IL-31) as a parallel validation of the itch hypothesis within the IL-13 (not IL-4Rα) framework."
+    }
+  ]
+}

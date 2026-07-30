@@ -102,7 +102,7 @@ FIGURE MANIFEST:
 
 ### Step 5: Route figures to slide positions
 
-Use this routing table when building the DATA dict:
+Use this routing table when building the JSON config slides array:
 
 | Figure role | Slide type | Position in deck |
 |-------------|-----------|------------------|
@@ -459,16 +459,45 @@ Source: https://clinicaltrials.gov/study/NCT02277743
 
 ## PPTX Generation (python-pptx — REQUIRED)
 
-After generating all slide content, you MUST create the `.pptx` file using the Python template script.
+After generating all slide content, you MUST create the `.pptx` file using the Python script with a JSON config.
 
 ### Generate the deck:
 
-1. Edit `scripts/generate_deck.py` — fill in the `DATA` dict with slide content
+1. Write a JSON config file to `configs/{compound}_{study}_{date}.json` with the slide content
 2. Run:
 
 ```bash
-python3 scripts/generate_deck.py
+python3 scripts/generate_deck.py configs/{compound}_{study}_{date}.json
 ```
+
+**JSON config structure:**
+```json
+{
+  "mode": "detailed",
+  "outputFile": "Compound_Study_Mode_Date.pptx",
+  "slides": [
+    {"type": "title", "title": "...", "subtitle": "...", "date": "...", "speakerNotes": "..."},
+    {"type": "content", "title": "...", "sections": [{"header": "...", "bullets": [...], "x": 0.5, "y": 1.15, "w": 12.3, "h": 5.5}], "speakerNotes": "..."},
+    {"type": "twoColumn", "title": "...", "leftColumn": {"header": "...", "bullets": [...]}, "rightColumn": {"header": "...", "bullets": [...]}, "speakerNotes": "..."},
+    {"type": "image", "title": "...", "imagePath": "figures/page-10.png", "speakerNotes": "..."},
+    {"type": "bnma", "title": "BNMA: EASI-75 at Wk16", "imagePath": "figures/APG777_EASI75_Wk16_2026-07-20.png", "interpretation": ["...", "..."], "speakerNotes": "..."},
+    {"type": "table", "title": "...", "table": {"headers": [...], "rows": [[...]]}, "speakerNotes": "..."},
+    {"type": "summary", "title": "...", "takeaways": ["...", "..."], "actions": ["...", "..."], "speakerNotes": "..."}
+  ]
+}
+```
+
+**Image paths in JSON:** Use relative paths from project root (e.g., `"figures/page-10.png"`). The script resolves them to absolute paths automatically.
+
+**Config naming convention:** `configs/{compound}_{study}_{date}.json`
+- `configs/zumilokibart_apex_2026-07-29.json`
+- `configs/envudeucitinib_zasocitinib_pso_2026-07-29.json`
+
+**Benefits of JSON configs:**
+- Previous deck configs are preserved (can regenerate any deck without re-extracting data)
+- No risk of overwriting the script
+- Version-controllable
+- Run `python3 scripts/generate_deck.py` (no args) to see available configs
 
 ### pptxgenjs Design System
 
@@ -726,27 +755,27 @@ function addSummarySlide(pres, takeaways, actions, speakerNotes) {
 
 ### Full script structure:
 
-The template at `scripts/generate_deck.py` handles all slide types. The agent fills in the `DATA` dict:
+The engine at `scripts/generate_deck.py` handles all slide types. The agent writes a JSON config to `configs/`:
 
-```python
-DATA = {
-    "mode": "quick",  # or "detailed"
-    "outputFile": "competitor_deck_20260720.pptx",
+```json
+{
+    "mode": "quick or detailed",
+    "outputFile": "Compound_Study_Mode_Date.pptx",
     "slides": [
         {"type": "title", "title": "...", "subtitle": "...", "date": "...", "speakerNotes": "..."},
-        {"type": "content", "title": "...", "cards": [{"header": "...", "bullets": [...], "x": 0.4, "y": 1.05, "w": 9.2, "h": 3.9}], "speakerNotes": "..."},
-        {"type": "twoCard", "title": "...", "leftCard": {"header": "...", "bullets": [...]}, "rightCard": {"header": "...", "bullets": [...]}, "speakerNotes": "..."},
-        {"type": "chart", "title": "...", "chartPath": "landscape_chart.png", "speakerNotes": "..."},
+        {"type": "content", "title": "...", "sections": [{"header": "...", "bullets": [...], "x": 0.5, "y": 1.15, "w": 12.3, "h": 5.5}], "speakerNotes": "..."},
+        {"type": "twoColumn", "title": "...", "leftColumn": {"header": "...", "bullets": [...]}, "rightColumn": {"header": "...", "bullets": [...]}, "speakerNotes": "..."},
+        {"type": "image", "title": "...", "imagePath": "figures/page-10.png", "speakerNotes": "..."},
         {"type": "bnma", "title": "BNMA: EASI-75 at Wk16", "imagePath": "figures/APG777_EASI75_Wk16_2026-07-20.png", "interpretation": ["...", "..."], "speakerNotes": "..."},
         {"type": "table", "title": "...", "table": {"headers": [...], "rows": [[...]]}, "speakerNotes": "..."},
-        {"type": "summary", "takeaways": ["...", "..."], "actions": ["...", "..."], "speakerNotes": "..."}
+        {"type": "summary", "title": "...", "takeaways": ["...", "..."], "actions": ["...", "..."], "speakerNotes": "..."}
     ]
 }
 ```
 
-### After generation:
+### After writing the config:
 ```bash
-python3 scripts/generate_deck.py
+python3 scripts/generate_deck.py configs/{compound}_{study}_{date}.json
 ```
 
 Confirm the `.pptx` file was created. Tell the user:

@@ -1,0 +1,540 @@
+{
+  "mode": "detailed",
+  "outputFile": "Guselkumab_Golimumab_JNJ4804_DUET_IBD_Detailed_2026-07-30.pptx",
+  "slides": [
+    {
+      "type": "title",
+      "title": "Competitor Landscape Update:\nJNJ-4804 (Guselkumab + Golimumab)",
+      "subtitle": "DUET-UC & DUET-CD — Phase 2b Week 48 Data\nUlcerative Colitis & Crohn's Disease",
+      "date": "July 2026",
+      "speakerNotes": "This deck summarizes the Phase 2b Week 48 data for JNJ-4804 (JNJ-78934804), a co-antibody combining guselkumab (anti-IL-23) + golimumab (anti-TNFα) in a single SC injection. Data presented as late-breaking abstracts at DDW 2026 (May 2–5, 2026). JNJ-4804 showed superiority vs golimumab and numerical superiority vs guselkumab monotherapy in refractory UC and CD. Phase 3 DUET ENCORE trials planned. Key implications for Lilly IBD pipeline (mirikizumab/Omvoh)."
+    },
+    {
+      "type": "content",
+      "title": "Drug Overview: JNJ-4804 (JNJ-78934804)",
+      "sections": [
+        {
+          "header": "Drug Profile",
+          "bullets": [
+            "Generic: JNJ-4804 | Code: JNJ-78934804",
+            "Sponsor: Johnson & Johnson (Janssen)",
+            "Modality: Fixed-dose co-antibody (bispecific-like) — single SC injection",
+            "Targets: IL-23 (guselkumab/TREMFYA) + TNF-α (golimumab/SIMPONI)",
+            "Route: Subcutaneous injection",
+            "Rationale: Orthogonal pathway blockade → molecular synergy in IBD",
+            "Phase: Phase 2b complete (DUET-UC & DUET-CD); Phase 3 DUET ENCORE planned",
+            "First and only fixed-dose co-antibody designed for IBD"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 5.5
+        }
+      ],
+      "speakerNotes": "JNJ-4804 (JNJ-78934804) is a fixed-dose combination of guselkumab (anti-IL-23p19, approved as TREMFYA) and golimumab (anti-TNFα, approved as SIMPONI) delivered as a single SC injection. The concept is 'co-antibody therapy' — simultaneous blockade of two complementary inflammatory pathways (IL-23 and TNF) to achieve molecular synergy.\n\nKEY CONTEXT:\n- Builds on VEGA Phase 2a proof-of-concept (UEG Week 2022)\n- Guselkumab already approved for UC, CD, psoriasis, PsA\n- Golimumab approved for UC, RA, PsA, AS\n- Also being studied in PsA (AFFINITY Phase 2a)\n- NCT05242484 (DUET-UC), NCT05242471 (DUET-CD)"
+    },
+    {
+      "type": "content",
+      "title": "Mechanism of Action & Differentiation",
+      "sections": [
+        {
+          "header": "Dual Pathway Blockade (IL-23 + TNF-α)",
+          "bullets": [
+            "IL-23 pathway: drives Th17/Th22 cells, mucosal inflammation, fibrosis",
+            "TNF-α pathway: drives acute inflammation, immune cell recruitment, tissue damage",
+            "Orthogonal mechanisms → complementary rather than redundant blockade",
+            "Fixed-dose combination in single injection (not separate administrations)",
+            "Hypothesis: patients failing monotherapy may benefit from dual blockade"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 2.2
+        },
+        {
+          "header": "Key Differentiators vs Current Landscape",
+          "bullets": [
+            "First co-antibody therapy designed for IBD",
+            "Targets the two most validated IBD pathways simultaneously",
+            "Single injection simplicity vs combination regimens of separate drugs",
+            "Leverages two well-characterized, approved agents (safety track record)",
+            "Specifically designed for refractory patients (failed ≥1 advanced therapy)",
+            "Phase 3 planned: DUET ENCORE-UC and DUET ENCORE-CD"
+          ],
+          "x": 0.5,
+          "y": 3.5,
+          "w": 12.3,
+          "h": 2.2
+        }
+      ],
+      "speakerNotes": "RATIONALE FOR COMBINATION:\nIBD involves multiple inflammatory pathways. Many patients lose response to anti-TNF (infliximab, adalimumab, golimumab) or anti-IL-23 (guselkumab, risankizumab, mirikizumab) monotherapy. The VEGA Phase 2a study demonstrated proof of concept that induction with guselkumab + golimumab combination was superior to either alone in UC.\n\nVS LILLY (OMVOH/MIRIKIZUMAB):\n- Mirikizumab is anti-IL-23p19 monotherapy (same pathway as guselkumab)\n- JNJ-4804 adds TNF blockade ON TOP of IL-23 blockade\n- This could position JNJ-4804 as the option after IL-23 monotherapy failure\n- However, combination carries additive safety risk (infections, malignancy)\n\nVS VEDOLIZUMAB, UPADACITINIB, OZANIMOD:\n- Different MOAs entirely — JNJ-4804 targets upstream cytokines"
+    },
+    {
+      "type": "twoColumn",
+      "title": "DUET Study Program — Design Overview",
+      "leftColumn": {
+        "header": "DUET-UC (NCT05242484)",
+        "bullets": [
+          "Phase 2b, randomized, double-blind",
+          "N=577 enrolled",
+          "Population: Mod-severe UC, inadequate response/intolerance to ≥1 systemic therapy",
+          "~50% had failed ≥2 therapy classes (highly refractory)",
+          "Arms: JNJ-4804 (high/mid/low dose) vs Guselkumab vs Golimumab vs Placebo",
+          "Primary: Clinical remission at Wk48",
+          "Key secondary: CS-free remission, endoscopic improvement, HREI at Wk48"
+        ]
+      },
+      "rightColumn": {
+        "header": "DUET-CD (NCT05242471)",
+        "bullets": [
+          "Phase 2b, randomized, double-blind",
+          "N=703 enrolled",
+          "Population: Mod-severe CD, inadequate response/intolerance to ≥1 systemic therapy",
+          "~50% had failed ≥2 therapy classes (highly refractory)",
+          "Arms: JNJ-4804 (high/mid/low dose) vs Guselkumab vs Golimumab vs Placebo",
+          "Co-primary: Clinical remission + Endoscopic response at Wk48",
+          "Key secondary: Endoscopic remission, deep remission, CS-free remission at Wk48"
+        ]
+      },
+      "disclaimer": "Source: ClinicalTrials.gov & J&J DDW 2026 press release (May 5, 2026). Review is required before disclosure.",
+      "speakerNotes": "STUDY DESIGN DETAILS:\n- Both studies are dose-ranging Phase 2b with active comparators (not just placebo)\n- Unique design: tests combination vs EACH component monotherapy\n- This allows direct assessment of combination benefit over single agents\n- Highly refractory subpopulation analysis is the key differentiator\n- Week 48 primary endpoint (longer than typical induction-only studies)\n\nENROLLMENT:\n- DUET-UC: 577 patients (large for Phase 2b)\n- DUET-CD: 703 patients (very large for Phase 2b)\n- Total program: N=1,280 — well-powered for signal detection\n\nDEFINITIONS:\n- UC clinical remission: SFS=0/1, RBS=0, endoscopy subscore 0/1\n- CD clinical remission: CDAI <150\n- CD endoscopic response: >50% SES-CD improvement or SES-CD ≤2\n\nPresented at DDW May 2–5, 2026 (Abstracts 1058d & 979f)"
+    },
+    {
+      "type": "content",
+      "title": "DUET-CD: Key Efficacy Results at Week 48",
+      "sections": [
+        {
+          "header": "Overall Population — JNJ-4804 High Dose (vs Comparators)",
+          "bullets": [
+            "Clinical remission (CDAI <150): JNJ-4804 50.8% vs Golimumab 25.4% vs Guselkumab 42.5%",
+            "Endoscopic response (>50% SES-CD improvement or ≤2): JNJ-4804 38.1% vs Golimumab 19.8% vs Guselkumab 33.9%",
+            "JNJ-4804 doubled golimumab on clinical remission (50.8% vs 25.4%)",
+            "JNJ-4804 numerically superior to guselkumab monotherapy (+8.3% clinical remission, +4.2% endoscopic response)"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 2.2
+        },
+        {
+          "header": "Highly Refractory Subpopulation (Failed ≥2 Therapy Classes)",
+          "bullets": [
+            "Clinical remission: JNJ-4804 nearly DOUBLE the highest comparator",
+            "Endoscopic response: JNJ-4804 >60% higher than highest comparator",
+            "Clinically meaningful improvements across ALL endpoints vs monotherapies and placebo",
+            "This is the key differentiating finding — combo shines in hardest-to-treat patients",
+            "Exact percentages for refractory subpopulation not disclosed in press release"
+          ],
+          "x": 0.5,
+          "y": 3.5,
+          "w": 12.3,
+          "h": 2.2
+        }
+      ],
+      "disclaimer": "Data represents JNJ-4804 high dose group. Source: J&J DDW 2026 press release. Review is required before disclosure.",
+      "speakerNotes": "DUET-CD KEY RESULTS (Week 48, JNJ-4804 high dose):\n\nOVERALL POPULATION:\n- Clinical remission (CDAI <150): 50.8% JNJ-4804 vs 42.5% guselkumab vs 25.4% golimumab\n- Endoscopic response: 38.1% JNJ-4804 vs 33.9% guselkumab vs 19.8% golimumab\n\nHIGHLY REFRACTORY (failed ≥2 therapy classes, ~50% of enrolled):\n- Clinical remission: nearly 2x the highest comparator\n- Endoscopic response: >60% higher than highest comparator\n- The exact rates were not disclosed in the press release but will be in the DDW abstract\n\nINTERPRETATION:\n- The overall population results show numerical advantage but the combo does NOT double guselkumab (50.8 vs 42.5)\n- The REFRACTORY subpopulation is where the combo truly differentiates\n- This makes clinical sense: patients who failed multiple MOAs may benefit most from dual pathway blockade\n- Golimumab alone performs poorly (25.4%) — consistent with its known modest CD efficacy\n\nKEY QUOTE (Sands): 'Results are particularly promising because they show meaningful clinical and endoscopic improvements in patients who have exhausted existing options.'\n\nPRESENTER: Dr. Bruce E. Sands, Icahn School of Medicine / Mount Sinai"
+    },
+    {
+      "type": "content",
+      "title": "DUET-UC: Key Efficacy Results at Week 48",
+      "sections": [
+        {
+          "header": "Overall Population — JNJ-4804 vs Comparators",
+          "bullets": [
+            "Clinical remission (modified Mayo): JNJ-4804 41.0% vs Golimumab 11.5% vs Guselkumab 34.0%",
+            "JNJ-4804 demonstrated SUPERIOR clinical remission vs golimumab (41.0% vs 11.5%; p met)",
+            "JNJ-4804 numerically higher than guselkumab monotherapy (+7.0% absolute difference)",
+            "Primary endpoint MET for JNJ-4804 vs golimumab comparison"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 2.2
+        },
+        {
+          "header": "Highly Refractory Subpopulation (Failed ≥2 Therapy Classes)",
+          "bullets": [
+            "Clinical remission: JNJ-4804 almost 60% HIGHER than closest comparator",
+            "Clinically meaningful improvements across ALL endpoints vs monotherapies and placebo",
+            "Key secondary endpoints (CS-free remission, endoscopic improvement, HREI) all positive",
+            "The highly refractory population is where combo delivers greatest incremental benefit"
+          ],
+          "x": 0.5,
+          "y": 3.5,
+          "w": 12.3,
+          "h": 2.0
+        }
+      ],
+      "disclaimer": "Clinical remission defined as SFS 0/1, RBS 0, endoscopy subscore 0/1. Source: J&J DDW 2026. Review is required before disclosure.",
+      "speakerNotes": "DUET-UC KEY RESULTS (Week 48):\n\nOVERALL POPULATION:\n- Clinical remission: 41.0% JNJ-4804 vs 34.0% guselkumab vs 11.5% golimumab\n- SUPERIORITY demonstrated vs golimumab (primary endpoint MET)\n- Numerical superiority vs guselkumab (41.0 vs 34.0, Δ=7.0%)\n\nHIGHLY REFRACTORY (failed ≥2):\n- Clinical remission: ~60% higher than closest comparator\n- Assumes if guselkumab = closest comparator at ~25% → JNJ-4804 ~40% (estimated)\n\nCONTEXTUAL COMPARISON (other Wk48 UC maintenance data):\n- Mirikizumab (LUCENT-2 Wk52): clinical remission 49.9% (responders randomized)\n- Upadacitinib (U-ACHIEVE Wk52): clinical remission 42.3% (responders)\n- Risankizumab (INSPIRE Wk52): clinical remission 40.2% (responders)\n- NOTE: DUET enrolled ALL-COMERS (not re-randomized responders) → rates not directly comparable\n\nDEFINITIONS:\n- Clinical remission (UC): SFS=0 or 1, RBS=0, endoscopy subscore 0 or 1 (modified Mayo)\n\nGolimumab 11.5% is strikingly low — reflects that TNF monotherapy performs poorly in refractory UC patients.\n\nPRESENTER: Dr. Maria Abreu, Cedars-Sinai"
+    },
+    {
+      "type": "table",
+      "title": "DUET Results Summary — JNJ-4804 vs Monotherapies at Week 48",
+      "table": {
+        "headers": [
+          "Endpoint",
+          "Study",
+          "JNJ-4804 (High)",
+          "Guselkumab",
+          "Golimumab",
+          "Δ vs Guse",
+          "Δ vs Goli"
+        ],
+        "rows": [
+          [
+            "Clinical Remission",
+            "DUET-CD",
+            "50.8%",
+            "42.5%",
+            "25.4%",
+            "+8.3",
+            "+25.4"
+          ],
+          [
+            "Endoscopic Response",
+            "DUET-CD",
+            "38.1%",
+            "33.9%",
+            "19.8%",
+            "+4.2",
+            "+18.3"
+          ],
+          [
+            "Clinical Remission",
+            "DUET-UC",
+            "41.0%",
+            "34.0%",
+            "11.5%",
+            "+7.0",
+            "+29.5"
+          ],
+          [
+            "Refr. Clin. Rem.",
+            "DUET-CD",
+            "~2× highest",
+            "Comparator",
+            "—",
+            "—",
+            "—"
+          ],
+          [
+            "Refr. Clin. Rem.",
+            "DUET-UC",
+            "~60% > closest",
+            "Comparator",
+            "—",
+            "—",
+            "—"
+          ]
+        ]
+      },
+      "disclaimer": "Data from press release (May 5, 2026). Refractory subgroup exact rates not disclosed. Review is required before disclosure.",
+      "speakerNotes": "SUMMARY TABLE — KEY OBSERVATIONS:\n\n1. COMBO vs GOLIMUMAB: Dramatic superiority in both diseases\n   - CD: +25.4% clinical remission, +18.3% endoscopic response\n   - UC: +29.5% clinical remission\n   - Golimumab alone performs poorly in this refractory population (25.4% CD, 11.5% UC)\n\n2. COMBO vs GUSELKUMAB: Modest numerical advantage in overall population\n   - CD: +8.3% clinical remission, +4.2% endoscopic response\n   - UC: +7.0% clinical remission\n   - The incremental benefit of adding TNF to IL-23 is ~7–8% in overall population\n\n3. REFRACTORY SUBGROUP: This is where combo differentiates dramatically\n   - Nearly 2× (CD) and ~60% higher (UC) than best comparator\n   - Adding TNF blockade provides much greater benefit when patients are refractory\n\nIMPLICATION: JNJ-4804 is positioned as a rescue therapy for patients who fail IL-23 or TNF monotherapy. The overall population benefit over guselkumab alone is modest (~7%), but the refractory benefit is substantial."
+    },
+    {
+      "type": "content",
+      "title": "Safety Summary — DUET-UC & DUET-CD",
+      "sections": [
+        {
+          "header": "Overall Safety Through Week 48",
+          "bullets": [
+            "Safety findings 'generally consistent with the known profiles of the component monotherapies'",
+            "No new safety signals beyond what is known for guselkumab and golimumab individually",
+            "No disproportionate increase in serious infections or malignancies reported",
+            "Both guselkumab (TREMFYA) and golimumab (SIMPONI) have well-established safety profiles"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 2.0
+        },
+        {
+          "header": "Known Class Risks (Component Therapies)",
+          "bullets": [
+            "Guselkumab (anti-IL-23): infections, hepatic events (UC/CD label), injection site reactions",
+            "Golimumab (anti-TNF): serious infections, TB reactivation, malignancy risk, demyelination, heart failure",
+            "Combination: theoretical additive immunosuppression risk (dual pathway blockade)",
+            "Long-term extension (through 2029) will further characterize combination safety",
+            "Full safety data to be presented in DDW abstract and subsequent publications"
+          ],
+          "x": 0.5,
+          "y": 3.3,
+          "w": 12.3,
+          "h": 2.2
+        }
+      ],
+      "disclaimer": "Detailed safety data pending full publication. Review is required before disclosure.",
+      "speakerNotes": "SAFETY INTERPRETATION:\n\nThe press release states safety was 'generally consistent with known profiles' — this is standard language for a positive safety readout. Key considerations:\n\n1. GUSELKUMAB SAFETY (known from TREMFYA label):\n   - Most common: URI, headache, injection site reactions, arthralgia, diarrhea\n   - IBD-specific: hepatic events (liver enzyme elevations, cholestasis) — in UC/CD label\n   - Generally favorable safety vs anti-TNF and JAK inhibitors\n\n2. GOLIMUMAB SAFETY (known from SIMPONI label):\n   - Anti-TNF class risks: serious infections, TB, opportunistic infections\n   - Malignancy risk (lymphoma, skin cancer)\n   - Demyelinating disorders, heart failure exacerbation\n   - Historically well-tolerated in UC (PURSUIT program)\n\n3. COMBINATION RISK:\n   - Dual immunosuppression concern → theoretical increased infection risk\n   - HOWEVER: VEGA Phase 2a showed acceptable safety\n   - Long-term extension data will be critical for Phase 3 decisions\n\n4. VS LILLY POSITIONING:\n   - Mirikizumab (Omvoh) has very clean safety profile (IL-23 monotherapy)\n   - JNJ-4804's additive TNF risk may be a differentiating safety concern\n   - This could be a Lilly talking point: 'clean IL-23 monotherapy vs combination immunosuppression'"
+    },
+    {
+      "type": "content",
+      "title": "Context: VEGA Phase 2a Foundation",
+      "sections": [
+        {
+          "header": "VEGA Study (Phase 2a, Proof of Concept)",
+          "bullets": [
+            "Presented at UEG Week 2022 (Abstract OP087)",
+            "Induction combination (guselkumab + golimumab) followed by guselkumab maintenance",
+            "Demonstrated superiority of combo induction over monotherapies in UC",
+            "Provided the scientific rationale for the DUET Phase 2b program",
+            "Sequential design: combo induction → mono maintenance (unlike DUET's combo throughout)"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 2.2
+        },
+        {
+          "header": "DUET Program Advances Beyond VEGA",
+          "bullets": [
+            "DUET tests combination therapy throughout (induction + maintenance), not just induction",
+            "Larger sample sizes (577 UC + 703 CD vs VEGA's smaller POC)",
+            "Includes highly refractory subpopulation (failed ≥2 therapy classes)",
+            "Dose-ranging with 3 dose levels (high/mid/low)",
+            "Week 48 primary endpoint (long-term assessment)",
+            "Active comparators (guselkumab & golimumab alone) — not just placebo"
+          ],
+          "x": 0.5,
+          "y": 3.5,
+          "w": 12.3,
+          "h": 2.2
+        }
+      ],
+      "disclaimer": "Review is required before disclosure.",
+      "speakerNotes": "VEGA → DUET PROGRESSION:\n\nVEGA (Phase 2a):\n- Panés J et al. UEG Week 2022, Abstract OP087\n- UC induction only (12 weeks)\n- Guselkumab + golimumab combo INDUCTION → guselkumab MONOTHERAPY maintenance\n- Showed that combo induction yielded higher rates of clinical response and histo-endoscopic mucosal improvement\n- Limitation: only tested combo during induction, not maintenance\n\nDUET (Phase 2b):\n- Tests the fixed-dose combination (JNJ-4804) throughout the treatment period\n- Fixed-dose single injection (not two separate shots)\n- Much larger N, dose-ranging, active-controlled\n- Includes the critical refractory subpopulation analysis\n- Week 48 → assesses durability, not just early response\n\nIMPLICATION: DUET answers whether SUSTAINED combination therapy adds value over monotherapy. Answer appears to be YES, particularly in refractory patients."
+    },
+    {
+      "type": "table",
+      "title": "Competitive Landscape — UC Advanced Therapies (Maintenance/Wk48+)",
+      "table": {
+        "headers": [
+          "Drug",
+          "Sponsor",
+          "MOA",
+          "Clin. Rem. (Wk48–52)",
+          "Population",
+          "Phase"
+        ],
+        "rows": [
+          [
+            "JNJ-4804 (high dose)",
+            "J&J",
+            "Anti-IL-23 + Anti-TNF",
+            "41.0%",
+            "All-comers (≥1 failure)",
+            "Phase 2b"
+          ],
+          [
+            "Mirikizumab (Omvoh)",
+            "Lilly",
+            "Anti-IL-23p19",
+            "49.9%*",
+            "Responder re-randomized",
+            "Approved"
+          ],
+          [
+            "Guselkumab (Tremfya)",
+            "J&J",
+            "Anti-IL-23p19",
+            "34.0%†",
+            "All-comers (≥1 failure)",
+            "Approved"
+          ],
+          [
+            "Upadacitinib (Rinvoq)",
+            "AbbVie",
+            "JAK1 inhibitor",
+            "42.3%*",
+            "Responder re-randomized",
+            "Approved"
+          ],
+          [
+            "Risankizumab (Skyrizi)",
+            "AbbVie",
+            "Anti-IL-23p19",
+            "40.2%*",
+            "Responder re-randomized",
+            "Approved"
+          ],
+          [
+            "Vedolizumab (Entyvio)",
+            "Takeda",
+            "Anti-α4β7 integrin",
+            "41.8%*",
+            "Responder re-randomized",
+            "Approved"
+          ],
+          [
+            "Ozanimod (Zeposia)",
+            "BMS",
+            "S1P modulator",
+            "37.0%*",
+            "Responder re-randomized",
+            "Approved"
+          ]
+        ]
+      },
+      "disclaimer": "*Responder re-randomized maintenance designs (rates apply to induction responders only). †From DUET-UC comparator arm. NOT directly comparable due to different designs. Review is required before disclosure.",
+      "speakerNotes": "CRITICAL CAVEAT — CROSS-TRIAL COMPARISON LIMITATIONS:\n\nDUET-UC used an ALL-COMERS design (all patients treated from baseline → Week 48). Most other UC maintenance trials use a RESPONDER RE-RANDOMIZATION design where only induction responders continue to maintenance.\n\nThis means:\n- JNJ-4804's 41.0% is an ITT rate from baseline\n- Mirikizumab's 49.9% is among INDUCTION RESPONDERS only (selected population)\n- Direct comparison would require adjusting for induction response rates\n\nIF we assume ~60% induction response → ITT-equivalent maintenance rate:\n- Mirikizumab: ~30% ITT-equivalent (0.60 × 0.499)\n- Upadacitinib: ~29% ITT-equivalent\n- JNJ-4804: 41.0% ITT (as reported)\n\nThis would actually make JNJ-4804's results IMPRESSIVE, but this is speculative arithmetic.\n\nALSO: DUET population is more refractory (≥1 advanced therapy failure required) vs some registrational trials that included bio-naïve patients.\n\nBOTTOM LINE: Cannot directly rank JNJ-4804 vs approved agents without harmonized analysis. But the signal is strong, especially in the refractory subgroup."
+    },
+    {
+      "type": "table",
+      "title": "Competitive Landscape — CD Advanced Therapies (Maintenance/Wk48+)",
+      "table": {
+        "headers": [
+          "Drug",
+          "Sponsor",
+          "MOA",
+          "Clin. Rem. (Wk48–52)",
+          "Endo. Response",
+          "Phase"
+        ],
+        "rows": [
+          [
+            "JNJ-4804 (high dose)",
+            "J&J",
+            "Anti-IL-23 + Anti-TNF",
+            "50.8%",
+            "38.1%",
+            "Phase 2b"
+          ],
+          [
+            "Mirikizumab (Omvoh)",
+            "Lilly",
+            "Anti-IL-23p19",
+            "In trials",
+            "In trials",
+            "Phase 3"
+          ],
+          [
+            "Guselkumab (Tremfya)",
+            "J&J",
+            "Anti-IL-23p19",
+            "42.5%†",
+            "33.9%†",
+            "Approved"
+          ],
+          [
+            "Risankizumab (Skyrizi)",
+            "AbbVie",
+            "Anti-IL-23p19",
+            "52%*",
+            "47%*",
+            "Approved"
+          ],
+          [
+            "Upadacitinib (Rinvoq)",
+            "AbbVie",
+            "JAK1 inhibitor",
+            "52.0%*",
+            "~46%*",
+            "Approved"
+          ],
+          [
+            "Vedolizumab (Entyvio)",
+            "Takeda",
+            "Anti-α4β7 integrin",
+            "39.0%*",
+            "—",
+            "Approved"
+          ],
+          [
+            "Adalimumab (Humira)",
+            "AbbVie",
+            "Anti-TNF",
+            "36.0%*",
+            "—",
+            "Approved"
+          ]
+        ]
+      },
+      "disclaimer": "*Responder re-randomized designs (not ITT from baseline). †From DUET-CD comparator arm. NOT directly comparable. Review is required before disclosure.",
+      "speakerNotes": "CD LANDSCAPE CONTEXT:\n\n- JNJ-4804 50.8% clinical remission (CDAI <150) is in the same range as risankizumab and upadacitinib\n- HOWEVER: same caveat applies — DUET is ITT from baseline, others are responder-rerandomized\n- Guselkumab alone in DUET-CD achieved 42.5% — consistent with GALAXI Phase 3 data\n- Golimumab alone: 25.4% — confirms TNF monotherapy is suboptimal in refractory CD\n\nVS MIRIKIZUMAB IN CD:\n- Lilly's mirikizumab Phase 3 in CD (VIVID-1) is ongoing/recently read out\n- If mirikizumab achieves ~45-52% maintenance remission (similar to risankizumab), then JNJ-4804's combo would show ~similar overall but differentiate in refractory subgroup\n\nENDOSCOPIC RESPONSE:\n- 38.1% (JNJ-4804) vs 33.9% (guselkumab) in overall population\n- Small increment (+4.2%) over guselkumab alone\n- Refractory subgroup showed >60% higher endoscopic response (dramatic)\n\nKEY IMPLICATION: The combination's value proposition is PRIMARILY in the refractory population, not the overall population where incremental benefit over IL-23 monotherapy is modest."
+    },
+    {
+      "type": "twoColumn",
+      "title": "JNJ-4804 vs Mirikizumab (Omvoh) — Lilly Positioning",
+      "leftColumn": {
+        "header": "JNJ-4804 Strengths",
+        "bullets": [
+          "Dual pathway (IL-23 + TNF) → broader inflammation control",
+          "Single injection convenience (fixed-dose combination)",
+          "Strong refractory data (nearly 2× best mono in CD)",
+          "Backed by two approved, well-characterized molecules",
+          "J&J has GI franchise depth (TREMFYA, STELARA legacy)",
+          "Phase 3 trials starting (DUET ENCORE)"
+        ]
+      },
+      "rightColumn": {
+        "header": "Mirikizumab (Omvoh) Strengths",
+        "bullets": [
+          "Already APPROVED for UC (2023); CD approval anticipated",
+          "Clean safety profile (IL-23 monotherapy, no TNF risk)",
+          "No additive immunosuppression concerns",
+          "IV induction → SC maintenance (flexibility)",
+          "Strong LUCENT-2 data (49.9% maintenance remission)",
+          "Lilly commercial infrastructure established"
+        ]
+      },
+      "disclaimer": "Cross-trial comparison only; no head-to-head data. Review is required before disclosure.",
+      "speakerNotes": "HEAD-TO-HEAD POSITIONING:\n\nJNJ-4804 THREAT TO OMVOH:\n1. If patients fail Omvoh (anti-IL-23 mono), JNJ-4804 offers next-step combo\n2. JNJ-4804's refractory data positions it as THE rescue therapy\n3. Physicians may skip IL-23 mono and go straight to combo in severe patients\n4. J&J can position as 'the only therapy that blocks two pathways in one shot'\n\nOMVOH DEFENSES:\n1. Already approved and building market share\n2. JNJ-4804 Phase 3 + approval = ~3-4 year runway for Omvoh\n3. Safety advantage: no TNF-associated risks (infections, malignancy)\n4. Most patients respond to IL-23 monotherapy — combo not needed for majority\n5. Cost: combo likely more expensive; payers may require mono failure first\n\nLIKELY MARKET SEGMENTATION:\n- First-line advanced therapy: IL-23 monotherapy (Omvoh, Tremfya, Skyrizi)\n- Second/third-line refractory: JNJ-4804 combo (the 'rescue' position)\n- This could actually COMPLEMENT Omvoh if Lilly positions smartly\n\nTIMELINE: Phase 3 DUET ENCORE start → ~3 years to data → approval ~2030"
+    },
+    {
+      "type": "content",
+      "title": "Clinical & Strategic Implications",
+      "sections": [
+        {
+          "header": "What This Means for IBD Treatment",
+          "bullets": [
+            "First demonstration that a fixed-dose co-antibody outperforms individual components in IBD",
+            "Validates dual pathway (IL-23 + TNF) synergy hypothesis from VEGA",
+            "Greatest benefit in refractory patients (failed ≥2 classes) — addresses critical unmet need",
+            "May establish new treatment paradigm: mono failure → combination rescue",
+            "Phase 3 DUET ENCORE trials will determine if results hold in registrational setting"
+          ],
+          "x": 0.5,
+          "y": 1.15,
+          "w": 12.3,
+          "h": 2.2
+        },
+        {
+          "header": "Competitive Threat Assessment for Lilly",
+          "bullets": [
+            "MODERATE threat to mirikizumab/Omvoh in the near term (3–4 years to approval)",
+            "LOW threat to first-line positioning (most patients don't need combo upfront)",
+            "HIGH threat in the refractory segment if confirmed in Phase 3",
+            "May position Omvoh as the clean first-line option before combo escalation",
+            "Combination approach could trigger broader industry shift toward dual-pathway therapies"
+          ],
+          "x": 0.5,
+          "y": 3.5,
+          "w": 12.3,
+          "h": 2.2
+        }
+      ],
+      "disclaimer": "Review is required before disclosure.",
+      "speakerNotes": "STRATEGIC ASSESSMENT:\n\nTHREAT LEVEL: MODERATE (increasing to HIGH if Phase 3 confirms)\n\nNEAR-TERM (2026–2029):\n- Omvoh continues to build UC market share unimpeded\n- Mirikizumab CD approval provides additional growth runway\n- JNJ-4804 is in Phase 2b → Phase 3; no commercial impact yet\n\nMEDIUM-TERM (2029–2031):\n- JNJ-4804 Phase 3 readout expected ~2028-2029\n- If positive → regulatory filing → approval ~2030\n- Impact on Omvoh depends on label (refractory only? or broad?)\n\nLONG-TERM MARKET DYNAMICS:\n- IBD market likely to segment by line of therapy\n- First-line biologics: IL-23 mono (Omvoh, Tremfya, Skyrizi), JAK (Rinvoq)\n- Refractory rescue: JNJ-4804 combo (if approved)\n- This actually creates a clean positioning for Omvoh\n\nRISKS:\n- If JNJ-4804 gets broad label (not restricted to refractory), it could compete directly\n- If combo becomes first-line in severe patients, it erodes all monotherapy market share\n- J&J has massive commercial reach in GI (TREMFYA + STELARA legacy)\n\nOPPORTUNITY:\n- Lilly could develop its own combination strategies\n- Mirikizumab + vedolizumab? Mirikizumab + JAK? (different combinations)\n- Or emphasize safety/convenience advantage of mono for the majority"
+    },
+    {
+      "type": "summary",
+      "title": "Key Takeaways & Recommended Actions",
+      "takeaways": [
+        "JNJ-4804 (guselkumab + golimumab co-antibody) met primary endpoint in DUET-UC: superior clinical remission vs golimumab (41.0% vs 11.5%) at Week 48",
+        "In DUET-CD: JNJ-4804 achieved 50.8% clinical remission and 38.1% endoscopic response — numerically superior to both monotherapies",
+        "Greatest differentiation in highly refractory patients (failed ≥2 therapy classes): nearly 2× (CD) and ~60% higher (UC) than best monotherapy comparator",
+        "Overall population benefit over guselkumab alone is modest (+7–8% clinical remission) — combo value is primarily in the refractory segment",
+        "Safety consistent with known profiles of component therapies; no new signals through Week 48",
+        "Phase 3 DUET ENCORE trials (UC + CD) planned — potential approval ~2030; JNJ-4804 also being studied in PsA (AFFINITY)"
+      ],
+      "actions": [
+        "Monitor DUET ENCORE Phase 3 trial designs and enrollment (initiating soon)",
+        "Track DDW 2026 full abstract data (refractory subgroup exact rates, secondary endpoints)",
+        "Assess implications for Omvoh positioning: emphasize clean IL-23 monotherapy as first-line before combination escalation",
+        "Evaluate Lilly's own combination therapy opportunities in IBD (mirikizumab + partner agent)",
+        "Update IBD competitive model with JNJ-4804 timeline: Phase 3 readout ~2028–2029, potential approval ~2030"
+      ],
+      "speakerNotes": "SUMMARY: JNJ-4804 is a credible, differentiated competitor that validates dual-pathway combination therapy in IBD. The key finding is that the combo shines brightest in the REFRACTORY population — patients who have exhausted existing options.\n\nFor Lilly/Omvoh, this is NOT an existential threat but a market-shaping event:\n1. Omvoh has 3–4 years of uncontested growth in its approved indications\n2. The modest overall population benefit (+7%) over IL-23 mono suggests most patients won't need combo\n3. The refractory segment is real but relatively small (subset of the total market)\n4. Safety of combo (dual immunosuppression) may limit broad adoption\n\nOPEN QUESTIONS:\n1. Will Phase 3 confirm the refractory subgroup finding? (Phase 2 subgroups often don't replicate)\n2. What will the label look like? Restricted to refractory? Or broad?\n3. Will payers require IL-23 mono failure before approving combo?\n4. What is the pricing strategy for a combination product?\n5. Should Lilly explore its own combination approaches?\n\nReview is required before disclosure."
+    }
+  ]
+}
