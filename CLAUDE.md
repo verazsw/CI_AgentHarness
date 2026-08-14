@@ -4,11 +4,13 @@ This agent helps you extract, store, summarize, and conduct BNMA for competitor 
 
 ## What you can ask
 
+- **"Run pipeline"** — provide all inputs at once (compound, indication, URLs, Batman path), select outputs, and let the agent run end-to-end
 - "Extract efficacy data from this press release: [paste URL]" and the output is formatted
 - "I've QC'd and please add new competitor data into our database"
 - "Look up NCT04314817 on ClinicalTrials.gov"
 - "Summarize this competitor readout for AD"
 - "Generate a slide deck for the new dupilumab Phase 3 data"
+- "Generate a BNMA ridge plot from [Batman output path]"
 
 ## Supported indications
 

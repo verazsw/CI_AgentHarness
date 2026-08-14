@@ -2,6 +2,28 @@
 
 Extracts, structures, and summarizes competitor clinical trial data for immunology.
 
+## Pipeline Mode (Recommended for New Users)
+
+For a streamlined "configure and run" experience — provide all your materials in one message, select outputs, and the agent runs end-to-end:
+
+```
+Run pipeline for zumilokibart AD.
+Source: https://collab.lilly.com/sites/CILand/...
+Batman path: smb://lrlhps/users/l099645/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/
+I want: ridge plot + detailed deck
+```
+
+The agent will:
+1. Confirm your inputs in a structured table
+2. Show available outputs (slide deck, ridge plot, landscape summary)
+3. Let you select one or more
+4. Run everything end-to-end — no mid-run questions
+5. Deliver all files with a summary of key findings
+
+**Partial inputs are fine** — no Batman path? It skips the ridge plot. No URL? It works from figures only.
+
+**Trigger words:** "run pipeline", "generate all", "run analysis", "batch run"
+
 ## Getting Started
 
 ### Option 1: Claude Code (Recommended)
