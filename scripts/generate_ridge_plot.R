@@ -50,6 +50,44 @@ RIDGE_PALETTE <- c(
   "#B79F00", "#00BCD8", "#F0766D", "#7CAF00", "#CC79A7"
 )
 
+# ── Extract treatment names from BatmanData.R ─────────────────────────────────
+#' When FullPosteriorSamples.csv has indexed columns (d[1], d[2], ...),
+#' parse the actual treatment names from BatmanData.R in the same directory.
+#'
+#' @param batman_dir Path to the Batman output directory
+#' @return Character vector of unique treatment names, or NULL if not found
+extract_treatment_names_from_batman <- function(batman_dir) {
+  batman_data_file <- file.path(batman_dir, "BatmanData.R")
+  if (!file.exists(batman_data_file)) return(NULL)
+
+  lines <- readLines(batman_data_file, warn = FALSE)
+
+  # Find the line containing "treatment = structure(c("
+  start_idx <- grep("treatment\\s*=\\s*structure\\(c\\(", lines)
+  if (length(start_idx) == 0) return(NULL)
+  start_idx <- start_idx[1]
+
+  # Read from that line until we find the closing "))" for the structure
+  # Accumulate text and track parenthesis depth
+  text_block <- ""
+  paren_depth <- 0
+  for (i in start_idx:length(lines)) {
+    text_block <- paste0(text_block, lines[i])
+    # Count opening and closing parens from the "structure(" onward
+    chars <- strsplit(lines[i], "")[[1]]
+    paren_depth <- paren_depth + sum(chars == "(") - sum(chars == ")")
+    if (paren_depth <= 0 && i > start_idx) break
+  }
+
+  # Extract all quoted strings from the treatment block
+  all_treats <- unlist(regmatches(text_block, gregexpr('"[^"]*"', text_block)))
+  all_treats <- gsub('^"|"$', '', all_treats)
+
+  # Remove NAs (stored as character "NA" won't appear in quotes)
+  # Return unique treatments
+  unique(all_treats)
+}
+
 # ── Compound recommendation engine ───────────────────────────────────────────
 #' Suggest relevant comparators for a given compound/indication
 #'
@@ -264,6 +302,20 @@ generate_ridge_plot <- function(
   } else {
     # Column names ARE the treatment names (common Batman format)
     treatment_names <- colnames(posterior_raw)
+  }
+
+  # If columns are indexed JAGS parameters (d[1], d[2], ...), extract names from BatmanData.R
+  indexed_pattern <- "^[a-z_]+\\[.+\\]$"
+  n_indexed <- sum(grepl(indexed_pattern, colnames(posterior_raw)))
+  if (n_indexed / ncol(posterior_raw) > 0.5) {
+    batman_names <- extract_treatment_names_from_batman(batman_output_dir)
+    if (!is.null(batman_names)) {
+      message(glue("Columns are indexed JAGS parameters — extracted {length(batman_names)} treatment names from BatmanData.R"))
+      # Keep only the d[N] columns (treatment effect parameters)
+      d_cols <- grep("^d\\[\\d+\\]$", colnames(posterior_raw))
+      posterior_raw <- posterior_raw[, d_cols]
+      treatment_names <- batman_names
+    }
   }
 
   # ── Parse posterior matrix ──
@@ -596,6 +648,17 @@ if (!interactive() && length(commandArgs(trailingOnly = TRUE)) > 0) {
     # Remove metadata columns
     meta_cols <- c("iteration", "chain", "iter", "sample", "draw", "lp__")
     treatment_names <- treatment_names[!tolower(treatment_names) %in% meta_cols]
+
+    # If columns are indexed JAGS parameters (d[1], d[2], ...), extract names from BatmanData.R
+    indexed_pattern <- "^[a-z_]+\\[.+\\]$"
+    n_indexed <- sum(grepl(indexed_pattern, treatment_names))
+    if (n_indexed / length(treatment_names) > 0.5) {
+      batman_names <- extract_treatment_names_from_batman(batman_dir)
+      if (!is.null(batman_names)) {
+        message(glue("Columns are indexed JAGS parameters - extracted {length(batman_names)} treatment names from BatmanData.R"))
+        treatment_names <- batman_names
+      }
+    }
 
     focus <- params$focus %||% params$focus_compound
     indication <- params$indication %||% "AD"
