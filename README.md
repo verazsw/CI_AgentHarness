@@ -104,6 +104,85 @@ AD, Psoriasis, UC, RA, CRSwNP, PsA, Crohn's, SLE, Asthma, COPD, IPF, Allergic Rh
 - All outputs include: **"Review is required before disclosure."**
 - If something looks wrong, just tell the agent to fix it
 
+## BNMA Ridge Plot from Batman Output
+
+Generate publication-quality ridge plots (posterior density plots) directly from Batman NMA output. The script reads `FullPosteriorSamples.csv` and provides a compound recommendation engine to help you select the most relevant comparators.
+
+### Quick Usage
+
+```r
+source("scripts/generate_ridge_plot.R")
+
+# Interactive mode — recommends compounds and lets you select
+generate_ridge_plot(
+  batman_output_dir = "//lrlhps/users/<user>/<project>/_output/batmanNMA_..._output/normal_independent_fixed_fixed/",
+  focus_compound = "zumilokibart",
+  indication = "AD",
+  output_path = "figures/EASI75_ridge_plot.png"
+)
+```
+
+### Command Line
+
+```bash
+Rscript scripts/generate_ridge_plot.R \
+  --batman_dir "//lrlhps/users/l099645/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/" \
+  --focus zumilokibart \
+  --indication AD \
+  --compounds "dupilumab,lebrikizumab,zumilokibart,upadacitinib,abrocitinib" \
+  --output figures/EASI75_Wk16_ridge.png
+```
+
+### Features
+
+- **Compound recommendation engine**: Given a focus compound and indication, suggests same-class drugs + key reference comparators
+- **Interactive selection**: In RStudio/console, shows all available treatments grouped by drug class and lets you pick
+- **Partial name matching**: Just type "dupilumab" — it finds all dose arms
+- **Top-N filter**: Show only the N best-performing treatments
+- **Auto-title**: Detects endpoint/indication from folder path
+- **Model browser**: `list_batman_models()` shows available model subdirectories with DIC values
+
+### Batman Output Folder Structure
+
+```
+smb://lrlhps/users/<user>/<project>/_output/
+  batmanNMA_<model>_<id>_<timestamp>_output/
+    normal_independent_fixed_fixed/      ← or fixed_random, random_random
+      FullPosteriorSamples.csv           ← main input (MCMC samples × treatments)
+      treatment_names.csv                ← treatment labels
+      model_fit.csv                      ← DIC/pD for model selection
+      d_overall.csv                      ← summary treatment effects
+```
+
+### Integration with Competitor Agent
+
+The simplest way: just paste your Batman output path into the agent. It will:
+1. Validate the path and detect available treatments
+2. Suggest compounds to include (grouped by mechanism class)
+3. Ask you to confirm, add, or remove compounds
+4. Generate the ridge plot and save to `figures/`
+
+Example prompts:
+- "Generate a ridge plot from `smb://lrlhps/users/l099645/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/`"
+- "Which compounds should I include in the ridge plot for zumilokibart in AD?"
+- "Show me top 10 compounds for EASI-75"
+
+### Suggest-Only Mode (for automation)
+
+Get compound recommendations as JSON without generating a plot:
+
+```bash
+Rscript scripts/generate_ridge_plot.R \
+  --batman_dir "//lrlhps/users/l099645/EASI75_Ph2Ph3/..." \
+  --focus zumilokibart \
+  --indication AD \
+  --suggest_only
+```
+
+Returns a JSON object with `recommended`, `available`, and `by_class` fields.
+
+---
+
 ## Roadmap: Microsoft Teams / CILand Auto-Detection
 
 Currently, the agent requires users to paste a CILand URL or provide source material. A future enhancement would add automatic detection of new CI team publications:
