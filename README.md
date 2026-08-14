@@ -2,35 +2,7 @@
 
 Extracts, structures, and summarizes competitor clinical trial data for immunology.
 
-## Pipeline Mode (Recommended for New Users)
-
-For a streamlined "configure and run" experience — provide all your materials in one message, select outputs, and the agent runs end-to-end:
-
-```
-Run pipeline for zumilokibart AD.
-Source: https://collab.lilly.com/sites/CILand/...
-Batman path: smb://lrlhps/users/l099645/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/
-I want: ridge plot + detailed deck
-```
-
-The agent will:
-1. Confirm your inputs in a structured table
-2. Show available outputs (slide deck, ridge plot, landscape summary)
-3. Let you select one or more
-4. Run everything end-to-end — no mid-run questions
-5. Deliver all files with a summary of key findings
-
-**Partial inputs are fine** — no Batman path? It skips the ridge plot. No URL? It works from figures only.
-
-**Trigger words:** "run pipeline", "generate all", "run analysis", "batch run"
-
-## Getting Started
-
-### Option 1: Claude Code (Recommended)
-
-Claude Code gives you the complete experience: data extraction, BNMA interpretation, landscape charts, and automated `.pptx` slide decks.
-
-**Setup:**
+## Setup
 
 1. Download or clone this folder to your machine
 2. Install prerequisites:
@@ -40,184 +12,79 @@ Claude Code gives you the complete experience: data extraction, BNMA interpretat
 3. Open the folder in Claude Code:
    - **Terminal:** `cd` into the folder and run `claude`
    - **VS Code/Positron extension:** Open the folder, then use the Claude Code extension (Cmd+Shift+P → "Claude Code")
-4. Start chatting — all skills load automatically
+4. Start chatting
 
-**Example prompts to try:**
+## How to Use
+
+### Pipeline Mode (Recommended)
+
+Provide all your materials in one message, select outputs, and the agent runs end-to-end:
+
+```
+Run pipeline for zumilokibart AD.
+Source: ~/competitor_agent/figures, https://collab.lilly.com/sites/CILand/...
+Batman path: smb://lrlhps/users/xxxxx/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/
+I want: ridge plot + detailed deck
+```
+
+Or just say "run pipeline" and the agent will ask you to fill in:
+
+```
+1. Compound name:         (e.g., zumilokibart)
+2. Indication:            (e.g., AD)
+3. Source:                (paste text, or path to figures folder)
+4. Batman NMA output path: (smb:// or // path, leave blank if none)
+5. Compounds to compare:  (optional, comma-separated)
+```
+
+Leave any field blank if you don't have that resource — the pipeline adapts.
+
+The agent will:
+1. Confirm your inputs in a structured table
+
+2. Show available outputs (slide deck, ridge plot, landscape summary)
+
+3. Let you select one or more
+
+4. Run everything end-to-end — no mid-run questions
+
+5. Deliver all files with a summary of key findings
+
+**Partial inputs are fine** — no Batman path? It skips the ridge plot. No URL? It works from figures only. The agent will search clinicaltrial.gov and PubMed automatically.
+
+**Trigger words:** "run pipeline", "generate all", "run analysis", "batch run"
+
+> ⚠️ **CILand note:** Internal SharePoint URLs (collab.lilly.com) cannot be fetched — they require corporate SSO login. Paste the article text instead.
+
+### Ad-Hoc Mode
+
+You can also ask for one thing at a time:
 
 | What you want | Example prompt |
 |---|---|
-| Extract data from a press release | "Extract efficacy data from this press release: [paste URL]" |
-| Extract from a CILand article | "Extract data from this CI article: [paste collab.lilly.com URL]" |
-| Summarize a competitor readout | "Summarize this competitor readout for AD" |
-| Generate a quick 5-slide deck | "Generate a slide deck for the new dupilumab Phase 3 data" |
-| Generate a detailed presenter deck | "Create a detailed presenter-prep deck for the zumilokibart APEX Phase 2B readout in AD" |
-| Interpret a BNMA plot | "What does this BNMA forest plot show?" (store image in `figures/`) |
+| Extract data from a source | "Extract efficacy data from this press release: [paste URL]" |
+| Generate a slide deck | "Generate a slide deck for the new dupilumab Phase 3 data" |
+| Interpret a BNMA plot | "What does this BNMA forest plot show?" |
+| Generate a BNMA ridge plot | "Generate a ridge plot from smb://lrlhps/users/..." |
 | Look up a trial | "Look up NCT04314817 on ClinicalTrials.gov" |
-| Add data to the database | "I've QC'd — please add this data to our database" |
-| Check latest competitor news | "Any new AD competitor updates this week?" |
 
-**Tips:**
+## Tips
 
 - Say "detailed" or "presenter prep" for the full 8+ slide deck; otherwise you get a quick 5-slide summary
+- Drop images into **`figures/`** before asking for a deck — the agent auto-scans and classifies them
+- **CILand articles:** Cannot be fetched by URL (requires corporate login). Paste the article text directly into the chat instead.
+- **Press release PDFs:** Convert pages to PNG and drop in `figures/`
 
-- Drop all images into the **`figures/`** folder before asking for a deck — BNMA plots, press release page screenshots, study design diagrams, etc. The agent auto-scans and classifies all figures.
-
-- **Figure naming:** Use descriptive names for auto-routing (e.g., `study_design_APEX.png`, `efficacy_PASI90_timecourse.png`). See `figures/README.md` for the full naming guide.
-
-- **BNMA plot naming convention:** `{compound}_{endpoint}_{timepoint}_{date}.png` (e.g., `APG777_EASI75_Wk16_2026-07-20.png`)
-
-- **Press release PDFs:** Convert pages to images (PNG/JPEG) and drop them in `figures/`. On Mac: open in Preview → File → Export → select PNG. The agent will ask you to do this if you provide a PDF.
-
-- **CILand articles:** You can paste a `collab.lilly.com/sites/CILand/...` URL and the agent will try to fetch and extract data from it. If auth is needed, paste the article text directly.
-
-- The agent will always show you extracted data before saving anything — you get a chance to QC
-
-
-### Option 2: Claude App (claude.ai)
-
-The Claude app can generate slide decks too. Our skill file (`.claude/skills/slide-generation/SKILL.md`) contains **pptxgenjs JavaScript templates** — when Claude runs on the app, it uses these templates to produce a `.pptx` as a downloadable Artifact.
-
-**How the two platforms use the same skill differently:**
-
-| | Claude Code | Claude App |
-|---|---|---|
-| **Generation method** | `scripts/generate_deck.py` (python-pptx, runs locally) | pptxgenjs templates from our SKILL.md (runs in Artifact sandbox) |
-| **BNMA plots** | Auto-detected from `figures/` folder | User uploads images into the chat |
-| **Landscape chart** | Generated via R/ggplot2 locally | Not available |
-| **CILand integration** | Fetches via URL (with auth if available) | User pastes article text |
-| **Output** | `.pptx` saved to your disk | `.pptx` downloadable from Artifact |
-
-**To use on claude.ai:**
-
-1. Create a Project and upload the skill files from `.claude/skills/` as project knowledge (including `references/`)
-
-2. Paste or link your press release source
-
-3. Upload BNMA plot images directly into the chat if you want them interpreted and embedded
-
-4. Ask for a deck — Claude uses the pptxgenjs JavaScript code from our skill to generate a downloadable `.pptx` Artifact
-
-### What the Agent Will Ask You
-
-No matter which prompt you start with, expect the agent to:
-
-1. **Ask for your data source** — "Do you have a CILand article, press release URL, pasted text, or a PDF?"
-2. **Ask Quick vs Detailed** (if ambiguous) — "Quick 5-slide leadership briefing, or detailed presenter-prep deck?"
-3. **Show extracted data for your review** — a formatted table of efficacy numbers
-4. **Confirm the output** — file name, slide count, which BNMA plots were embedded
-
-## Data Sources (Priority Order)
-
-| Priority | Source | Best for |
-|:---:|---|---|
-| 1 | **CILand articles** (collab.lilly.com/sites/CILand/) | Curated internal analysis with data + strategic context |
-| 2 | **Press releases** (sponsor investor pages) | Primary external source with official numbers |
-| 3 | **figures/ folder** (BNMA plots, page images) | Visual data already prepared locally |
-| 4 | **ClinicalTrials.gov** | Study design, arms, sample size |
-| 5 | **PubMed** | Published results and competitive context |
-
-## Current Supported Indications in Immunology
+## Supported Indications
 
 AD, Psoriasis, UC, RA, CRSwNP, PsA, Crohn's, SLE, Asthma, COPD, IPF, Allergic Rhinitis
+
+## Using with Claude App (claude.ai)
+
+This agent also works on claude.ai with limited features (no local R/Python scripts, no auto-scan of `figures/`). Upload skill files from `.claude/skills/` as project knowledge, paste your source text, and ask for a deck — Claude generates a downloadable `.pptx` Artifact.
 
 ## Notes
 
 - Public resources for competitors are always limited — the agent warns when inference is highly uncertain
 - All outputs include: **"Review is required before disclosure."**
 - If something looks wrong, just tell the agent to fix it
-
-## BNMA Ridge Plot from Batman Output
-
-Generate publication-quality ridge plots (posterior density plots) directly from Batman NMA output. The script reads `FullPosteriorSamples.csv` and provides a compound recommendation engine to help you select the most relevant comparators.
-
-### Quick Usage
-
-```r
-source("scripts/generate_ridge_plot.R")
-
-# Interactive mode — recommends compounds and lets you select
-generate_ridge_plot(
-  batman_output_dir = "//lrlhps/users/<user>/<project>/_output/batmanNMA_..._output/normal_independent_fixed_fixed/",
-  focus_compound = "zumilokibart",
-  indication = "AD",
-  output_path = "figures/EASI75_ridge_plot.png"
-)
-```
-
-### Command Line
-
-```bash
-Rscript scripts/generate_ridge_plot.R \
-  --batman_dir "//lrlhps/users/l099645/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/" \
-  --focus zumilokibart \
-  --indication AD \
-  --compounds "dupilumab,lebrikizumab,zumilokibart,upadacitinib,abrocitinib" \
-  --output figures/EASI75_Wk16_ridge.png
-```
-
-### Features
-
-- **Compound recommendation engine**: Given a focus compound and indication, suggests same-class drugs + key reference comparators
-- **Interactive selection**: In RStudio/console, shows all available treatments grouped by drug class and lets you pick
-- **Partial name matching**: Just type "dupilumab" — it finds all dose arms
-- **Top-N filter**: Show only the N best-performing treatments
-- **Auto-title**: Detects endpoint/indication from folder path
-- **Model browser**: `list_batman_models()` shows available model subdirectories with DIC values
-
-### Batman Output Folder Structure
-
-```
-smb://lrlhps/users/<user>/<project>/_output/
-  batmanNMA_<model>_<id>_<timestamp>_output/
-    normal_independent_fixed_fixed/      ← or fixed_random, random_random
-      FullPosteriorSamples.csv           ← main input (MCMC samples × treatments)
-      treatment_names.csv                ← treatment labels
-      model_fit.csv                      ← DIC/pD for model selection
-      d_overall.csv                      ← summary treatment effects
-```
-
-### Integration with Competitor Agent
-
-The simplest way: just paste your Batman output path into the agent. It will:
-1. Validate the path and detect available treatments
-2. Suggest compounds to include (grouped by mechanism class)
-3. Ask you to confirm, add, or remove compounds
-4. Generate the ridge plot and save to `figures/`
-
-Example prompts:
-- "Generate a ridge plot from `smb://lrlhps/users/l099645/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/`"
-- "Which compounds should I include in the ridge plot for zumilokibart in AD?"
-- "Show me top 10 compounds for EASI-75"
-
-### Suggest-Only Mode (for automation)
-
-Get compound recommendations as JSON without generating a plot:
-
-```bash
-Rscript scripts/generate_ridge_plot.R \
-  --batman_dir "//lrlhps/users/l099645/EASI75_Ph2Ph3/..." \
-  --focus zumilokibart \
-  --indication AD \
-  --suggest_only
-```
-
-Returns a JSON object with `recommended`, `available`, and `by_class` fields.
-
----
-
-## Roadmap: Microsoft Teams / CILand Auto-Detection
-
-Currently, the agent requires users to paste a CILand URL or provide source material. A future enhancement would add automatic detection of new CI team publications:
-
-**Planned (requires MCP server + Azure AD setup):**
-- Auto-detect new CILand articles by compound or indication
-- Search CI publications: "What's the latest on BBT001?"
-- Monitor Teams channel for competitor updates
-- Pull figures directly from SharePoint pages
-
-**What's needed:**
-- Azure AD app registration with Graph API permissions (`Sites.Read.All`)
-- MCP server wrapping Microsoft Graph API calls
-- Configuration in `.claude/settings.json`
-
-Contact IT to evaluate feasibility of Graph API access to the CILand SharePoint site.

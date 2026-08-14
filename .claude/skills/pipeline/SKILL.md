@@ -11,29 +11,34 @@ Run the full analysis end-to-end: collect all inputs upfront, select outputs, ex
 
 **Keyword triggers:** "run pipeline", "generate all", "run analysis", "batch run", "full analysis"
 
-**Auto-detect:** When the user provides 2+ distinct input types in one message (any combination of: compound name + indication + source URL + Batman path + pasted text), offer pipeline mode:
+**Auto-detect:** When the user provides 2+ distinct input types in one message (any combination of: compound name + indication + source URL + Batman path + pasted text), offer pipeline mode.
 
-> "It looks like you have multiple inputs ready. Would you like me to run the full pipeline? I'll confirm everything first, then generate your selected outputs end-to-end."
+## Step 1: Collect Inputs
 
-If the user declines, fall back to the most relevant individual skill.
+When the user triggers pipeline mode but hasn't provided structured inputs, show this template and ask them to fill it in (leave blank if not available):
 
-## Step 1: Parse Inputs
+```
+Please provide your inputs (leave blank if you don't have it):
 
-Extract from the user's message:
+1. Compound name:
+2. Indication:
+3. Source (paste text, or path to folder with figure screenshots):
+4. Batman NMA output path (smb:// or //):
+5. Specific compounds to compare (optional):
+```
 
-| Field | How to detect |
-|-------|---------------|
-| **Compound** | Drug name (e.g., zumilokibart, lebrikizumab, dupilumab) |
-| **Indication** | Disease abbreviation or name (AD, Psoriasis, UC, etc.) |
-| **Source URL** | Any URL — CILand (collab.lilly.com), press release, ClinicalTrials.gov |
-| **Batman path** | Path starting with `smb://`, `//`, or `/Volumes/` containing Batman output |
-| **Pasted text** | Raw efficacy data or press release text pasted directly |
-| **Figures** | Auto-scan `figures/` directory for matching compound/indication images |
+If the user already provided inputs in their message, parse them and proceed to Step 2.
 
-**Partial inputs are fine.** Not everything is required — the pipeline adapts:
-- No Batman path → skip ridge plot
-- No source URL or text → skip data extraction (use existing figures only)
-- No figures in `figures/` → skip BNMA interpretation (unless ridge plot generates one)
+**Input rules:**
+- **Compound**: Drug name (e.g., zumilokibart, lebrikizumab, dupilumab)
+- **Indication**: Disease abbreviation (AD, Psoriasis, UC, Crohn, CRSwNP, etc.)
+- **Source**: Can be any of:
+  - A folder path containing figure screenshots (e.g., `~/competitor_agent/figures`)
+  - Pasted article text directly in chat
+  - A public press release URL (e.g., sponsor investor page)
+  - Note: Internal SharePoint/CILand URLs (collab.lilly.com) are NOT fetchable — Claude Code cannot authenticate to corporate SSO. If user provides a CILand URL, ask them to paste the article text instead.
+- **Batman path**: Path starting with `smb://`, `//`, or `/Volumes/` pointing to a Batman NMA output directory containing `FullPosteriorSamples.csv`
+- **Compounds to compare**: Comma-separated list (optional — if blank, the agent auto-recommends based on indication and mechanism class)
 
 ## Step 2: Confirm Inputs & Select Outputs
 
@@ -42,11 +47,12 @@ Present the structured confirmation table, then the output menu:
 ```
 📋 Pipeline Inputs:
 ┌──────────────────┬────────────────────────────────────────────────┐
-│ Compound         │ <detected or "not specified">                  │
-│ Indication       │ <detected or "not specified">                  │
-│ Source           │ <URL or "pasted text" or "none">               │
-│ Batman path      │ <path or "none">                               │
+│ Compound         │ <value or "—">                                 │
+│ Indication       │ <value or "—">                                 │
+│ Source           │ <description or "—">                           │
+│ Batman path      │ <path or "—">                                  │
 │ Figures detected │ <N files matching compound/indication>         │
+│ Compounds        │ <list or "auto-recommend">                     │
 └──────────────────┴────────────────────────────────────────────────┘
 
 🎯 Available Outputs (select one or more, or "all"):
@@ -69,11 +75,13 @@ Which outputs would you like?
 
 Run the selected outputs in this order (skip any that weren't selected or lack inputs):
 
-### 3a. Data Extraction (if source URL or pasted text provided)
+### 3a. Data Extraction (if source provided)
 
 Follow the `data-extraction` skill logic:
-- Fetch URL content via `curl` (CILand, press release, ClinicalTrials.gov)
-- Extract structured efficacy table (arms × endpoints)
+- If source is a folder path: scan for images, classify them, extract visible data from screenshots
+- If source is pasted text: extract structured efficacy table (arms × endpoints)
+- If source is a public URL: fetch via `curl` and extract
+- CILand/SharePoint URLs: DO NOT attempt to fetch. Tell user: "CILand requires corporate login — please paste the article text instead."
 - Store result in memory for later use by slide generation
 
 Do NOT pause to show the user the extracted table mid-pipeline. Accumulate for final delivery.
@@ -104,6 +112,8 @@ Rscript scripts/generate_ridge_plot.R \
   --output "figures/<ENDPOINT>_BNMA_ridge_<YYYY-MM-DD>.png" \
   --title "<Endpoint> Treatment Effects vs Placebo"
 ```
+
+Path conversion: `smb://lrlhps/...` or `//lrlhps/...` → check `/Volumes/lrlhps/...` first, then `/Volumes/<username>/...` (common mount pattern).
 
 ### 3c. Competitive Landscape (if selected)
 
@@ -139,7 +149,7 @@ Present a single delivery summary:
 
 📁 Generated Files:
   • figures/EASI75_BNMA_ridge_2026-08-14.png (BNMA ridge plot)
-  • zumilokibart_apex_2026-08-14.pptx (Detailed presenter deck, 10 slides)
+  • Zumilokibart_APG777_APEX_AD_Detailed_2026-08-14.pptx (Detailed presenter deck, 10 slides)
 
 📊 Key Findings:
   • [1-2 sentence BNMA interpretation — top-ranked treatment, CrI]
@@ -155,16 +165,17 @@ Review is required before disclosure.
 
 | Error | Action |
 |-------|--------|
-| Batman path not accessible | Report "Cannot access path — is the network drive mounted?" and skip ridge plot, continue other outputs |
-| Source URL unreachable | Report "Could not fetch URL" and skip extraction, continue with figures only |
+| Batman path not accessible | Report "Cannot access path — is the network drive mounted?" and skip ridge plot |
+| CILand/SharePoint URL | Ask user to paste article text instead (cannot authenticate) |
+| Source URL unreachable | Report and skip extraction, continue with figures only |
 | R package missing | Report which package and how to install, skip that step |
-| No figures for deck | Generate text-only deck, note "No BNMA figures available for embedding" |
-| Extraction uncertain | Flag in QA notes with ⚠️, include in delivery |
+| No figures for deck | Generate text-only deck, note it in delivery |
+| Extraction uncertain | Flag in QA notes with ⚠️ |
 
 **Never silently fail.** If a step is skipped, always explain why in the delivery summary.
 
 ## Notes
 
 - This skill orchestrates the other skills — it does NOT replace them. Users can still invoke individual skills directly.
-- The pipeline saves its execution log so users can rerun: "Run the same pipeline again with updated Batman output."
-- For the BNMA ridge plot compound selection: if the user said specific compounds in their initial message (e.g., "compare vs dupilumab and upadacitinib"), honor that over the auto-recommendation.
+- For BNMA compound selection: if the user specified compounds in input #5, honor that over the auto-recommendation.
+- CILand URLs cannot be fetched — always ask for pasted text.
