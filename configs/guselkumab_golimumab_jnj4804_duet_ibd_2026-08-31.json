@@ -1,0 +1,279 @@
+{
+  "title": "JNJ-4804 (Guselkumab + Golimumab) — DUET Phase 2b in UC & CD",
+  "mode": "Detailed presenter deck",
+  "outputFile": "Guselkumab_Golimumab_JNJ4804_DUET_IBD_Detailed_2026-08-31.pptx",
+  "slides": [
+    {
+      "type": "title",
+      "title": "JNJ-4804 (Guselkumab + Golimumab)\nDUET Phase 2b in UC & Crohn's Disease",
+      "subtitle": "First Co-Antibody Therapy in IBD — DDW 2026 Data Readout",
+      "date": "August 2026",
+      "speakerNotes": "JNJ-4804 (JNJ-78934804) is a fixed-dose combination of guselkumab (anti-IL-23p19) and golimumab (anti-TNF), the first co-antibody therapy in development for inflammatory bowel disease. The DUET program evaluated JNJ-4804 in two Phase 2b trials: DUET-UC (NCT05242484, N=572) in ulcerative colitis and DUET-CD (NCT05242471, N=693) in Crohn's disease, both in treatment-refractory populations. Results were presented at DDW 2026 (May 2–5, Chicago)."
+    },
+    {
+      "type": "content",
+      "title": "Compound Overview & Mechanism of Action",
+      "sections": [
+        {
+          "header": "JNJ-4804 — First Co-Antibody Therapy in IBD",
+          "bullets": [
+            "JNJ-4804 (JNJ-78934804): Fixed-dose combination of guselkumab (anti-IL-23p19) + golimumab (anti-TNF-α), administered SC",
+            "First 'co-antibody' in IBD — dual-pathway blockade in a single product",
+            "Rationale: Complementary IL-23 and TNF-α activity; molecular synergy demonstrated in VEGA Phase 2a (UC)"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.0
+        },
+        {
+          "header": "DUET Phase 2b Program",
+          "bullets": [
+            "DUET-UC (NCT05242484): N=572, ulcerative colitis, 6 arms, randomized 1:2:2:2:2:2",
+            "DUET-CD (NCT05242471): N=693, Crohn's disease, 6 arms, same design",
+            "Population: Refractory to ≥1 systemic therapy (anti-TNF, IL-12/23, integrin, JAK, IL-23p19)",
+            "Sponsor: Johnson & Johnson; Phase 3 ENCORE initiated with $500M Royalty Pharma co-funding"
+          ],
+          "x": 0.5, "y": 3.5, "w": 12.3, "h": 2.5
+        }
+      ],
+      "speakerNotes": "The VEGA Phase 2a study first demonstrated molecular synergy of combining anti-IL-23 and anti-TNF in UC. DUET expanded this to a Phase 2b treat-through design in both UC and CD. The refractory population is key: ~45% of DUET-UC and ~50% of DUET-CD participants were refractory to ≥2 systemic therapy mechanisms. Prior anti-TNF exposure was 74% in UC and 90% in CD."
+    },
+    {
+      "type": "content",
+      "title": "DUET-UC: Study Design (NCT05242484)",
+      "sections": [
+        {
+          "header": "Study Design",
+          "bullets": [
+            "Phase 2b, randomized, double-blind, active- and placebo-controlled, treat-through",
+            "N = 572 (1:2:2:2:2:2): PBO (52), GOL (104), GUS (103), JNJ-4804 Low (103), Mid (105), High (105)",
+            "Population: Mod-severe UC, IR/intolerance to ≥1 systemic therapy; 44.6% refractory to ≥2 mechanisms",
+            "Duration: Induction → Maintenance through Wk 48, LTE to Wk 240; CS taper required by Wk 12"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.2
+        },
+        {
+          "header": "Endpoints & Population",
+          "bullets": [
+            "Primary: Clinical remission at Wk48 (Adapted Mayo: SFS ≤1, RBS = 0, endoscopy ≤1)",
+            "Key secondary: Endoscopic improvement, histologic remission, CS-free remission",
+            "Prior therapy: anti-TNF 74%, anti-integrin 44%, JAK 26%, ustekinumab 19%"
+          ],
+          "x": 0.5, "y": 3.7, "w": 12.3, "h": 2.0
+        }
+      ],
+      "speakerNotes": "DUET-UC enrolled a heavily pretreated population — nearly half had failed ≥2 different mechanism classes. The treat-through design (no re-randomization) allows assessment of sustained efficacy. The 1:2:2:2:2:2 randomization gives more statistical power for the active arms relative to placebo. The primary endpoint is clinical remission by Adapted Mayo Score at Week 48, with multiplicity-controlled comparisons of JNJ-4804 High vs PBO and vs monotherapies."
+    },
+    {
+      "type": "content",
+      "title": "DUET-CD: Study Design (NCT05242471)",
+      "sections": [
+        {
+          "header": "Study Design",
+          "bullets": [
+            "Phase 2b, randomized, double-blind, active- and placebo-controlled, treat-through",
+            "N = 693 (1:2:2:2:2:2): PBO (64), GOL (126), GUS (127), JNJ-4804 Low (127), Mid (123), High (126)",
+            "Population: Mod-severe CD, IR/intolerance to ≥1 systemic therapy; 50% refractory to ≥2 mechanisms",
+            "Stratified by: CDAI (≤300, >300), SES-CD (≤12, >12), primary non-response to ≥1 systemic therapy"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.2
+        },
+        {
+          "header": "Endpoints & Baseline",
+          "bullets": [
+            "Co-primary: Clinical remission (CDAI <150) AND endoscopic response (>50% SES-CD improvement or ≤2) at Wk48",
+            "Key secondary: CS-free remission, endoscopic remission (SES-CD ≤4), deep remission (clinical + endoscopic)",
+            "Prior anti-TNF 90%, anti-IL-12/23 47%, anti-integrin 26%; Mean CDAI ~323, SES-CD ~13.7, disease duration ~11 yrs"
+          ],
+          "x": 0.5, "y": 3.7, "w": 12.3, "h": 2.0
+        }
+      ],
+      "speakerNotes": "DUET-CD is the larger trial (N=693 vs 572 for UC) and has co-primary endpoints rather than a single primary. The 50% rate of ≥2-mechanism refractory patients is even higher than in UC. Anti-TNF prior exposure at 90% is notable — this is a truly refractory population. SES-CD ≥12 at baseline indicates moderate-severe endoscopic disease."
+    },
+    {
+      "type": "table",
+      "title": "DUET-UC: Clinical Remission at Week 48 (Primary Endpoint)",
+      "table": {
+        "headers": ["Endpoint", "PBO (n=52)", "GOL (n=104)", "GUS (n=103)", "JNJ-4804 Low (n=103)", "JNJ-4804 Mid (n=105)", "JNJ-4804 High (n=105)"],
+        "rows": [
+          ["Clinical Remission (Overall)", "3.8%", "11.5%", "34.0%", "22.3%", "26.7%", "41.0%"],
+          ["  Δ vs PBO (95% CI)", "—", "—", "—", "—", "—", "37.3 (26.6, 48.0) p<0.001"],
+          ["  Δ vs GUS (95% CI)", "—", "—", "—", "—", "—", "6.3 (−6.6, 19.1) p=0.339"],
+          ["Endoscopic Improvement", "5.8%", "11.5%", "35.9%", "24.3%", "29.5%", "51.4%"],
+          ["  Δ vs PBO", "—", "—", "—", "—", "—", "45.7 (35.1, 56.2) p<0.001"],
+          ["Histologic + Endoscopic", "3.8%", "5.8%", "19.4%", "14.6%", "18.1%", "36.2%"],
+          ["CS-free Remission", "1.9%", "7.7%", "28.2%", "19.4%", "22.9%", "37.1%"],
+          ["——— ≥2 Systemic Therapy-IR ———", "", "", "", "", "", ""],
+          ["Clinical Remission (≥2 IR)", "4.8%", "2.1%", "16.0%", "—", "—", "26.7%"],
+          ["  Δ vs PBO (95% CI)", "—", "—", "—", "—", "—", "19.7 (5.8, 33.5)"],
+          ["Endoscopic Improvement (≥2 IR)", "4.8%", "6.3%", "20.0%", "—", "—", "35.6%"],
+          ["CS-free Remission (≥2 IR)", "4.8%", "—", "14.0%", "—", "—", "24.4%"]
+        ]
+      },
+      "disclaimer": "Source: DDW 2026 poster — Sands BE et al. Clinical remission = Adapted Mayo: SFS ≤1, RBS = 0, endoscopy ≤1. IR = inadequate response/intolerance.",
+      "speakerNotes": "The primary endpoint was met: JNJ-4804 High achieved 41.0% clinical remission vs 3.8% PBO (Δ 37.3, p<0.001). However, the comparison vs guselkumab monotherapy was NOT statistically significant (41.0% vs 34.0%, Δ 6.3, p=0.339). The key differentiator emerges in the ≥2 systemic therapy-IR subgroup, where the gap widens: 26.7% vs 16.0% for GUS and 2.1% for GOL. The 91.7% CS-free rate among remitters is notable. Endoscopic improvement was the strongest differentiator: 51.4% for High vs 35.9% for GUS overall."
+    },
+    {
+      "type": "image",
+      "title": "DUET-UC: Clinical Remission at Week 48 — Overall & ≥2 Systemic Therapy-IR",
+      "imagePath": "figures/DUET_UC_ClinRemission_Wk48.png",
+      "disclaimer": "Source: DDW 2026 poster (Sands BE et al.). Clinical remission = Adapted Mayo Score.",
+      "speakerNotes": "This figure from the DDW 2026 poster shows the bar chart for clinical remission at Week 48. Left panel: overall population — note the dose-response across JNJ-4804 Low/Mid/High, with High reaching 41.0%. Right panel: ≥2 systemic therapy-IR subgroup — JNJ-4804 High at 26.7% vs GUS 16.0% and GOL 2.1%, showing the combo's advantage in treatment-refractory patients."
+    },
+    {
+      "type": "table",
+      "title": "DUET-UC: Treatment Disposition & Retention Through Week 48",
+      "table": {
+        "headers": ["", "PBO (n=52)", "GOL (n=104)", "GUS (n=103)", "JNJ-4804 Low (n=103)", "JNJ-4804 Mid (n=105)", "JNJ-4804 High (n=105)"],
+        "rows": [
+          ["Discontinued before Wk48", "48.1%", "38.5%", "21.4%", "25.2%", "16.2%", "13.3%"],
+          ["  Lack of efficacy", "21.2%", "14.4%", "8.7%", "10.7%", "6.7%", "3.8%"],
+          ["  Withdrawal by participant", "7.7%", "5.8%", "3.9%", "5.8%", "2.9%", "2.9%"],
+          ["  AE — worsening of UC", "9.6%", "7.7%", "3.9%", "3.9%", "2.9%", "1.9%"],
+          ["  AE — other", "1.9%", "5.8%", "2.9%", "2.9%", "1.9%", "2.9%"],
+          ["Retention rate", "51.9%", "61.5%", "78.6%", "74.8%", "83.8%", "86.7%"]
+        ]
+      },
+      "disclaimer": "Source: DDW 2026 poster. JNJ-4804 High dose had the lowest discontinuation rate (13.3%) and highest retention.",
+      "speakerNotes": "JNJ-4804 High dose demonstrated the best treatment retention at 86.7%, compared to 78.6% for guselkumab, 61.5% for golimumab, and 51.9% for placebo. The very low discontinuation for lack of efficacy (3.8%) supports durable benefit. The 13.3% overall discontinuation rate is impressive for a 48-week study in a refractory population."
+    },
+    {
+      "type": "table",
+      "title": "DUET-CD: Clinical Remission at Week 48 (Co-Primary Endpoint 1)",
+      "table": {
+        "headers": ["Population", "PBO (n=64)", "GOL (n=126)", "GUS (n=127)", "JNJ-4804 Low (n=127)", "JNJ-4804 Mid (n=123)", "JNJ-4804 High (n=126)"],
+        "rows": [
+          ["Clinical Remission (Overall)", "12.5%", "25.4%", "42.5%", "35.4%", "50.4%", "50.8%"],
+          ["  (n/N)", "8/64", "32/126", "54/127", "45/127", "62/123", "64/126"],
+          ["  Δ vs PBO (95% CI)", "—", "—", "—", "—", "—", "37.9 (25.6, 50.2)"],
+          ["  p-value vs PBO", "—", "—", "—", "—", "—", "p<0.001"],
+          ["  Δ vs GOL (95% CI)", "—", "—", "—", "—", "—", "25.7 (14.2, 37.1)"],
+          ["  p-value vs GOL", "—", "—", "—", "—", "—", "p<0.001"],
+          ["  Δ vs GUS (95% CI)", "—", "—", "—", "—", "—", "8.5 (−3.6, 20.6)"],
+          ["  p-value vs GUS", "—", "—", "—", "—", "—", "p=0.171"],
+          ["——— ≥2 Systemic Therapy-IR ———", "", "", "", "", "", ""],
+          ["Clinical Remission (≥2 IR)", "11.4%", "23.1%", "27.3%", "—", "—", "49.2%"],
+          ["  Δ vs PBO (95% CI)", "—", "—", "—", "—", "—", "39.4 (21.6, 57.3)"],
+          ["  Δ vs GUS (95% CI)", "—", "—", "—", "—", "—", "21.2 (4.1, 38.3)"]
+        ]
+      },
+      "disclaimer": "Source: DDW 2026 poster — Sands BE et al. Clinical remission = CDAI <150. IR = inadequate response/intolerance. *Statistically significant for GOL comparison only.",
+      "speakerNotes": "Co-primary 1 was met: JNJ-4804 High achieved 50.8% clinical remission vs 12.5% PBO (Δ 37.9, p<0.001). In the overall population, the combo was superior to golimumab (p<0.001) but NOT statistically significantly better than guselkumab (50.8% vs 42.5%, p=0.171). However, in the critical ≥2 systemic therapy-IR subgroup, JNJ-4804 High clearly separated from guselkumab: 49.2% vs 27.3% (Δ 21.2, 95% CI: 4.1–38.3). This is the key story — the combination adds most value in the hardest-to-treat patients."
+    },
+    {
+      "type": "image",
+      "title": "DUET-CD: Clinical Remission at Week 48 — Overall & ≥2 Systemic Therapy-IR",
+      "imagePath": "figures/DUET_CD_ClinRemission_Wk48.png",
+      "disclaimer": "Source: DDW 2026 poster (Sands BE et al.). Clinical remission = CDAI <150.",
+      "speakerNotes": "This figure shows the CD clinical remission data. Left panel: overall population — all 6 arms, with JNJ-4804 Mid and High both exceeding 50%, comparable to each other and numerically above guselkumab (42.5%). Right panel: ≥2 systemic therapy-IR subgroup — JNJ-4804 High at 49.2% clearly separates from guselkumab (27.3%) with Δ 21.2 (95% CI: 4.1–38.3). This is the key differentiating figure for the combination."
+    },
+    {
+      "type": "table",
+      "title": "DUET-CD: Endoscopic Response at Week 48 (Co-Primary Endpoint 2)",
+      "table": {
+        "headers": ["Population", "PBO (n=64)", "GOL (n=126)", "GUS (n=127)", "JNJ-4804 Low (n=127)", "JNJ-4804 Mid (n=123)", "JNJ-4804 High (n=126)"],
+        "rows": [
+          ["Endoscopic Response (Overall)", "4.7%", "19.8%", "33.9%", "15.7%", "31.7%", "38.1%"],
+          ["  (n/N)", "3/64", "25/126", "43/127", "20/127", "39/123", "48/126"],
+          ["  Δ vs PBO (95% CI)", "—", "—", "—", "—", "—", "34.1 (24.1, 44.0)"],
+          ["  p-value vs PBO", "—", "—", "—", "—", "—", "p<0.001"],
+          ["  Δ vs GOL (95% CI)", "—", "—", "—", "—", "—", "18.5 (7.6, 29.3)"],
+          ["  p-value vs GOL", "—", "—", "—", "—", "—", "p<0.001"],
+          ["  Δ vs GUS (95% CI)", "—", "—", "—", "—", "—", "4.5 (−7.2, 16.2)"],
+          ["  p-value vs GUS", "—", "—", "—", "—", "—", "p=0.451"],
+          ["——— ≥2 Systemic Therapy-IR ———", "", "", "", "", "", ""],
+          ["Endoscopic Response (≥2 IR)", "2.9%", "12.3%", "20.0%", "—", "—", "33.3%"],
+          ["  Δ vs PBO (95% CI)", "—", "—", "—", "—", "—", "35.0 (20.2, 49.7)"],
+          ["  Δ vs GUS (95% CI)", "—", "—", "—", "—", "—", "11.7 (−4.3, 27.6)"]
+        ]
+      },
+      "disclaimer": "Source: DDW 2026 poster. Endoscopic response = >50% SES-CD improvement from baseline or SES-CD ≤2. Central reading.",
+      "speakerNotes": "Co-primary 2 was also met: JNJ-4804 High achieved 38.1% endoscopic response vs 4.7% PBO (Δ 34.1, p<0.001). Again, superior to golimumab (p<0.001) but not significantly different from guselkumab (38.1% vs 33.9%, p=0.451). In the ≥2-IR subgroup, the gap widened (33.3% vs 20.0%) but the 95% CI for GUS comparison crosses zero (−4.3 to 27.6). The endoscopic response data is more modest than clinical remission, suggesting guselkumab alone captures much of the endoscopic benefit."
+    },
+    {
+      "type": "table",
+      "title": "DUET-CD: High-Bar Endpoints — ≥2 Systemic Therapy-IR Subgroup at Week 48",
+      "table": {
+        "headers": ["Endpoint", "PBO", "GOL", "GUS", "JNJ-4804 High", "Δ High vs PBO (95% CI)"],
+        "rows": [
+          ["Clinical Remission", "11.4% (4/35)", "23.1% (15/65)", "27.3% (15/55)", "49.2% (31/63)", "39.4 (21.6, 57.3)"],
+          ["Endoscopic Response", "2.9% (1/35)", "12.3% (8/65)", "20.0% (11/55)", "33.3% (21/63)", "35.0 (20.2, 49.7)"],
+          ["CS-free Clinical Remission", "11.4% (4/35)", "21.5% (14/65)", "27.3% (15/55)", "46.0% (29/63)", "37.2 (18.5, 55.8)"],
+          ["Endoscopic Remission", "2.9% (1/35)", "7.7% (5/65)", "7.3% (4/55)", "23.8% (15/63)", "21.2 (8.0, 34.3)"],
+          ["Deep Remission", "0% (0/35)", "6.2% (4/65)", "5.5% (3/55)", "20.6% (13/63)", "20.1 (8.8, 31.4)"],
+          ["% of remitters CS-free", "—", "—", "—", "93.5% (29/31)", "—"]
+        ]
+      },
+      "disclaimer": "Source: DDW 2026 poster. CS-free = no corticosteroids for ≥60 days. Endoscopic remission = SES-CD ≤4. Deep remission = clinical remission + endoscopic remission.",
+      "speakerNotes": "This is the most compelling slide for JNJ-4804. In the ≥2 systemic therapy-IR subgroup (the hardest-to-treat 50%), JNJ-4804 High consistently outperformed both monotherapies across all endpoints. The standout findings: 49.2% clinical remission (vs 27.3% GUS), 46.0% CS-free remission, and notably 20.6% deep remission (vs 5.5% GUS and 6.2% GOL). The 93.5% CS-free rate among remitters indicates nearly all remissions are durable without steroid support. Endoscopic remission at 23.8% vs <8% for monotherapies is a 3× improvement — this is where the combo truly shines."
+    },
+    {
+      "type": "table",
+      "title": "Safety Summary: DUET-UC & DUET-CD Through Week 48",
+      "table": {
+        "headers": ["AE Category (per 100 PY)", "PBO", "GOL", "GUS", "JNJ-4804 High", "JNJ-4804 Combined"],
+        "rows": [
+          ["——— DUET-UC ———", "", "", "", "", ""],
+          ["Safety analysis set (n)", "52", "104", "103", "105", "313"],
+          ["Any AE", "490.2", "449.2", "419.0", "490.1", "429.7"],
+          ["SAEs", "27.5", "21.5", "9.6", "10.6", "13.7"],
+          ["AEs → discontinuation", "27.5", "18.5", "5.5", "3.5", "7.3"],
+          ["Serious infections", "3.9", "7.7", "0", "3.5", "3.0"],
+          ["Deaths", "0", "0", "0", "0", "0"],
+          ["——— DUET-CD ———", "", "", "", "", ""],
+          ["Safety analysis set (n)", "64", "126", "127", "126", "376"],
+          ["Any AE", "646.8", "603.2", "561.0", "496.4", "518.7"],
+          ["SAEs", "31.2", "44.2", "14.2", "18.2", "23.3"],
+          ["AEs → discontinuation", "41.6", "23.2", "11.2", "10.5", "9.6"],
+          ["Serious infections", "2.6", "7.0", "4.1", "2.9", "4.7"],
+          ["Deaths", "0", "1.2 [1]", "0", "0", "0"]
+        ]
+      },
+      "disclaimer": "Source: DDW 2026 posters. Exposure-adjusted rates (events per 100 patient-years). 1 death in DUET-CD golimumab group (unwitnessed MACE). Most infections were mild/moderate.",
+      "speakerNotes": "Safety profile of JNJ-4804 was consistent with the established profiles of its components. Key observations: (1) No deaths in any JNJ-4804 arm in either trial; 1 death in CD golimumab arm (unwitnessed cardio-respiratory arrest). (2) AE-related discontinuation was lowest in JNJ-4804 High in both UC (3.5) and CD (10.5) — better than PBO and both monotherapies. (3) SAE rates for JNJ-4804 High were comparable to guselkumab and lower than golimumab. (4) No signal for demyelination, lupus-like syndrome, or CHF. (5) AEs of special interest: UC had 3 basal cell carcinomas (GUS, Low, Mid — all excised), CD had 4 malignancies across arms. No pattern of excess malignancy with combo vs monotherapy."
+    },
+    {
+      "type": "content",
+      "title": "Strategic Implications & Phase 3 ENCORE Program",
+      "sections": [
+        {
+          "header": "Key Finding: Combo Wins in Refractory, Not Overall",
+          "bullets": [
+            "JNJ-4804 did NOT significantly beat guselkumab monotherapy in the overall population (UC or CD primary endpoints)",
+            "Combo advantage concentrated in ≥2 systemic therapy-IR subgroup across clinical, endoscopic, and deep remission",
+            "Phase 3 ENCORE pivots to refractory population: head-to-head vs guselkumab monotherapy"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.0
+        },
+        {
+          "header": "Phase 3 ENCORE & Competitive Context",
+          "bullets": [
+            "ENCORE-UC (NCT07577856): ~644 pts, JNJ-4804 vs guselkumab, primary completion Aug 2028",
+            "ENCORE-CD (NCT07577843): ~460 pts, same design, primary completion Jun 2028",
+            "$500M Royalty Pharma co-funding; if successful, first combination biologic approved in IBD",
+            "Risk: Overall population signal modest; success depends on prospective refractory subgroup confirmation",
+            "Lilly implication: If JNJ-4804 establishes combo paradigm, may pressure mirikizumab toward combination strategies"
+          ],
+          "x": 0.5, "y": 3.5, "w": 12.3, "h": 2.8
+        }
+      ],
+      "speakerNotes": "The strategic story is nuanced. JNJ-4804 clearly works, but the critical question is whether it adds enough over guselkumab monotherapy to justify combination complexity and cost. The Phase 2b data says 'yes' only in the refractory subgroup — which is exactly where J&J is focusing Phase 3. The head-to-head vs guselkumab design in ENCORE is bold and high-risk. For Lilly's mirikizumab franchise, this could validate or challenge the anti-IL-23 monotherapy approach in IBD."
+    },
+    {
+      "type": "summary",
+      "title": "Key Takeaways",
+      "takeaways": [
+        "JNJ-4804 (guselkumab + golimumab) met primary/co-primary endpoints vs placebo in both DUET-UC and DUET-CD (p<0.001), demonstrating proof-of-concept for dual IL-23 + TNF blockade in IBD",
+        "In OVERALL populations: JNJ-4804 High was superior to golimumab but NOT statistically significantly better than guselkumab in either UC (41.0% vs 34.0%, p=0.339) or CD (50.8% vs 42.5%, p=0.171)",
+        "In ≥2 SYSTEMIC THERAPY-IR patients (~50%): JNJ-4804 High consistently exceeded both monotherapies — CD clinical remission 49.2% vs GUS 27.3% (Δ 21.2); deep remission 20.6% vs GUS 5.5%; 93.5% of remitters were corticosteroid-free",
+        "Safety was consistent with the established profiles of guselkumab and golimumab, with no new signals; JNJ-4804 High had the lowest discontinuation rates in both trials",
+        "Phase 3 ENCORE program (UC + CD) is head-to-head vs guselkumab monotherapy in refractory patients — primary completion 2028; $500M Royalty Pharma co-funding"
+      ],
+      "actions": [
+        "Monitor Phase 3 ENCORE-UC (NCT07577856) and ENCORE-CD (NCT07577843) enrollment and timelines",
+        "Assess implications for Lilly's mirikizumab positioning in UC/CD — combination strategies may become the next competitive frontier",
+        "Track regulatory interactions for potential accelerated pathway if ENCORE Phase 3 confirms refractory subgroup benefit",
+        "Evaluate whether the 'refractory-only' label positioning limits or focuses JNJ-4804's commercial opportunity"
+      ],
+      "speakerNotes": "Bottom line: JNJ-4804 is a credible but not dominant competitor. Its advantage is clearly concentrated in the hardest-to-treat patients. The Phase 3 ENCORE design — head-to-head vs guselkumab monotherapy — is the decisive test. If it confirms the refractory subgroup benefit prospectively, this could establish a new combination paradigm in IBD. If it fails to differentiate from guselkumab in the enrolled population, the program may struggle commercially. Key timeline: primary data readout expected mid-2028."
+    }
+  ]
+}

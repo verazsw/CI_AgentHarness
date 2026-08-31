@@ -414,7 +414,10 @@ def main():
         else:
             print(f"Warning: Unknown slide type '{slide_data['type']}'", file=sys.stderr)
 
-    output_file = os.path.join(BASE_DIR, data["outputFile"])
+    # Output to slide_generated/ subfolder
+    output_dir = os.path.join(BASE_DIR, "slide_generated")
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, data["outputFile"])
     prs.save(output_file)
 
     print(f"✓ Saved: {output_file}")

@@ -43,7 +43,7 @@ Before generating slides, gather information in this **priority order**:
      > "Could you convert the press release pages to PNG images and drop them in the `figures/` folder? On Mac: open in Preview → File → Export → PNG. You only need the pages with figures you want embedded (study design, efficacy charts, safety tables)."
    - Extract all efficacy data, study design, safety signals from the press release FIRST
 
-3. **Check `figures/` folder for BNMA plot PNGs** — if present (matching naming convention `{compound}_{endpoint}_{timepoint}_{date}.png`), interpret each for slide content
+3. **Check `figures/` and `BNMA_output/` folders for BNMA plot PNGs** — if present (matching naming convention `{compound}_{endpoint}_{timepoint}_{date}.png`), interpret each for slide content
 
 4. **ClinicalTrials.gov** — supplement with study design details, arms, sample size (only if press release is incomplete)
 
@@ -164,10 +164,10 @@ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&te
 ### Step 1: Check for BNMA plots
 
 ```bash
-ls figures/*.png figures/*.jpg figures/*.jpeg 2>/dev/null | grep -E '^figures/[A-Z]'
+ls figures/*.png figures/*.jpg figures/*.jpeg BNMA_output/*.png BNMA_output/*.jpg 2>/dev/null | grep -E '/[A-Z]'
 ```
 
-This filters for BNMA plots (which start with a compound code like `APG777_`) vs press release pages (which start with `page-`).
+This filters for BNMA plots (which start with a compound code like `APG777_`) vs press release pages (which start with `page-`). Plots may be in either `figures/` or `BNMA_output/`.
 
 ### Step 2: Parse filenames
 
@@ -778,12 +778,12 @@ The engine at `scripts/generate_deck.py` handles all slide types. The agent writ
 python3 scripts/generate_deck.py configs/{compound}_{study}_{date}.json
 ```
 
-Confirm the `.pptx` file was created. Tell the user:
+Confirm the `.pptx` file was created in `slide_generated/`. Tell the user:
 ```
-✓ Saved: competitor_deck_20260720.pptx
+✓ Saved: slide_generated/competitor_deck_20260720.pptx
   Mode: [Quick/Detailed]
   Slides: [N]
-  BNMA plots embedded: [N] (from figures/)
+  BNMA plots embedded: [N] (from figures/ or BNMA_output/)
   Landscape chart: included (compound colors applied)
 ```
 

@@ -211,3 +211,16 @@ Review is required before disclosure.
 
 - See `references/indications.md` for endpoint codes and default timepoints per indication
 - See `references/extraction-rules.md` for Batman column mapping and QC checks
+
+---
+
+## Batman Input Excel Append
+
+When the user provides an existing Batman BNMA input Excel file path, the extracted arms data can be fed directly into `scripts/append_batman_input.R` to add new rows to the Batman input file. The script handles:
+- Derivation chain: outcome_value → n_events → r, n, y, se (binary and continuous)
+- Auto-incrementing study_ind from the existing file's max
+- Mapping all 37 Batman columns including frequency/ROA inference from treatment names
+- Column name case-insensitive matching with the existing file
+- Type coercion to prevent bind_rows failures
+
+See the pipeline skill (Step 3b+) for the full workflow including the mandatory preview/confirm step.

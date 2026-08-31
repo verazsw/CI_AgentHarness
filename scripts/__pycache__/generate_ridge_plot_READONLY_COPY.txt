@@ -2,49 +2,34 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # Generate BNMA ridge plot (posterior density) from Batman NMA output.
 #
-# Supports both normal (continuous) and logit (binomial) Batman models.
-# Model type is auto-detected from meta.csv; the x-axis label, reference
-# line, and numeric formatting adjust accordingly.
-#
 # This script reads the FullPosteriorSamples.csv from a Batman tool output
 # directory, allows the user to select which compounds to include, and produces
-# a publication-quality ridge plot of treatment effects vs placebo, with
-# posterior mean and 95% credible interval annotations.
+# a publication-quality ridge plot of treatment effects vs placebo.
 #
 # Usage (interactive):
 #   source("scripts/generate_ridge_plot.R")
 #   # Then call:
-#   generate_ridge_plot(batman_output_dir = "/path/to/logit_independent_fixed_fixed/")
+#   generate_ridge_plot(batman_output_dir = "/path/to/normal_independent_fixed_random/")
 #
-# Usage (command line — normal model):
+# Usage (command line):
 #   Rscript scripts/generate_ridge_plot.R \
-#     --batman_dir "/path/to/normal_independent_fixed_fixed/" \
+#     --batman_dir "/path/to/normal_independent_fixed_random/" \
 #     --compounds "dupilumab,lebrikizumab,zumilokibart" \
 #     --output "figures/my_ridge_plot.png"
 #
-# Usage (command line — logit model with study type):
-#   Rscript scripts/generate_ridge_plot.R \
-#     --batman_dir "/path/to/logit_independent_fixed_fixed/" \
-#     --compounds "dupilumab,lebrikizumab,upadacitinib" \
-#     --output "figures/my_ridge_plot.png" \
-#     --study_type "Monotherapy" \
-#     --scale "log_odds_ratio"
-#
 # Usage (suggest-only mode — outputs JSON with recommended compounds):
 #   Rscript scripts/generate_ridge_plot.R \
-#     --batman_dir "/path/to/logit_independent_fixed_fixed/" \
+#     --batman_dir "/path/to/normal_independent_fixed_random/" \
 #     --focus "zumilokibart" --indication "AD" --suggest_only
 #
 # Batman output folder structure (expected):
 #   smb://lrlhps/users/<user>/<project>/_output/
 #     batmanNMA_<model>_<id>_<timestamp>_output/
-#       <likelihood>_independent_fixed_fixed/  (or fixed_random, random_random)
-#         FullPosteriorSamples.csv  <-- MCMC posterior samples (d[N] columns)
-#         meta.csv                  <-- model metadata (Likelihood: normal/logit)
-#         BatmanData.R              <-- treatment names
-#         summaryStats.csv          <-- summary treatment effects
-#         abs_summaries.csv         <-- absolute response rates
-#         dic.csv                   <-- DIC/pD model fit
+#       normal_independent_fixed_fixed/     (or fixed_random, random_random)
+#         FullPosteriorSamples.csv          <-- main input
+#         treatment_names.csv               <-- treatment labels
+#         model_fit.csv                     <-- DIC/pD for model selection
+#         d_overall.csv                     <-- summary treatment effects
 #         ...
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -56,260 +41,18 @@ suppressPackageStartupMessages({
 })
 
 # ── Color palette ─────────────────────────────────────────────────────────────
-# Tableau 20: muted, colorblind-friendly, journal-quality palette
+# Distinct, colorblind-friendly palette for up to 20 treatments
 RIDGE_PALETTE <- c(
-  "#4E79A7",   # steel blue
-  "#F28E2B",   # warm amber
-  "#E15759",   # soft red
-  "#76B7B2",   # teal
-  "#59A14F",   # sage green
-  "#EDC948",   # muted gold
-  "#B07AA1",   # dusty mauve
-  "#FF9DA7",   # rose
-  "#9C755F",   # warm brown
-  "#BAB0AC",   # warm gray
-  "#AF7AA1",   # plum
-  "#86BCB6",   # mint
-  "#D4A6C8",   # light orchid
-  "#8CD17D",   # spring green
-  "#499894",   # deep teal
-  "#E49C5D",   # burnt peach
-  "#B6992D",   # olive
-  "#D37295",   # pink
-  "#FABFD2",   # blush
-  "#7B848F"    # slate
+  "#00BFC4", "#7CAE00", "#F8766D", "#C77CFF", "#00BA38",
+
+"#619CFF", "#FF61CC", "#00C19F", "#CD9600", "#F564E3",
+  "#00B9E3", "#93AA00", "#DB72FB", "#FF6C91", "#00C0AF",
+  "#B79F00", "#00BCD8", "#F0766D", "#7CAF00", "#CC79A7"
 )
 
-# Lilly brand red for focus compound highlighting
-LILLY_RED <- "#C8102E"
-
-
-# ── Detect model type from meta.csv ──────────────────────────────────────────
-#' Auto-detect Batman model type (normal, logit, etc.) from meta.csv
-#'
-#' @param batman_dir Path to the Batman output directory
-#' @return Character string: "normal", "logit", "poisson", or "unknown"
-detect_model_type <- function(batman_dir) {
-  meta_file <- file.path(batman_dir, "meta.csv")
-  if (file.exists(meta_file)) {
-    meta <- tryCatch(
-      read_csv(meta_file, show_col_types = FALSE),
-      error = function(e) NULL
-    )
-    if (!is.null(meta) && "Likelihood" %in% names(meta) && nrow(meta) > 0) {
-      likelihood <- tolower(trimws(meta$Likelihood[1]))
-      if (likelihood %in% c("normal", "logit", "poisson", "binomial")) {
-        return(likelihood)
-      }
-    }
-  }
-  # Fallback: infer from directory name
-  dir_name <- basename(batman_dir)
-  if (grepl("^logit_", dir_name))    return("logit")
-  if (grepl("^normal_", dir_name))   return("normal")
-  if (grepl("^poisson_", dir_name))  return("poisson")
-  if (grepl("^binomial_", dir_name)) return("logit")
-  return("unknown")
-}
-
-
-# ── Scale configuration by model type ────────────────────────────────────────
-#' Get scale-dependent configuration (labels, transforms, reference line)
-#'
-#' @param model_type Character: "normal", "logit", "unknown"
-#' @param scale_override Character or NULL: force "odds_ratio" or "log_odds_ratio"
-#' @return Named list with transform_fn, x_label, ref_line, scale_name, format_fn
-get_scale_config <- function(model_type, scale_override = NULL) {
-  # Odds ratio scale for logit models (optional)
-  if (!is.null(scale_override) && scale_override == "odds_ratio" && model_type == "logit") {
-    return(list(
-      transform_fn = exp,
-      x_label      = "Odds Ratio (vs Placebo)",
-      ref_line     = 1,
-      scale_name   = "odds_ratio",
-      format_fn    = function(x) sprintf("%.2f", x)
-    ))
-  }
-  # Default for logit models: log-odds ratio
-  if (model_type == "logit") {
-    return(list(
-      transform_fn = identity,
-      x_label      = "Log-Odds Ratio (vs Placebo)",
-      ref_line     = 0,
-      scale_name   = "log_odds_ratio",
-      format_fn    = function(x) sprintf("%.2f", x)
-    ))
-  }
-  # Normal model (current behavior / default)
-  return(list(
-    transform_fn = identity,
-    x_label      = "Treatment Difference (vs Placebo)",
-    ref_line     = 0,
-    scale_name   = "mean_difference",
-    format_fn    = function(x) sprintf("%.3f", x)
-  ))
-}
-
-
-# ── Multi-line title builder ─────────────────────────────────────────────────
-#' Build a structured multi-line title from Batman output context
-#'
-#' @param batman_dir Path to the Batman output directory
-#' @param indication Indication code (e.g., "AD", "Psoriasis")
-#' @param model_type Character: "normal" or "logit"
-#' @param study_type Character or NULL: "Monotherapy", "Combo", etc.
-#' @param title_override If non-NULL, return as-is
-#' @return Character string with newline separators
-build_title <- function(batman_dir, indication = NULL, model_type = "normal",
-                        study_type = NULL, title_override = NULL) {
-  if (!is.null(title_override)) return(title_override)
-
-  dir_parts <- str_split(normalizePath(batman_dir, mustWork = FALSE), "/|\\\\")[[1]]
-
-  # ── Try to extract endpoint/timepoint from meta.csv ──
-  endpoint_str <- NULL
-  timepoint_str <- NULL
-  meta_file <- file.path(batman_dir, "meta.csv")
-  if (file.exists(meta_file)) {
-    meta <- tryCatch(read_csv(meta_file, show_col_types = FALSE), error = function(e) NULL)
-    if (!is.null(meta)) {
-      ep_val <- meta$Endpoint[1]
-      tp_val <- meta$Timepoint[1]
-      if ("Endpoint" %in% names(meta) && !is.na(ep_val) && nchar(trimws(ep_val)) > 0)
-        endpoint_str <- trimws(ep_val)
-      if ("Timepoint" %in% names(meta) && !is.na(tp_val) && nchar(trimws(tp_val)) > 0)
-        timepoint_str <- trimws(tp_val)
-    }
-  }
-
-  # ── Fall back to directory path parsing for endpoint ──
-  if (is.null(endpoint_str)) {
-    endpoint_patterns <- c(
-      "EASI[_-]?75"  = "EASI-75",  "EASI[_-]?90"  = "EASI-90",
-      "EASI[_-]?50"  = "EASI-50",
-      "IGA[_-]?0[/_]?1" = "IGA 0/1",
-      "PASI[_-]?75"  = "PASI-75",  "PASI[_-]?90"  = "PASI-90",
-      "PASI[_-]?100" = "PASI-100",
-      "ACR[_-]?20"   = "ACR20",    "ACR[_-]?50"   = "ACR50",
-      "ACR[_-]?70"   = "ACR70",
-      "MAYO"         = "Mayo Score",
-      "SRI[_-]?4"    = "SRI-4"
-    )
-    dir_str <- paste(dir_parts, collapse = "/")
-    for (pat in names(endpoint_patterns)) {
-      if (grepl(pat, dir_str, ignore.case = TRUE)) {
-        endpoint_str <- endpoint_patterns[pat]
-        break
-      }
-    }
-  }
-
-  # ── Fall back to directory path parsing for timepoint ──
-  if (is.null(timepoint_str)) {
-    dir_str <- paste(dir_parts, collapse = "/")
-    wk_match <- regmatches(dir_str, regexpr("(?i)[Ww][Kk]?[_-]?(\\d+)", dir_str, perl = TRUE))
-    if (length(wk_match) > 0 && nchar(wk_match[1]) > 0) {
-      wk_num <- gsub("(?i)[Ww][Kk]?[_-]?", "", wk_match[1], perl = TRUE)
-      timepoint_str <- paste0("Week ", wk_num)
-    }
-  }
-
-  # ── Build indication label ──
-  indication_map <- c(
-    "AD" = "Atopic Dermatitis", "AtD" = "Atopic Dermatitis",
-    "Psoriasis" = "Psoriasis", "PsO" = "Psoriasis",
-    "UC" = "Ulcerative Colitis", "RA" = "Rheumatoid Arthritis",
-    "CRSwNP" = "CRSwNP", "Crohn" = "Crohn's Disease",
-    "SLE" = "Systemic Lupus Erythematosus",
-    "PsA" = "Psoriatic Arthritis",
-    "Asthma" = "Asthma", "COPD" = "COPD",
-    "IPF" = "Idiopathic Pulmonary Fibrosis"
-  )
-  indication_label <- if (!is.null(indication) && indication %in% names(indication_map)) {
-    indication_map[indication]
-  } else if (!is.null(indication) && nchar(indication) > 0) {
-    indication
-  } else {
-    ""
-  }
-
-  # ── Line 1: Context ──
-  line1 <- paste0(
-    "Multi-Treatment Comparison",
-    if (nchar(indication_label) > 0) paste0(" in ", indication_label) else ""
-  )
-
-  # ── Line 2: Analysis description ──
-  effect_label <- if (model_type == "logit") {
-    "PBO-Adjusted Log-Odds Ratios"
-  } else {
-    "PBO-Adjusted Effect Sizes"
-  }
-  line2 <- paste0("Posterior Density for ", effect_label)
-  if (!is.null(study_type) && nchar(study_type) > 0) {
-    line2 <- paste0(line2, " for ", study_type, " Studies")
-  }
-
-  # ── Line 3: Endpoint + Timepoint ──
-  line3_parts <- c(endpoint_str, timepoint_str)
-  line3_parts <- line3_parts[!is.na(line3_parts) & !is.null(line3_parts) & nchar(line3_parts) > 0]
-  line3 <- if (length(line3_parts) > 0) paste(line3_parts, collapse = " at ") else NULL
-
-  # ── Combine ──
-  title_lines <- c(line1, line2, line3)
-  title_lines <- title_lines[!is.null(title_lines) & nchar(title_lines) > 0]
-  paste(title_lines, collapse = "\n")
-}
-
-
-# ── Extract treatment names from dsn_forest_plot_settings.yaml ─────────────────
-#' Primary method: parse treatment names from the eff_choices mapping in
-#' dsn_forest_plot_settings.yaml, which maps treatment name → d[N] index.
-#'
-#' @param batman_dir Path to the Batman output directory
-#' @return Named character vector (names = treatment labels, values = d[N] indices),
-#'   ordered by d[N] index, or NULL if the file is not found
-extract_treatment_names_from_yaml <- function(batman_dir) {
-  yaml_file <- file.path(batman_dir, "dsn_forest_plot_settings.yaml")
-  if (!file.exists(yaml_file)) return(NULL)
-
-  lines <- readLines(yaml_file, warn = FALSE)
-
-  # Find eff_choices: section and extract name: d[N] pairs
-  in_eff <- FALSE
-  mapping <- character()
-  for (line in lines) {
-    if (grepl("^\\s*eff_choices:", line)) { in_eff <- TRUE; next }
-    if (in_eff) {
-      # Check if we've exited the eff_choices block (new top-level key)
-      if (grepl("^\\s*[a-z_]+:", line) && !grepl("^\\s+", line)) break
-      m <- regmatches(line, regexpr("^\\s+(.+?):\\s*(d\\[\\d+\\])", line, perl = TRUE))
-      if (length(m) > 0 && nchar(m) > 0) {
-        # Extract name and d[N] index
-        parts <- str_match(line, "^\\s+(.+?):\\s*(d\\[\\d+\\])")
-        if (!is.na(parts[1, 2])) {
-          treat_name <- trimws(parts[1, 2])
-          d_index <- parts[1, 3]
-          mapping[treat_name] <- d_index
-        }
-      }
-    }
-  }
-
-  if (length(mapping) == 0) return(NULL)
-
-  # Sort by d[N] index number
-  idx_nums <- as.integer(gsub("d\\[(\\d+)\\]", "\\1", mapping))
-  mapping <- mapping[order(idx_nums)]
-  names(mapping)
-}
-
-
 # ── Extract treatment names from BatmanData.R ─────────────────────────────────
-#' Fallback method: parse treatment names from BatmanData.R.
-#' The treatment block is a structure(c(...), ...) nested inside the batmanData
-#' list, so parenthesis counting starts from the 'structure(c(' of the treatment
-#' variable specifically.
+#' When FullPosteriorSamples.csv has indexed columns (d[1], d[2], ...),
+#' parse the actual treatment names from BatmanData.R in the same directory.
 #'
 #' @param batman_dir Path to the Batman output directory
 #' @return Character vector of unique treatment names, or NULL if not found
@@ -324,34 +67,24 @@ extract_treatment_names_from_batman <- function(batman_dir) {
   if (length(start_idx) == 0) return(NULL)
   start_idx <- start_idx[1]
 
-  # Extract only the portion starting from "structure(c(" on the first line
-  first_line <- lines[start_idx]
-  struct_pos <- regexpr("structure\\(c\\(", first_line)
-  if (struct_pos > 0) {
-    first_line <- substr(first_line, struct_pos, nchar(first_line))
-  }
-
-  # Accumulate text and track parenthesis depth starting from "structure(c("
-  text_block <- first_line
-  chars <- strsplit(first_line, "")[[1]]
-  paren_depth <- sum(chars == "(") - sum(chars == ")")
-
-  if (paren_depth > 0) {
-    for (i in (start_idx + 1):min(start_idx + 100, length(lines))) {
-      text_block <- paste0(text_block, lines[i])
-      chars <- strsplit(lines[i], "")[[1]]
-      paren_depth <- paren_depth + sum(chars == "(") - sum(chars == ")")
-      if (paren_depth <= 0) break
-    }
+  # Read from that line until we find the closing "))" for the structure
+  # Accumulate text and track parenthesis depth
+  text_block <- ""
+  paren_depth <- 0
+  for (i in start_idx:length(lines)) {
+    text_block <- paste0(text_block, lines[i])
+    # Count opening and closing parens from the "structure(" onward
+    chars <- strsplit(lines[i], "")[[1]]
+    paren_depth <- paren_depth + sum(chars == "(") - sum(chars == ")")
+    if (paren_depth <= 0 && i > start_idx) break
   }
 
   # Extract all quoted strings from the treatment block
   all_treats <- unlist(regmatches(text_block, gregexpr('"[^"]*"', text_block)))
   all_treats <- gsub('^"|"$', '', all_treats)
 
-  # Filter out dimension-related strings (arm_ind.1, r.1, etc.)
-  all_treats <- all_treats[!grepl("^(arm_ind|r|n|study)\\.", all_treats)]
-
+  # Remove NAs (stored as character "NA" won't appear in quotes)
+  # Return unique treatments
   unique(all_treats)
 }
 
@@ -480,29 +213,20 @@ suggest_comparators <- function(treatment_names, focus_compound = NULL, indicati
 # ── Main ridge plot generator ─────────────────────────────────────────────────
 #' Generate a BNMA ridge plot from Batman output
 #'
-#' Supports both normal (continuous) and logit (binomial) models. Model type
-#' is auto-detected from meta.csv. For logit models, d[N] values are log-odds
-#' ratios; for normal models, they are mean treatment differences.
-#'
 #' @param batman_output_dir Path to the Batman model output directory
-#'   (e.g., ".../logit_independent_fixed_fixed/")
+#'   (e.g., ".../normal_independent_fixed_fixed/")
 #' @param compounds Character vector of compound names to include (partial
 #'   matching supported). If NULL, interactive selection is triggered.
-#' @param focus_compound The compound of interest (for recommendation engine
-#'   and Lilly Red highlighting)
+#' @param focus_compound The compound of interest (for recommendation engine)
 #' @param indication Indication code ("AD", "Psoriasis", "UC", etc.)
 #' @param output_path Output file path for the plot (PNG)
-#' @param title Plot title (auto-generated multi-line title if NULL)
+#' @param title Plot title (auto-generated if NULL)
 #' @param comparator Reference treatment (default "placebo")
 #' @param width Plot width in inches
 #' @param height Plot height in inches
 #' @param dpi Resolution
 #' @param alpha Transparency of ridge fills
 #' @param top_n If set, only show top N treatments by posterior median
-#' @param scale Scale for effect size: NULL (auto), "log_odds_ratio",
-#'   or "odds_ratio" (logit models only)
-#' @param show_stats If TRUE, annotate each ridge with posterior mean [95% CrI]
-#' @param study_type Character or NULL: "Monotherapy", "Combo", etc. for title
 #' @return ggplot object (also saves to output_path if specified)
 generate_ridge_plot <- function(
   batman_output_dir,
@@ -516,10 +240,7 @@ generate_ridge_plot <- function(
   height = NULL,
   dpi = 300,
   alpha = 0.7,
-  top_n = NULL,
-  scale = NULL,
-  show_stats = TRUE,
-  study_type = NULL
+  top_n = NULL
 ) {
 
   # ── Validate input directory ──
@@ -562,12 +283,6 @@ generate_ridge_plot <- function(
     }
   }
 
-  # ── Detect model type ──
-  model_type <- detect_model_type(batman_output_dir)
-  message(glue("Model type detected: {model_type}"))
-  scale_cfg <- get_scale_config(model_type, scale_override = scale)
-  message(glue("Scale: {scale_cfg$scale_name} | X-axis: {scale_cfg$x_label}"))
-
   # ── Read posterior samples ──
   message(glue("Reading posterior samples from:\n  {posterior_file}"))
   posterior_raw <- read_csv(posterior_file, show_col_types = FALSE)
@@ -592,8 +307,8 @@ generate_ridge_plot <- function(
     treatment_names <- colnames(posterior_raw)
   }
 
-  # If columns are indexed JAGS parameters (d[1], d[2], ..., rel2_d[1], ...), resolve names
-  indexed_pattern <- "^[a-z_0-9]+\\[.+\\]$"
+  # If columns are indexed JAGS parameters (d[1], d[2], ...), resolve names
+  indexed_pattern <- "^[a-z_]+\\[.+\\]$"
   n_indexed <- sum(grepl(indexed_pattern, colnames(posterior_raw)))
   if (n_indexed / ncol(posterior_raw) > 0.5) {
     # Keep only the d[N] columns (treatment effect parameters)
@@ -606,21 +321,14 @@ generate_ridge_plot <- function(
       # Trim to match d[N] column count (treatment_names may include placebo at position matching d columns)
       treatment_names <- treatment_names[seq_len(ncol(posterior_raw))]
     } else {
-      # Try dsn_forest_plot_settings.yaml first (ordered d[N] → name mapping)
-      yaml_names <- extract_treatment_names_from_yaml(batman_output_dir)
-      if (!is.null(yaml_names) && length(yaml_names) >= ncol(posterior_raw)) {
-        message(glue("Columns are indexed JAGS parameters — using {length(yaml_names)} names from dsn_forest_plot_settings.yaml"))
-        treatment_names <- yaml_names[seq_len(ncol(posterior_raw))]
+      # Fall back to extracting from BatmanData.R
+      batman_names <- extract_treatment_names_from_batman(batman_output_dir)
+      if (!is.null(batman_names) && length(batman_names) >= ncol(posterior_raw)) {
+        message(glue("Columns are indexed JAGS parameters — extracted {length(batman_names)} treatment names from BatmanData.R"))
+        treatment_names <- batman_names
       } else {
-        # Fall back to extracting from BatmanData.R
-        batman_names <- extract_treatment_names_from_batman(batman_output_dir)
-        if (!is.null(batman_names) && length(batman_names) >= ncol(posterior_raw)) {
-          message(glue("Columns are indexed JAGS parameters — extracted {length(batman_names)} treatment names from BatmanData.R"))
-          treatment_names <- batman_names
-        } else {
-          message("Columns are indexed JAGS parameters but could not resolve treatment names. Using d[N] labels.")
-          treatment_names <- colnames(posterior_raw)
-        }
+        message("Columns are indexed JAGS parameters but could not resolve treatment names. Using d[N] labels.")
+        treatment_names <- colnames(posterior_raw)
       }
     }
   }
@@ -755,11 +463,7 @@ generate_ridge_plot <- function(
     pivot_longer(everything(), names_to = "treatment", values_to = "effect") %>%
     filter(!is.na(effect))
 
-  # ── Apply scale transformation ──
-  posterior_long <- posterior_long %>%
-    mutate(effect = scale_cfg$transform_fn(effect))
-
-  # ── Compute summary statistics (on transformed scale) ──
+  # ── Compute summary statistics ──
   summaries <- posterior_long %>%
     group_by(treatment) %>%
     summarise(
@@ -787,35 +491,19 @@ generate_ridge_plot <- function(
 
   n_treatments <- length(treatment_order)
 
-  # ── Build multi-line title ──
+  # ── Auto-generate title if not provided ──
   if (is.null(title)) {
-    title <- build_title(batman_output_dir, indication, model_type,
-                         study_type = study_type)
-  }
+    # Try to extract info from directory path
+    dir_parts <- str_split(batman_output_dir, "/|\\\\")[[1]]
+    # Look for endpoint/indication clues
+    endpoint_hint <- dir_parts[str_detect(dir_parts, "(?i)EASI|PASI|IGA|ACR|MAYO|SRI")]
+    indication_hint <- dir_parts[str_detect(dir_parts, "(?i)AtD|PsO|UC|RA|AD")]
 
-  # ── Build color assignment ──
-  fill_colors <- rep(RIDGE_PALETTE, length.out = n_treatments)
-  names(fill_colors) <- treatment_order
-  # Highlight focus compound with Lilly Red
-  if (!is.null(focus_compound) && nchar(focus_compound) > 0) {
-    focus_matches <- treatment_order[str_detect(tolower(treatment_order),
-                                                fixed(tolower(focus_compound)))]
-    for (fm in focus_matches) fill_colors[fm] <- LILLY_RED
-  }
-
-  # ── Build annotation data (posterior mean + 95% CrI) ──
-  if (show_stats) {
-    annotation_df <- summaries %>%
-      mutate(
-        label = paste0(
-          scale_cfg$format_fn(mean), " [",
-          scale_cfg$format_fn(q025), ", ",
-          scale_cfg$format_fn(q975), "]"
-        ),
-        treatment = factor(treatment, levels = rev(treatment_order))
-      )
-    x_range <- range(posterior_long$effect, na.rm = TRUE)
-    x_annotation <- x_range[2] + diff(x_range) * 0.05
+    title <- paste0(
+      "Multi-treatment Comparison",
+      if (length(indication_hint) > 0) paste0(" in ", indication) else "",
+      "\nPosterior Density for PBO-Adjusted Effect Sizes"
+    )
   }
 
   # ── Build the ridge plot ──
@@ -829,66 +517,30 @@ generate_ridge_plot <- function(
       color = "grey30",
       linewidth = 0.3
     ) +
-    scale_fill_manual(values = fill_colors[rev(treatment_order)]) +
-    geom_vline(
-      xintercept = scale_cfg$ref_line,
-      linetype = "dashed",
-      color = "grey50",
-      linewidth = 0.4
-    )
-
-  # ── Add CrI annotations ──
-  if (show_stats) {
-    p <- p +
-      geom_text(
-        data = annotation_df,
-        aes(x = x_annotation, y = treatment, label = label),
-        inherit.aes = FALSE,
-        hjust = 0,
-        size = 3.8,
-        color = "grey25",
-        fontface = "plain"
-      ) +
-      annotate(
-        "text",
-        x = x_annotation,
-        y = n_treatments + 0.7,
-        label = "Mean [95% CrI]",
-        hjust = 0,
-        size = 3.5,
-        fontface = "bold",
-        color = "grey40"
-      ) +
-      coord_cartesian(clip = "off")
-  }
-
-  # ── Labels and theme ──
-  p <- p +
+    scale_fill_manual(values = rep(RIDGE_PALETTE, length.out = n_treatments)) +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "grey50", linewidth = 0.4) +
     labs(
       title = title,
-      x = scale_cfg$x_label,
-      y = "",
+      x = glue("Treatment Difference (Relative to {comparator})"),
+      y = "Posterior Density",
       caption = glue(
-        "Source: {basename(dirname(batman_output_dir))}/{basename(batman_output_dir)}\n",
-        "Model: {model_type} | Comparator: {comparator}\n",
-        "Date: {format(Sys.Date(), '%d %b %Y')}"
+        "Data: {posterior_file}\n",
+        "Relative Effects, Comparator: {comparator}\n",
+        "Date figure created: {format(Sys.Date(), '%d%b%Y')}"
       )
     ) +
-    theme_minimal(base_size = 14) +
+    theme_minimal(base_size = 11) +
     theme(
-      legend.position = "none",
-      plot.title = element_text(
-        hjust = 0.5, face = "bold", size = 17,
-        lineheight = 1.2, margin = margin(b = 12)
-      ),
-      plot.caption = element_text(size = 9, color = "grey50", face = "italic"),
+      legend.position = "left",
+      legend.title = element_blank(),
+      legend.text = element_text(size = 8),
+      plot.title = element_text(hjust = 0.5, face = "bold", size = 13),
+      plot.caption = element_text(size = 7, color = "grey50", face = "italic"),
       panel.grid.minor = element_blank(),
       panel.grid.major.y = element_blank(),
-      axis.text.y = element_text(size = 12),
-      axis.text.x = element_text(size = 12),
-      axis.title.x = element_text(size = 13, face = "bold", margin = margin(t = 8)),
-      axis.title.y = element_blank(),
-      plot.margin = margin(15, 140, 10, 10)
+      axis.text.y = element_text(size = 8),
+      axis.text.x = element_text(size = 9),
+      plot.margin = margin(10, 20, 10, 10)
     )
 
   # ── Save output ──
@@ -898,26 +550,20 @@ generate_ridge_plot <- function(
     ggsave(output_path, p, width = width, height = height, dpi = dpi, bg = "white")
     message(glue("\n✅ Ridge plot saved to: {output_path}"))
     message(glue("   Dimensions: {width}\" × {height}\" @ {dpi} DPI"))
-    message(glue("   Model type: {model_type} ({scale_cfg$scale_name})"))
     message(glue("   Treatments shown: {n_treatments}"))
   }
 
   # ── Print summary table ──
-  message("\n┌─────────────────────────────────────────────────────────────────────────┐")
-  message(glue("│ Treatment Effect Summary — {model_type} model ({scale_cfg$scale_name})"))
-  message("├─────────────────────────────────────────────────────────────────────────┤")
+  message("\n┌─────────────────────────────────────────────────────────────────┐")
+  message("│ Treatment Effect Summary (vs placebo)                           │")
+  message("├─────────────────────────────────────────────────────────────────┤")
   for (i in seq_len(nrow(summaries))) {
     s <- summaries[i, ]
-    sig <- if (s$q025 > scale_cfg$ref_line) " *" else ""
-    message(glue("│ {str_pad(s$treatment, 45)} │ {scale_cfg$format_fn(s$mean)} ({scale_cfg$format_fn(s$q025)}, {scale_cfg$format_fn(s$q975)}){sig}"))
+    sig <- if (s$q025 > 0) " *" else ""
+    message(glue("│ {str_pad(s$treatment, 45)} │ {sprintf('%5.3f', s$median)} ({sprintf('%5.3f', s$q025)}, {sprintf('%5.3f', s$q975)}){sig}"))
   }
-  message("└─────────────────────────────────────────────────────────────────────────┘")
-  sig_label <- if (scale_cfg$ref_line == 0) {
-    "  * 95% CrI excludes 0 (significant vs placebo)"
-  } else {
-    "  * 95% CrI excludes 1 (significant vs placebo)"
-  }
-  message(sig_label)
+  message("└─────────────────────────────────────────────────────────────────┘")
+  message("  * 95% CrI excludes 0 (significant vs placebo)")
 
   invisible(p)
 }
@@ -937,8 +583,7 @@ list_batman_models <- function(batman_parent_dir) {
   }
   message("Available Batman model outputs:")
   for (d in available) {
-    model_type <- detect_model_type(d)
-    message(glue("  • {basename(d)} [{model_type}]"))
+    message(glue("  • {basename(d)}"))
     # Check for model_fit.csv for DIC info
     fit_file <- file.path(d, "model_fit.csv")
     if (file.exists(fit_file)) {
@@ -1003,9 +648,6 @@ if (!interactive() && length(commandArgs(trailingOnly = TRUE)) > 0) {
       quit(status = 1)
     }
 
-    # Detect model type for suggest-only output
-    model_type <- detect_model_type(batman_dir)
-
     # Read treatment names
     treat_names_file <- file.path(batman_dir, "treatment_names.csv")
     treat_names_alt <- file.path(batman_dir, "TreatmentNames.csv")
@@ -1022,21 +664,14 @@ if (!interactive() && length(commandArgs(trailingOnly = TRUE)) > 0) {
     meta_cols <- c("iteration", "chain", "iter", "sample", "draw", "lp__")
     treatment_names <- treatment_names[!tolower(treatment_names) %in% meta_cols]
 
-    # If columns are indexed JAGS parameters (d[1], d[2], ..., rel2_d[1], ...), extract names
-    indexed_pattern <- "^[a-z_0-9]+\\[.+\\]$"
+    # If columns are indexed JAGS parameters (d[1], d[2], ...), extract names from BatmanData.R
+    indexed_pattern <- "^[a-z_]+\\[.+\\]$"
     n_indexed <- sum(grepl(indexed_pattern, treatment_names))
     if (n_indexed / length(treatment_names) > 0.5) {
-      # Try YAML mapping first, then BatmanData.R
-      yaml_names <- extract_treatment_names_from_yaml(batman_dir)
-      if (!is.null(yaml_names)) {
-        message(glue("Columns are indexed JAGS parameters - using {length(yaml_names)} names from dsn_forest_plot_settings.yaml"))
-        treatment_names <- yaml_names
-      } else {
-        batman_names <- extract_treatment_names_from_batman(batman_dir)
-        if (!is.null(batman_names)) {
-          message(glue("Columns are indexed JAGS parameters - extracted {length(batman_names)} treatment names from BatmanData.R"))
-          treatment_names <- batman_names
-        }
+      batman_names <- extract_treatment_names_from_batman(batman_dir)
+      if (!is.null(batman_names)) {
+        message(glue("Columns are indexed JAGS parameters - extracted {length(batman_names)} treatment names from BatmanData.R"))
+        treatment_names <- batman_names
       }
     }
 
@@ -1052,7 +687,6 @@ if (!interactive() && length(commandArgs(trailingOnly = TRUE)) > 0) {
     output <- list(
       focus = focus,
       indication = indication,
-      model_type = model_type,
       recommended = suggestion$recommended,
       available = suggestion$all_available,
       by_class = setNames(
@@ -1074,13 +708,6 @@ if (!interactive() && length(commandArgs(trailingOnly = TRUE)) > 0) {
   output_path <- params$output %||% params$out %||%
     file.path("BNMA_output", paste0("ridge_plot_", format(Sys.Date(), "%Y-%m-%d"), ".png"))
 
-  # New parameters
-  scale <- params$scale
-  show_stats <- if (!is.null(params$show_stats)) {
-    tolower(params$show_stats) != "false"
-  } else TRUE
-  study_type <- params$study_type
-
   generate_ridge_plot(
     batman_output_dir = batman_dir,
     compounds = compounds,
@@ -1088,9 +715,6 @@ if (!interactive() && length(commandArgs(trailingOnly = TRUE)) > 0) {
     indication = params$indication %||% "AD",
     output_path = output_path,
     title = params$title,
-    top_n = if (!is.null(params$top_n)) as.integer(params$top_n) else NULL,
-    scale = scale,
-    show_stats = show_stats,
-    study_type = study_type
+    top_n = if (!is.null(params$top_n)) as.integer(params$top_n) else NULL
   )
 }

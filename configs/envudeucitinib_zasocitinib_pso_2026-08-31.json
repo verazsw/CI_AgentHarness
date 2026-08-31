@@ -1,0 +1,258 @@
+{
+  "mode": "Detailed presenter deck",
+  "outputFile": "Envudeucitinib_Zasocitinib_TYK2i_PsO_Detailed_2026-08-31.pptx",
+  "slides": [
+    {
+      "type": "title",
+      "title": "Oral Allosteric TYK2 Inhibitors\nin Moderate-to-Severe Plaque Psoriasis",
+      "subtitle": "Envudeucitinib (ESK-001) & Zasocitinib — Phase 3 Results\nAAD 2026 Presentations",
+      "date": "August 31, 2026",
+      "speakerNotes": "This deck summarizes Phase 3 data from two next-generation oral allosteric TYK2 inhibitors presented at AAD 2026: envudeucitinib (Alumis) from ONWARD1/2 and zasocitinib (Takeda) from LATITUDE-PsO-3001/3002. Both target the JH2 pseudokinase domain of TYK2 — a differentiated mechanism from deucravacitinib (BMS), which was the first TYK2i approved for psoriasis."
+    },
+    {
+      "type": "content",
+      "title": "TYK2 Inhibitors: Mechanism & Competitive Context",
+      "sections": [
+        {
+          "header": "TYK2 as a Therapeutic Target in Psoriasis",
+          "bullets": [
+            "TYK2 mediates signaling of IL-23, IL-12, and type I IFN — key drivers of psoriasis pathogenesis",
+            "Allosteric TYK2 inhibitors bind the JH2 (regulatory/pseudokinase) domain, not the catalytic JH1 site",
+            "JH2 binding provides high selectivity for TYK2 over other JAK family members (JAK1/2/3)",
+            "Deucravacitinib (Sotyktu®, BMS) is the first-in-class approved TYK2i (2022), but next-gen compounds aim for improved potency"
+          ],
+          "x": 0.5, "y": 1.2, "w": 12.3, "h": 2.8
+        },
+        {
+          "header": "Compounds in This Analysis",
+          "bullets": [
+            "Zasocitinib (Takeda): once-daily oral, Phase 3 LATITUDE program — 3001 (N=693) & 3002 (N=1108)",
+            "Envudeucitinib / ESK-001 (Alumis): 40 mg BID oral, Phase 3 ONWARD program — ONWARD1 (N=912) & ONWARD2 (N=859)",
+            "Both used apremilast 30 mg BID as active comparator and placebo as control",
+            "Both evaluated co-primary endpoints: PASI 75 + sPGA 0/1 at Week 16"
+          ],
+          "x": 0.5, "y": 4.2, "w": 12.3, "h": 2.8
+        }
+      ],
+      "speakerNotes": "Both compounds are allosteric TYK2 inhibitors that bind the JH2 pseudokinase domain. Zasocitinib is once-daily dosing; envudeucitinib is BID (twice daily). Both used identical co-primary endpoints (PASI 75 + sPGA 0/1 at Wk16) and the same active comparator (apremilast). This makes cross-trial comparison more interpretable, though not equivalent to a head-to-head. Key question: do these next-gen TYK2i offer meaningful efficacy improvement over deucravacitinib while maintaining the favorable safety of the class?"
+    },
+    {
+      "type": "twoColumn",
+      "title": "Zasocitinib — Study Design: LATITUDE-PsO-3001 & 3002",
+      "leftColumn": {
+        "header": "Study Design",
+        "bullets": [
+          "Two Phase 3, randomized, double-blind, active comparator- and placebo-controlled studies",
+          "LATITUDE-PsO-3001: N=693 (zasocitinib 416, apremilast 137, PBO 140)",
+          "LATITUDE-PsO-3002: N=1108 (zasocitinib 555, apremilast 276, PBO 277)",
+          "Randomization: approximately 3:1:1 (zasocitinib : apremilast : PBO)",
+          "Population: adults ≥18 years with moderate-to-severe plaque psoriasis (BSA ≥10%, PASI ≥12, sPGA ≥3)",
+          "Co-primary endpoints: PASI 75 + sPGA 0/1 at Week 16",
+          "Key secondary: PASI 90, PASI 100, sPGA 0 at Wk16; durability through Wk24"
+        ]
+      },
+      "rightColumn": {
+        "header": "Key Details",
+        "bullets": [
+          "Zasocitinib: once-daily oral (dose level not publicly specified in AAD poster)",
+          "Active comparator: apremilast 30 mg BID",
+          "Nonresponder imputation (NRI) for binary endpoints",
+          "Takeda-sponsored; presented at AAD March 2026",
+          "Randomized withdrawal in 3002: responders at Wk40 re-randomized to zasocitinib or PBO",
+          "90%+ of Wk40 responders maintained sPGA 0/1, PASI 75, PASI 90 through Wk60 on continued treatment"
+        ]
+      },
+      "speakerNotes": "LATITUDE program uses an approximately 3:1:1 randomization ratio (not 2:1:1 like ONWARD). The programs are remarkably similar in design — same comparator (apremilast), same co-primary endpoints, same population. 3002 includes a randomized withdrawal period starting at Wk40, which is an important differentiator for regulatory strategy and long-term durability claims."
+    },
+    {
+      "type": "table",
+      "title": "Zasocitinib — Key Efficacy Results at Week 16",
+      "table": {
+        "headers": ["Endpoint", "3001: Zasocitinib", "3001: Apremilast", "3001: PBO", "3002: Zasocitinib", "3002: Apremilast", "3002: PBO"],
+        "rows": [
+          ["PASI 75ᵃ", "76%", "—", "12%", "71%", "—", "12%"],
+          ["sPGA 0/1ᵃ", "71%", "—", "11%", "69%", "—", "13%"],
+          ["PASI 90", "61%", "—", "5%", "52%", "—", "4%"],
+          ["PASI 100", "33%", "3%", "3%", "25%", "4%", "1%"],
+          ["sPGA 0", "40%", "8%", "8%", "34%", "7%", "7%"],
+          ["DLQI 0/1", "47%", "26%", "8%", "51%", "26%", "13%"]
+        ]
+      },
+      "disclaimer": "ᵃCo-primary endpoint. NRI. All p<0.001 vs PBO and apremilast. Review is required before disclosure.",
+      "speakerNotes": "Both co-primary endpoints met with high significance (p<0.001 vs both PBO and apremilast). Notably, PASI 75 rates of 71–76% are substantially above what deucravacitinib achieved in POETYK PSO-1/2 (~53–55%). PASI 100 of 25–33% also surpasses deucravacitinib (~12–17%). These are competitive with some biologics (IL-23 class achieves PASI 75 ~75–90%, PASI 100 ~35–45%). Apremilast PASI rates are not reported vs PBO in the efficacy poster figures."
+    },
+    {
+      "type": "table",
+      "title": "Zasocitinib — Safety Summary Through Week 24",
+      "table": {
+        "headers": ["TEAE Category", "Zasocitinib (n=970)", "Apremilast (n=412)", "PBO → Wk16 (n=417)"],
+        "rows": [
+          ["Any TEAE", "69.3%", "56.5%", "46.9%"],
+          ["SAE", "3.6%", "1.7%", "<1%"],
+          ["Leading to d/c", "3.7%", "1.3%", "<1%"],
+          ["Death", "<1% (1ᵈ)", "0", "0"],
+          ["Most frequent: URTI", "12.5%", "7.4%", "3.2%"],
+          ["Acne", "7.3%", "<1%", "<1%"],
+          ["Nasopharyngitis", "8.3%", "7.9%", "4.7%"],
+          ["Diarrhea", "3.7%", "8.2%", "1.8%"],
+          ["Headache", "3.3%", "6.8%", "1.9%"]
+        ]
+      },
+      "disclaimer": "Pooled 3001 + 3002. ᵈDeath occurred 1 day after first dose (unrelated to treatment). Lab parameters showed no clinically meaningful trends. Review is required before disclosure.",
+      "speakerNotes": "Overall safety profile is consistent with TYK2i class. Higher TEAE rate than PBO but events mostly mild/moderate. Acne is a notable signal (7.3% vs <1% PBO) — this is a known TYK2i class effect also seen with deucravacitinib. Diarrhea was lower with zasocitinib than apremilast (3.7% vs 8.2%), reflecting PDE4 vs TYK2 mechanism. One death occurred 1 day after first dose and is almost certainly unrelated. No cytopenia signals, no MACE, laboratory parameters (lymphocytes, liver enzymes, lipids) stable."
+    },
+    {
+      "type": "twoColumn",
+      "title": "Envudeucitinib — Study Design: ONWARD1 & ONWARD2",
+      "leftColumn": {
+        "header": "Study Design",
+        "bullets": [
+          "Two Phase 3, randomized, double-blind, active comparator- and placebo-controlled replicate studies",
+          "ONWARD1 (NCT06586112): N=912 (envudeucitinib 459, PBO 230, apremilast 223)",
+          "ONWARD2 (NCT06588738): N=859 (envudeucitinib 433, PBO 211, apremilast 215)",
+          "Randomization: 2:1:1 (envudeucitinib : PBO : apremilast)",
+          "PBO patients switch to envudeucitinib at Week 16",
+          "Population: adults ≥18 years, weight >40 kg, plaque psoriasis ≥6 months, BSA ≥10%, PASI ≥12, sPGA ≥3"
+        ]
+      },
+      "rightColumn": {
+        "header": "Key Details",
+        "bullets": [
+          "Envudeucitinib 40 mg BID oral (twice daily)",
+          "Active comparator: apremilast 30 mg BID",
+          "Co-primary endpoints: PASI 75 + sPGA 0/1 at Week 16 (vs PBO)",
+          "Key secondary: PASI 90/100, sPGA 0, itch NRS, DLQI 0/1, ss-PGA 0/1",
+          "NRI for binary endpoints; MMRM for continuous",
+          "Alumis-sponsored; AAD March 2026",
+          "Once-daily formulation and pediatric plan under development"
+        ]
+      },
+      "speakerNotes": "ONWARD uses 2:1:1 randomization (vs ~3:1:1 for LATITUDE). Both programs are replicate designs with identical co-primary endpoints. Key design difference: envudeucitinib is dosed BID (40 mg twice daily) whereas zasocitinib is once daily — this may affect patient preference and adherence. Alumis is a smaller biotech compared to Takeda, and previously demonstrated favorable Phase 2 results (STRIDE). The ONWARD program is ongoing with 1-year data expected H2 2026."
+    },
+    {
+      "type": "table",
+      "title": "Envudeucitinib — Key Efficacy Results at Week 16",
+      "table": {
+        "headers": ["Endpoint", "OW1: Envudeucitinib", "OW1: Apremilast", "OW1: PBO", "OW2: Envudeucitinib", "OW2: Apremilast", "OW2: PBO"],
+        "rows": [
+          ["PASI 75ᵃ", "76.5%", "18.7%", "4.8%", "70.4%", "13.7%", "4.3%"],
+          ["sPGA 0/1ᵃ", "61.0%", "26.5%", "10.0%", "57.3%", "27.4%", "5.7%"],
+          ["PASI 90", "59.9%", "21.5%", "0.9%", "53.1%", "20.9%", "0.9%"],
+          ["PASI 100", "29.4%", "4.0%", "0.9%", "27.7%", "7.9%", "0.9%"],
+          ["sPGA 0", "30.3%", "—", "4.0%", "29.3%", "—", "1.4%"],
+          ["DLQI 0/1", "57.5%", "36.2%", "15.2%", "56.0%", "35.9%", "11.6%"]
+        ]
+      },
+      "disclaimer": "ᵃCo-primary endpoint. NRI. ***P<0.0001 vs PBO and apremilast. Review is required before disclosure.",
+      "speakerNotes": "All primary and secondary endpoints met. PASI 75 of 70–77% is very similar to zasocitinib. PASI 100 of 27–29% is comparable. sPGA 0/1 of 57–61% is slightly lower than zasocitinib (69–71%), though different scoring practices may contribute. Very low PBO rates (4–5% PASI 75) confirm a difficult-to-treat population. ONWARD results showed continued improvement through Week 24 (PASI 75 ~75–79%, PASI 90 ~62–68%, PASI 100 ~40–41%), suggesting efficacy has not plateaued."
+    },
+    {
+      "type": "table",
+      "title": "Envudeucitinib — Pooled Safety Summary Through Week 16",
+      "table": {
+        "headers": ["TEAE Category", "Envudeucitinib 40 mg BID (n=890)", "PBO (n=441)", "Apremilast 30 mg BID (n=438)"],
+        "rows": [
+          ["≥1 TEAE", "524 (58.9%)", "166 (37.6%)", "223 (50.9%)"],
+          ["≥1 SAE", "19 (2.1%)", "5 (1.1%)", "5 (1.1%)"],
+          ["TEAE → d/c", "30 (3.4%)", "7 (1.6%)", "9 (2.1%)"],
+          ["TEAE grade ≥3", "42 (4.7%)", "14 (3.2%)", "18 (4.1%)"],
+          ["Headache", "92 (10.3%)", "11 (2.5%)", "40 (9.1%)"],
+          ["Nasopharyngitis", "64 (7.2%)", "21 (4.8%)", "16 (3.7%)"],
+          ["Acne", "53 (6.0%)", "3 (0.7%)", "3 (0.7%)"],
+          ["URTI", "43 (4.8%)", "7 (1.6%)", "16 (3.7%)"],
+          ["Nausea", "20 (2.2%)", "4 (0.9%)", "23 (5.3%)"],
+          ["Diarrhea", "14 (1.6%)", "11 (2.5%)", "36 (8.2%)"]
+        ]
+      },
+      "disclaimer": "Pooled ONWARD1 + ONWARD2 through Week 16. No deaths, no MACE, no cytopenia, no TB reactivation. Review is required before disclosure.",
+      "speakerNotes": "Envudeucitinib safety profile is favorable and consistent with the TYK2i class. Key points: no deaths, no MACE or cytopenia signals, no TB reactivation. Headache (10.3%) is the most common TEAE — higher than PBO but comparable to apremilast. Acne is a TYK2i class signal (6% vs 0.7% PBO). Diarrhea was notably lower than apremilast (1.6% vs 8.2%), a patient-relevant advantage over PDE4 inhibition. Through Week 24: low incidence of serious infections (0.7%) and malignancies (0.2%). No clinically significant laboratory abnormalities."
+    },
+    {
+      "type": "table",
+      "title": "Cross-Trial Comparison: Zasocitinib vs Envudeucitinib at Week 16",
+      "table": {
+        "headers": ["Endpoint", "Zasocitinib (3001/3002)", "Envudeucitinib (OW1/OW2)", "Deucravacitinib (POETYK ref)", "Comment"],
+        "rows": [
+          ["PASI 75", "76% / 71%", "76.5% / 70.4%", "~53–58%", "Both next-gen TYK2i >> deucravacitinib"],
+          ["PASI 90", "61% / 52%", "59.9% / 53.1%", "~27–36%", "Comparable; both roughly double deucravacitinib"],
+          ["PASI 100", "33% / 25%", "29.4% / 27.7%", "~12–17%", "Both substantially higher"],
+          ["sPGA 0/1", "71% / 69%", "61.0% / 57.3%", "~54%", "Zasocitinib numerically higher; scoring may differ"],
+          ["Dosing", "Once daily", "40 mg BID", "6 mg QD", "QD may have adherence advantage"],
+          ["Any TEAE (Wk16)", "~62%", "58.9%", "~55%", "Similar across class"],
+          ["Acne", "~7%", "6.0%", "~8–16%", "TYK2i class effect"]
+        ]
+      },
+      "disclaimer": "⚠️ Cross-trial comparison only — not a head-to-head study. Differences in design, population, and analysis methods limit direct comparison. Review is required before disclosure.",
+      "speakerNotes": "CRITICAL CAVEAT: This is a cross-trial comparison, not a head-to-head. That said, both next-gen TYK2i show remarkably similar efficacy profiles, with PASI 75 in the 70–77% range — substantially above deucravacitinib (~53–58%). This positions both compounds more competitively against IL-23 biologics (guselkumab, risankizumab) which typically achieve PASI 75 of 80–90%. Key differentiators are: (1) zasocitinib is QD vs envudeucitinib BID; (2) sPGA 0/1 numerically higher for zasocitinib. Takeda has a head-to-head trial vs deucravacitinib running (NCT06973291)."
+    },
+    {
+      "type": "image",
+      "title": "Cross-Trial PASI 75 Comparison at Week 16",
+      "imagePath": "figures/zasocitinib_envudeucitinib_PASI75_Wk16_2026-07-29.png",
+      "speakerNotes": "This visual comparison shows PASI 75 response rates at Week 16 across both programs. Note similar response curves and magnitude of effect. Both substantially outperform their active comparator (apremilast) and placebo arms."
+    },
+    {
+      "type": "bnma",
+      "title": "BNMA: PASI 75 at Week 16 — Multi-Treatment Comparison",
+      "interpretation": [
+        "Bayesian network meta-analysis of PASI 75 at Week 16 across psoriasis monotherapy trials",
+        "TYK2 inhibitors (deucravacitinib) included as common comparator linking indirect evidence",
+        "Results show posterior density of PBO-adjusted log-odds ratios for each treatment",
+        "Higher values indicate greater probability of PASI 75 response vs placebo",
+        "BNMA synthesized from CATWOMAN NMA output (logit model, summary statistics)",
+        "⚠️ Indirect comparison — confidence intervals reflect network uncertainty"
+      ],
+      "imagePath": "BNMA_output/PASI75_Wk16_BNMA_ridge_2026-08-31.png",
+      "speakerNotes": "This ridge plot shows the posterior densities from a Bayesian NMA for PASI 75 at Week 16. Treatments further to the right have higher estimated PASI 75 rates. The BNMA was generated from CATWOMAN NMA summary statistics (mean and SD of relative effects vs placebo). Note that both zasocitinib and envudeucitinib data are not yet incorporated into this formal NMA — the comparison with established treatments (IL-23i, IL-17i, JAKi) provides context for their positioning."
+    },
+    {
+      "type": "bnma",
+      "title": "BNMA: PASI 100 at Week 16 — Multi-Treatment Comparison",
+      "interpretation": [
+        "PASI 100 (complete skin clearance) is a key high-bar endpoint in psoriasis",
+        "Posterior density of PBO-adjusted log-odds ratios from Bayesian NMA",
+        "IL-23 inhibitors and IL-17 biologics typically lead in PASI 100",
+        "Both envudeucitinib (~28–29%) and zasocitinib (~25–33%) are competitive for oral agents",
+        "Oral TYK2i PASI 100 rates remain below top biologics (~40–55%)",
+        "⚠️ Indirect comparison from NMA summary statistics"
+      ],
+      "imagePath": "BNMA_output/PASI100_Wk16_BNMA_ridge_2026-08-31.png",
+      "speakerNotes": "PASI 100 is the ultimate bar — complete skin clearance. The NMA shows that while oral TYK2i are making significant gains, the top biologics (risankizumab, ixekizumab, bimekizumab) still lead. However, for an oral therapy, the PASI 100 rates of ~25–33% for the next-gen TYK2i represent a meaningful improvement over first-gen deucravacitinib (~12–17%) and position them as attractive first-line oral options before stepping up to injectable biologics."
+    },
+    {
+      "type": "table",
+      "title": "Competitive Landscape: TYK2 Inhibitors in Psoriasis",
+      "table": {
+        "headers": ["Compound", "Sponsor", "Mechanism", "Dose", "Phase", "Key Data", "Status"],
+        "rows": [
+          ["Deucravacitinib (Sotyktu®)", "BMS", "Allosteric TYK2i", "6 mg QD", "Approved", "PASI 75 ~53–58% Wk16", "Marketed (US 2022)"],
+          ["Zasocitinib", "Takeda", "Allosteric TYK2i", "QD (dose TBD)", "Phase 3", "PASI 75 71–76% Wk16", "H2H vs deucravacitinib planned"],
+          ["Envudeucitinib (ESK-001)", "Alumis", "Allosteric TYK2i", "40 mg BID", "Phase 3", "PASI 75 70–77% Wk16", "1yr data expected H2 2026"],
+          ["TAK-279 (TAK-279)", "Takeda", "Allosteric TYK2i", "—", "Phase 2", "Under evaluation", "Multiple indications"],
+          ["Ropsacitinib", "BMS", "Allosteric TYK2i", "—", "Phase 2", "Under evaluation", "Next-gen after deucravacitinib"]
+        ]
+      },
+      "disclaimer": "Data from public sources. Review is required before disclosure.",
+      "speakerNotes": "The TYK2i space in psoriasis is rapidly evolving. Deucravacitinib was the pioneer but next-gen compounds are showing substantially better efficacy (PASI 75 of 70–77% vs 53–58%). Key competitive dynamics: (1) Takeda is running a head-to-head trial of zasocitinib vs deucravacitinib — this could be pivotal for positioning; (2) Alumis is smaller but has strong data and once-daily formulation in development; (3) Both face competition from highly effective IL-23 biologics and emerging oral options. The oral route of administration remains a meaningful differentiator vs injectable biologics for many patients and payers."
+    },
+    {
+      "type": "summary",
+      "title": "Key Takeaways & Strategic Implications",
+      "takeaways": [
+        "Both zasocitinib and envudeucitinib demonstrated PASI 75 rates of 70–77% at Wk16 — substantially above deucravacitinib (~53–58%) and competitive with some biologics",
+        "Next-generation allosteric TYK2i represent a step-change in oral efficacy for psoriasis, narrowing the gap with injectable IL-23 and IL-17 biologics",
+        "Safety profiles are consistent with TYK2i class: acne is a class signal (6–7%); both compounds were well tolerated with no new safety signals",
+        "Cross-trial efficacy is remarkably similar; key differentiators are dosing frequency (zasocitinib QD vs envudeucitinib BID) and sponsor resources",
+        "Takeda's head-to-head trial vs deucravacitinib (NCT06973291) could be a defining event for the TYK2i class",
+        "PASI 100 rates of ~25–33% for oral agents are competitive but still below top IL-23i/IL-17i biologics (~40–55%)"
+      ],
+      "actions": [
+        "Monitor Takeda head-to-head trial vs deucravacitinib — results could reshape oral psoriasis landscape",
+        "Track Alumis 1-year ONWARD data (expected H2 2026) for durability and long-term safety",
+        "Assess implications for Lilly's psoriasis portfolio positioning vs oral TYK2i class",
+        "Update BNMA models when formal trial data are available for inclusion in network"
+      ],
+      "speakerNotes": "Bottom line: next-gen TYK2i are real competitors. With PASI 75 of ~70–77%, they're no longer a 'compromise' oral option — they're approaching biologic-level efficacy for many patients. The class effect on acne needs monitoring but is manageable. For our portfolio, the key question is whether these oral therapies will capture biologic-naive patients who might otherwise initiate an injectable IL-13 or IL-23 treatment. The dosing advantage (oral QD or BID) vs subcutaneous injection is meaningful for patient preference and payer formulary positioning."
+    }
+  ]
+}
