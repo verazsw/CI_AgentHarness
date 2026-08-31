@@ -189,6 +189,13 @@
       "speakerNotes": "Co-primary 2 was also met: JNJ-4804 High achieved 38.1% endoscopic response vs 4.7% PBO (Δ 34.1, p<0.001). Again, superior to golimumab (p<0.001) but not significantly different from guselkumab (38.1% vs 33.9%, p=0.451). In the ≥2-IR subgroup, the gap widened (33.3% vs 20.0%) but the 95% CI for GUS comparison crosses zero (−4.3 to 27.6). The endoscopic response data is more modest than clinical remission, suggesting guselkumab alone captures much of the endoscopic benefit."
     },
     {
+      "type": "image",
+      "title": "DUET-CD: Endoscopic Response at Week 48 — Overall & ≥2 Systemic Therapy-IR",
+      "imagePath": "figures/DUET_CD_EndoResponse_Wk48.png",
+      "disclaimer": "Source: DDW 2026 poster. Endoscopic response = >50% SES-CD improvement or SES-CD ≤2.",
+      "speakerNotes": "The endoscopic response bar chart shows a more modest combo advantage vs guselkumab compared to clinical remission. In the overall population, JNJ-4804 High (38.1%) is only marginally above guselkumab (33.9%). In the ≥2-IR subgroup, the gap widens to 33.3% vs 20.0% but doesn't reach statistical significance."
+    },
+    {
       "type": "table",
       "title": "DUET-CD: High-Bar Endpoints — ≥2 Systemic Therapy-IR Subgroup at Week 48",
       "table": {
@@ -204,6 +211,13 @@
       },
       "disclaimer": "Source: DDW 2026 poster. CS-free = no corticosteroids for ≥60 days. Endoscopic remission = SES-CD ≤4. Deep remission = clinical remission + endoscopic remission.",
       "speakerNotes": "This is the most compelling slide for JNJ-4804. In the ≥2 systemic therapy-IR subgroup (the hardest-to-treat 50%), JNJ-4804 High consistently outperformed both monotherapies across all endpoints. The standout findings: 49.2% clinical remission (vs 27.3% GUS), 46.0% CS-free remission, and notably 20.6% deep remission (vs 5.5% GUS and 6.2% GOL). The 93.5% CS-free rate among remitters indicates nearly all remissions are durable without steroid support. Endoscopic remission at 23.8% vs <8% for monotherapies is a 3× improvement — this is where the combo truly shines."
+    },
+    {
+      "type": "image",
+      "title": "DUET-CD: Endoscopic & Deep Remission — ≥2 Systemic Therapy-IR at Week 48",
+      "imagePath": "figures/DUET_CD_DeepRemission_Wk48.png",
+      "disclaimer": "Source: DDW 2026 poster. Endoscopic remission = SES-CD ≤4. Deep remission = clinical remission + endoscopic remission.",
+      "speakerNotes": "This figure shows the highest-bar endpoints in the ≥2-IR subgroup. Left: endoscopic remission — JNJ-4804 High at 23.8% vs 7.7% GOL and 7.3% GUS, a 3× improvement. Right: deep remission (clinical + endoscopic) — JNJ-4804 High at 20.6% vs 6.2% GOL and 5.5% GUS. These are the endpoints where the combination most clearly exceeds what either monotherapy can achieve alone. Note placebo is 0% for deep remission, highlighting the severity of this population."
     },
     {
       "type": "table",

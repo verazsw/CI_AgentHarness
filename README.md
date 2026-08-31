@@ -47,9 +47,8 @@ I want: BNMA ridge plot + detailed slide deck
 - **Press release PDFs:** Better to Convert pages to png/jpeg and drop in `figures/`
 
 <hr>
----
 
-## <span style="color:red">! You can skip reading the text below to save your time</span>
+## [!IMPORTANT] You can skip reading the text below to save your time
 
 Or just say "run pipeline" and the agent will ask you to fill in, Leave any field blank if you don't have that resource — the pipeline adapts. For example:
 
