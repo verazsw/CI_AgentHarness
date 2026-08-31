@@ -2,14 +2,14 @@
 
 Extracts, structures, data curation, QC, and summarizes competitor clinical trial readout for **immunology**. Primary Goal:
 ```bash
-Quick&Accurate&Insights Slide Deck for Competitor Readout **Urgent Request**;
+Quick, Accurate, Insights Competitor Readout Slide Deck for **Urgent Request**;
 
 Deal with Special Cases In Development: 
 Competitor didn't report placebo-arm response rate; 
 Competitor didn't report per-arm sample size; 
 Competitor only publish Ph1 result; 
 Competitor BL characteristics are different; 
-Competitor only publish results for timepoints that not typical for each indication
+Competitor only publish intypical timepoints results
 ... 
 ```
 
@@ -33,10 +33,10 @@ Provide all your materials in one message, select outputs, and the pipeline runs
 
 #### Main Guidance Example:
 ```bash
-Run this pipeline for zumilokibart Ph2 Atopic Dermatitis (AtD) readout.
+Run this pipeline for the zumilokibart Ph2 Atopic Dermatitis (AtD) readout.
 Source: competitor readout press release: ~/competitor_agent/figures, CI land update: ~/competitor_agent/figures, ...
-Existing BNMA input excel file for AtD to edit: /Users/L099645/Library/CloudStorage/OneDrive-EliLillyandCompany/Documents/development/CI_test
-Batman BNMA output path for each endpoint: EASI: smb://lrlhps/users/xxxxx/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/, IGA: ...
+Existing BNMA input excel file for the AtD to edit: /Users/L099645/Library/CloudStorage/OneDrive-EliLillyandCompany/Documents/development/CI_test
+Batman BNMA output path for the each endpoint: EASI: smb://lrlhps/users/xxxxx/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/, IGA: ...
 I want: BNMA ridge plot + detailed slide deck
 ```
 #### Tips
@@ -44,7 +44,7 @@ I want: BNMA ridge plot + detailed slide deck
 - Say "detailed" or "presenter prep" for the full 8+ slide deck; otherwise you get a quick 5-slide summary
 - Drop images, press release, and all materials you have into **`figures/`** before asking for a deck — the agent auto-scans and classifies them
 - **CILand articles:** Cannot be fetched by URL. Print the article text into pdf (better convert to png/jpeg) and put into **`figures/`**.
-- **Press release PDFs:** Better to Convert pages to png/jpeg and drop in `figures/`
+- **Press release PDFs:** PDF is totally fine. Better to Convert pages to png/jpeg and drop in `figures/`
 
 <hr>
 
