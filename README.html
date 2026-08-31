@@ -76,6 +76,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="README_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -139,8 +168,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="important-you-can-skip-reading-the-text-below-to-save-your-time" class="level2">
-<h2 class="anchored" data-anchor-id="important-you-can-skip-reading-the-text-below-to-save-your-time">[!IMPORTANT] You can skip reading the text below to save your time</h2>
+<section id="colorredtextyou-can-skip-reading-the-text-below-to-save-your-time" class="level2">
+<h2 class="anchored" data-anchor-id="colorredtextyou-can-skip-reading-the-text-below-to-save-your-time"><span class="math inline">\(\color{red}\text{You can skip reading the text below to save your time}\)</span></h2>
 <p>Or just say “run pipeline” and the agent will ask you to fill in, Leave any field blank if you don’t have that resource — the pipeline adapts. For example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">1.</span> Compound name:         <span class="er">(</span><span class="ex">e.g.,</span> zumilokibart<span class="kw">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2.</span> Indication:            <span class="er">(</span><span class="ex">e.g.,</span> AD<span class="kw">)</span></span>

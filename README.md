@@ -48,7 +48,7 @@ I want: BNMA ridge plot + detailed slide deck
 
 <hr>
 
-## [!IMPORTANT] You can skip reading the text below to save your time
+## $\color{red}\text{You can skip reading the text below to save your time}$
 
 Or just say "run pipeline" and the agent will ask you to fill in, Leave any field blank if you don't have that resource — the pipeline adapts. For example:
 
