@@ -2,7 +2,7 @@
 
 Extracts, structures, data curation, QC, and summarizes competitor clinical trial readout for **immunology**. Primary Goal:
 ```bash
-Quick, Accurate, Insights Competitor Readout Slide Deck for **Urgent Request**;
+Quick, Accurate, Insights Competitor Readout Slide Deck for Urgent Request;
 
 Deal with Special Cases In Development: 
 Competitor didn't report placebo-arm response rate; 
@@ -33,10 +33,10 @@ Provide all your materials in one message, select outputs, and the pipeline runs
 
 #### Main Guidance Example:
 ```bash
-Run this pipeline for the zumilokibart Ph2 Atopic Dermatitis (AtD) readout.
-Source: competitor readout press release: ~/competitor_agent/figures, CI land update: ~/competitor_agent/figures, ...
+Run this pipeline for the zumilokibart Ph2 Atopic Dermatitis readout.
+Source: competitor readout press release are in: ~/competitor_agent/figures/, CI land update: ~/competitor_agent/figures/, ...
 Existing BNMA input excel file for the AtD to edit: /Users/L099645/Library/CloudStorage/OneDrive-EliLillyandCompany/Documents/development/CI_test
-Batman BNMA output path for the each endpoint: EASI: smb://lrlhps/users/xxxxx/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_normal_1all_20260530_214958_output/normal_independent_fixed_fixed/, IGA: ...
+Batman BNMA output path for the each endpoint: EASI: smb://lrlhps/users/xxxxx/EASI75_Ph2Ph3/AtD_Zum_Ph23/_output/batmanNMA_all_20260530_214958_output/, IGA: ...
 I want: BNMA ridge plot + detailed slide deck
 ```
 #### Tips
