@@ -5,5 +5,10 @@
       "Bash(Rscript *)",
       "Bash(python3 *)"
     ]
+  },
+
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
